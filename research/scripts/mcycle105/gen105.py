@@ -69,14 +69,15 @@ def threerise_module(out):
     lines.append("end Collatz.ThreeRise\n")
     open(os.path.join(out, "MCycleThreeRise105.lean"), "w", encoding="utf-8").write("\n".join(lines))
     g = ", ".join(f"({N}, {B})" for N, B in GRID3)
-    cases = "\n".join(f"  · exact threeRiseBound_of_allTriples ThreeRise.allTriples{N}" for N, _ in GRID3)
+    cases = "".join(f"  rcases List.mem_cons.mp h with h | h\n"
+                    f"  · rw [h]; exact threeRiseBound_of_allTriples ThreeRise.allTriples{N}\n"
+                    for N, _ in GRID3) + "  · cases h"
     open(os.path.join(out, "MCycleGrid3_105.lean"), "w", encoding="utf-8").write(
         "import Collatz.MCycleSteps3\nimport Collatz.MCycleThreeRise105\n\n"
         "/-!\n# The three-rise grid for `m = 104, 105`\n-/\n\nnamespace Collatz\n\n"
         f"/-- The three-rise bounds `(N, B)` (increasing `N`). -/\ndef grid3_105 : List (ℕ × ℕ) := [{g}]\n\n"
         "theorem grid3_105_ok : ∀ e ∈ grid3_105, ThreeRiseBound e.1 e.2 := by\n"
-        "  intro e he\n  simp only [grid3_105, List.mem_cons, List.mem_singleton] at he\n"
-        f"  rcases he with {' | '.join(['h'] * len(GRID3))} <;> subst h\n{cases}\n\nend Collatz\n")
+        f"  intro e h\n{cases}\n\nend Collatz\n")
 
 
 # ---------------- the walk tree ----------------
