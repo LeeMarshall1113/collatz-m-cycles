@@ -63,3 +63,21 @@ theorem main_statement_105
   no_105_cycle_2_71 hX hR
 
 #print axioms main_statement_105
+
+/-- **Extension to `m = 106`** (three-rise chain). Same hypotheses: every positive `T`-cycle other
+than `1 → 2 → 1` has at least 107 local minima. -/
+theorem main_statement_106
+    (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Reaches T n 1) (hR : RhinBound) :
+    ∀ x p, 0 < x → 0 < p → T^[p] x = x → x ≠ 1 → x ≠ 2 → 107 ≤ numLocalMin x p :=
+  no_106_cycle_2_71 hX hR
+
+#print axioms main_statement_106
+
+/-- **Extension to `m = 107`** (three-rise chain). Same hypotheses: every positive `T`-cycle other
+than `1 → 2 → 1` has at least 108 local minima. -/
+theorem main_statement_107
+    (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Reaches T n 1) (hR : RhinBound) :
+    ∀ x p, 0 < x → 0 < p → T^[p] x = x → x ≠ 1 → x ≠ 2 → 108 ≤ numLocalMin x p :=
+  no_107_cycle_2_71 hX hR
+
+#print axioms main_statement_107
