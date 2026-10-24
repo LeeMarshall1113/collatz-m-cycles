@@ -1,0 +1,2 @@
+m=126 Kceil=3.4841e+28 candidates=3338831 screened-closed=3338828 exact-needed=0 failures=0 B4top=852 enum 69s screen 340s exact 2s
+  m=126: worst exact ratio 0.628592 at K=27444133206411171953 use={1: 67, 2: 16, 3: 26, 4: 16} maxN={2: 986690, 3: 35582, 4: 829} (worst valid as global max: True; cut bound 0.001123); failures 0; CLOSED

@@ -1,0 +1,112 @@
+{"N": 70, "claimed": 76, "mine": 76, "ok": true, "above": [], "nhits": 1, "witness": [76, true], "KS": 30, "nsmall": 552, "nA": 1, "nC": 0, "secs": 1.7}
+{"N": 72, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 1, "witness": [84, true], "KS": 30, "nsmall": 405, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 73, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 2, "witness": [84, true], "KS": 30, "nsmall": 428, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 74, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 2, "witness": [84, true], "KS": 30, "nsmall": 452, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 75, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 2, "witness": [84, true], "KS": 30, "nsmall": 476, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 76, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 2, "witness": [84, true], "KS": 30, "nsmall": 501, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 77, "claimed": 84, "mine": 84, "ok": true, "above": [], "nhits": 2, "witness": [84, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 85, "claimed": 91, "mine": 91, "ok": true, "above": [], "nhits": 1, "witness": [91, true], "KS": 30, "nsmall": 552, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 94, "claimed": 100, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 103, "claimed": 109, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 0, "nC": 0, "secs": 0.0}
+{"N": 113, "claimed": 120, "mine": 120, "ok": true, "above": [], "nhits": 2, "witness": [120, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 114, "claimed": 120, "mine": 120, "ok": true, "above": [], "nhits": 3, "witness": [120, true], "KS": 30, "nsmall": 552, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 115, "claimed": 121, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 0, "nC": 0, "secs": 0.0}
+{"N": 116, "claimed": 122, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 117, "claimed": 124, "mine": 124, "ok": true, "above": [], "nhits": 1, "witness": [124, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 118, "claimed": 124, "mine": 124, "ok": true, "above": [], "nhits": 2, "witness": [124, true], "KS": 30, "nsmall": 552, "nA": 5, "nC": 0, "secs": 0.0}
+{"N": 119, "claimed": 125, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 120, "claimed": 126, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 121, "claimed": 127, "mine": 127, "ok": true, "above": [], "nhits": 2, "witness": [127, true], "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 122, "claimed": 128, "mine": 128, "ok": true, "above": [], "nhits": 2, "witness": [128, true], "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 123, "claimed": 129, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 0, "nC": 0, "secs": 0.0}
+{"N": 125, "claimed": 131, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 0, "nC": 0, "secs": 0.0}
+{"N": 137, "claimed": 143, "mine": 143, "ok": true, "above": [], "nhits": 1, "witness": [143, true], "KS": 30, "nsmall": 552, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 151, "claimed": 158, "mine": 158, "ok": true, "above": [], "nhits": 1, "witness": [158, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 166, "claimed": 174, "mine": 174, "ok": true, "above": [], "nhits": 1, "witness": [174, true], "KS": 30, "nsmall": 501, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 182, "claimed": 188, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 187, "claimed": 194, "mine": 194, "ok": true, "above": [], "nhits": 2, "witness": [194, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 188, "claimed": 196, "mine": 196, "ok": true, "above": [], "nhits": 1, "witness": [196, true], "KS": 30, "nsmall": 501, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 189, "claimed": 196, "mine": 196, "ok": true, "above": [], "nhits": 2, "witness": [196, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 190, "claimed": 196, "mine": 196, "ok": true, "above": [], "nhits": 2, "witness": [196, true], "KS": 30, "nsmall": 552, "nA": 5, "nC": 0, "secs": 0.0}
+{"N": 191, "claimed": 197, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 193, "claimed": 199, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 194, "claimed": 200, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 195, "claimed": 201, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 196, "claimed": 206, "mine": 206, "ok": true, "above": [], "nhits": 1, "witness": [206, true], "KS": 30, "nsmall": 452, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 200, "claimed": 206, "mine": 206, "ok": true, "above": [], "nhits": 2, "witness": [206, true], "KS": 30, "nsmall": 552, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 220, "claimed": 226, "mine": null, "ok": false, "above": [], "nhits": 0, "witness": null, "KS": 30, "nsmall": 552, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 242, "claimed": 249, "mine": 249, "ok": true, "above": [], "nhits": 2, "witness": [249, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 266, "claimed": 274, "mine": 274, "ok": true, "above": [], "nhits": 1, "witness": [274, true], "KS": 30, "nsmall": 501, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 293, "claimed": 299, "mine": 299, "ok": true, "above": [], "nhits": 1, "witness": [299, true], "KS": 30, "nsmall": 552, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 301, "claimed": 308, "mine": 308, "ok": true, "above": [], "nhits": 3, "witness": [308, true], "KS": 30, "nsmall": 526, "nA": 3, "nC": 0, "secs": 0.1}
+{"N": 304, "claimed": 310, "mine": 310, "ok": true, "above": [], "nhits": 2, "witness": [310, true], "KS": 30, "nsmall": 552, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 306, "claimed": 313, "mine": 313, "ok": true, "above": [], "nhits": 1, "witness": [313, true], "KS": 30, "nsmall": 526, "nA": 1, "nC": 0, "secs": 0.1}
+{"N": 310, "claimed": 318, "mine": 318, "ok": true, "above": [], "nhits": 2, "witness": [318, true], "KS": 30, "nsmall": 501, "nA": 2, "nC": 0, "secs": 0.2}
+{"N": 314, "claimed": 321, "mine": 321, "ok": true, "above": [], "nhits": 2, "witness": [321, true], "KS": 30, "nsmall": 526, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 315, "claimed": 322, "mine": 322, "ok": true, "above": [], "nhits": 1, "witness": [322, true], "KS": 30, "nsmall": 526, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 322, "claimed": 328, "mine": 328, "ok": true, "above": [], "nhits": 1, "witness": [328, true], "KS": 30, "nsmall": 552, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 354, "claimed": 362, "mine": 362, "ok": true, "above": [], "nhits": 3, "witness": [362, true], "KS": 30, "nsmall": 501, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 390, "claimed": 398, "mine": 398, "ok": true, "above": [], "nhits": 1, "witness": [398, true], "KS": 30, "nsmall": 501, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 429, "claimed": 435, "mine": 435, "ok": true, "above": [], "nhits": 3, "witness": [435, true], "KS": 30, "nsmall": 552, "nA": 8, "nC": 0, "secs": 0.0}
+{"N": 471, "claimed": 478, "mine": 478, "ok": true, "above": [], "nhits": 4, "witness": [478, true], "KS": 30, "nsmall": 526, "nA": 7, "nC": 0, "secs": 0.0}
+{"N": 483, "claimed": 491, "mine": 491, "ok": true, "above": [], "nhits": 1, "witness": [491, true], "KS": 30, "nsmall": 501, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 487, "claimed": 495, "mine": 495, "ok": true, "above": [], "nhits": 2, "witness": [495, true], "KS": 30, "nsmall": 501, "nA": 3, "nC": 0, "secs": 0.1}
+{"N": 501, "claimed": 512, "mine": 512, "ok": true, "above": [], "nhits": 1, "witness": [512, true], "KS": 30, "nsmall": 428, "nA": 1, "nC": 0, "secs": 0.1}
+{"N": 519, "claimed": 526, "mine": 526, "ok": true, "above": [], "nhits": 1, "witness": [526, true], "KS": 30, "nsmall": 526, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 570, "claimed": 577, "mine": 577, "ok": true, "above": [], "nhits": 3, "witness": [577, true], "KS": 30, "nsmall": 526, "nA": 12, "nC": 0, "secs": 0.0}
+{"N": 627, "claimed": 634, "mine": 634, "ok": true, "above": [], "nhits": 1, "witness": [634, true], "KS": 30, "nsmall": 526, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 690, "claimed": 699, "mine": 699, "ok": true, "above": [], "nhits": 1, "witness": [699, true], "KS": 30, "nsmall": 476, "nA": 1, "nC": 0, "secs": 0.0}
+{"N": 759, "claimed": 766, "mine": 766, "ok": true, "above": [], "nhits": 1, "witness": [766, true], "KS": 30, "nsmall": 526, "nA": 15, "nC": 0, "secs": 0.0}
+{"N": 775, "claimed": 782, "mine": 782, "ok": true, "above": [], "nhits": 1, "witness": [782, true], "KS": 30, "nsmall": 526, "nA": 7, "nC": 0, "secs": 0.1}
+{"N": 799, "claimed": 805, "mine": 805, "ok": true, "above": [], "nhits": 3, "witness": [805, true], "KS": 30, "nsmall": 552, "nA": 7, "nC": 0, "secs": 0.0}
+{"N": 835, "claimed": 842, "mine": 842, "ok": true, "above": [], "nhits": 2, "witness": [842, true], "KS": 30, "nsmall": 526, "nA": 4, "nC": 0, "secs": 0.0}
+{"N": 918, "claimed": 929, "mine": 929, "ok": true, "above": [], "nhits": 1, "witness": [929, true], "KS": 30, "nsmall": 428, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 1010, "claimed": 1018, "mine": 1018, "ok": true, "above": [], "nhits": 2, "witness": [1018, true], "KS": 30, "nsmall": 501, "nA": 5, "nC": 0, "secs": 0.0}
+{"N": 1111, "claimed": 1120, "mine": 1120, "ok": true, "above": [], "nhits": 1, "witness": [1120, true], "KS": 30, "nsmall": 476, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 1222, "claimed": 1231, "mine": 1231, "ok": true, "above": [], "nhits": 1, "witness": [1231, true], "KS": 30, "nsmall": 476, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 1344, "claimed": 1352, "mine": 1352, "ok": true, "above": [], "nhits": 2, "witness": [1352, true], "KS": 30, "nsmall": 501, "nA": 10, "nC": 0, "secs": 0.0}
+{"N": 1478, "claimed": 1486, "mine": 1486, "ok": true, "above": [], "nhits": 2, "witness": [1486, true], "KS": 30, "nsmall": 501, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 1626, "claimed": 1634, "mine": 1634, "ok": true, "above": [], "nhits": 3, "witness": [1634, true], "KS": 30, "nsmall": 501, "nA": 5, "nC": 0, "secs": 0.0}
+{"N": 1789, "claimed": 1798, "mine": 1798, "ok": true, "above": [], "nhits": 2, "witness": [1798, true], "KS": 30, "nsmall": 476, "nA": 4, "nC": 0, "secs": 0.1}
+{"N": 1968, "claimed": 1976, "mine": 1976, "ok": true, "above": [], "nhits": 3, "witness": [1976, true], "KS": 30, "nsmall": 501, "nA": 11, "nC": 0, "secs": 0.1}
+{"N": 2164, "claimed": 2174, "mine": 2174, "ok": true, "above": [], "nhits": 1, "witness": [2174, true], "KS": 30, "nsmall": 452, "nA": 3, "nC": 0, "secs": 0.1}
+{"N": 2381, "claimed": 2392, "mine": 2392, "ok": true, "above": [], "nhits": 3, "witness": [2392, true], "KS": 30, "nsmall": 428, "nA": 7, "nC": 0, "secs": 0.0}
+{"N": 2619, "claimed": 2629, "mine": 2629, "ok": true, "above": [], "nhits": 2, "witness": [2629, true], "KS": 30, "nsmall": 452, "nA": 2, "nC": 0, "secs": 0.0}
+{"N": 2881, "claimed": 2895, "mine": 2895, "ok": true, "above": [], "nhits": 1, "witness": [2895, true], "KS": 30, "nsmall": 361, "nA": 1, "nC": 0, "secs": 0.4}
+{"N": 3169, "claimed": 3178, "mine": 3178, "ok": true, "above": [], "nhits": 1, "witness": [3178, true], "KS": 30, "nsmall": 476, "nA": 3, "nC": 0, "secs": 0.0}
+{"N": 3485, "claimed": 3494, "mine": 3494, "ok": true, "above": [], "nhits": 4, "witness": [3494, true], "KS": 30, "nsmall": 476, "nA": 22, "nC": 0, "secs": 0.1}
+{"N": 3834, "claimed": 3843, "mine": 3843, "ok": true, "above": [], "nhits": 4, "witness": [3843, true], "KS": 30, "nsmall": 476, "nA": 13, "nC": 0, "secs": 0.0}
+{"N": 4217, "claimed": 4228, "mine": 4228, "ok": true, "above": [], "nhits": 1, "witness": [4228, true], "KS": 30, "nsmall": 428, "nA": 5, "nC": 0, "secs": 0.0}
+{"N": 4639, "claimed": 4651, "mine": 4651, "ok": true, "above": [], "nhits": 1, "witness": [4651, true], "KS": 30, "nsmall": 405, "nA": 2, "nC": 0, "secs": 0.1}
+{"N": 5103, "claimed": 5113, "mine": 5113, "ok": true, "above": [], "nhits": 2, "witness": [5113, true], "KS": 30, "nsmall": 452, "nA": 3, "nC": 0, "secs": 0.5}
+{"N": 5613, "claimed": 5626, "mine": 5626, "ok": true, "above": [], "nhits": 2, "witness": [5626, true], "KS": 30, "nsmall": 383, "nA": 2, "nC": 0, "secs": 0.2}
+{"N": 6174, "claimed": 6183, "mine": 6183, "ok": true, "above": [], "nhits": 3, "witness": [6183, true], "KS": 30, "nsmall": 476, "nA": 8, "nC": 0, "secs": 0.1}
+{"N": 6792, "claimed": 6806, "mine": 6806, "ok": true, "above": [], "nhits": 1, "witness": [6806, true], "KS": 30, "nsmall": 361, "nA": 3, "nC": 0, "secs": 0.1}
+{"N": 7471, "claimed": 7483, "mine": 7483, "ok": true, "above": [], "nhits": 2, "witness": [7483, true], "KS": 30, "nsmall": 405, "nA": 3, "nC": 0, "secs": 0.1}
+{"N": 8218, "claimed": 8231, "mine": 8231, "ok": true, "above": [], "nhits": 1, "witness": [8231, true], "KS": 30, "nsmall": 383, "nA": 2, "nC": 0, "secs": 0.4}
+{"N": 9040, "claimed": 9054, "mine": 9054, "ok": true, "above": [], "nhits": 1, "witness": [9054, true], "KS": 30, "nsmall": 361, "nA": 2, "nC": 0, "secs": 0.3}
+{"N": 9944, "claimed": 9959, "mine": 9959, "ok": true, "above": [], "nhits": 1, "witness": [9959, true], "KS": 30, "nsmall": 340, "nA": 1, "nC": 0, "secs": 1.0}
+{"N": 10938, "claimed": 10952, "mine": 10952, "ok": true, "above": [], "nhits": 2, "witness": [10952, true], "KS": 30, "nsmall": 361, "nA": 2, "nC": 0, "secs": 0.7}
+{"N": 12032, "claimed": 12043, "mine": 12043, "ok": true, "above": [], "nhits": 4, "witness": [12043, true], "KS": 30, "nsmall": 428, "nA": 9, "nC": 0, "secs": 0.4}
+{"N": 13235, "claimed": 13248, "mine": 13248, "ok": true, "above": [], "nhits": 1, "witness": [13248, true], "KS": 30, "nsmall": 383, "nA": 4, "nC": 0, "secs": 0.5}
+{"N": 14558, "claimed": 14573, "mine": 14573, "ok": true, "above": [], "nhits": 1, "witness": [14573, true], "KS": 30, "nsmall": 340, "nA": 3, "nC": 0, "secs": 0.4}
+{"N": 16014, "claimed": 16028, "mine": 16028, "ok": true, "above": [], "nhits": 2, "witness": [16028, true], "KS": 30, "nsmall": 361, "nA": 2, "nC": 0, "secs": 0.2}
+{"N": 17615, "claimed": 17627, "mine": 17627, "ok": true, "above": [], "nhits": 3, "witness": [17627, true], "KS": 30, "nsmall": 405, "nA": 4, "nC": 0, "secs": 0.6}
+{"N": 19377, "claimed": 19395, "mine": 19395, "ok": true, "above": [], "nhits": 1, "witness": [19395, true], "KS": 30, "nsmall": 281, "nA": 1, "nC": 0, "secs": 0.6}
+{"N": 21314, "claimed": 21327, "mine": 21327, "ok": true, "above": [], "nhits": 2, "witness": [21327, true], "KS": 30, "nsmall": 383, "nA": 2, "nC": 0, "secs": 0.4}
+{"N": 23446, "claimed": 23458, "mine": 23458, "ok": true, "above": [], "nhits": 3, "witness": [23458, true], "KS": 30, "nsmall": 405, "nA": 7, "nC": 0, "secs": 0.5}
+{"N": 25791, "claimed": 25805, "mine": 25805, "ok": true, "above": [], "nhits": 1, "witness": [25805, true], "KS": 30, "nsmall": 361, "nA": 4, "nC": 0, "secs": 1.1}
+{"N": 28371, "claimed": 28387, "mine": 28387, "ok": true, "above": [], "nhits": 1, "witness": [28387, true], "KS": 30, "nsmall": 320, "nA": 1, "nC": 0, "secs": 0.6}
+{"N": 31209, "claimed": 31225, "mine": 31225, "ok": true, "above": [], "nhits": 2, "witness": [31225, true], "KS": 30, "nsmall": 320, "nA": 3, "nC": 0, "secs": 0.9}
+{"N": 34330, "claimed": 34345, "mine": 34345, "ok": true, "above": [], "nhits": 1, "witness": [34345, true], "KS": 30, "nsmall": 340, "nA": 2, "nC": 0, "secs": 1.0}
+{"N": 37763, "claimed": 37775, "mine": 37775, "ok": true, "above": [], "nhits": 3, "witness": [37775, true], "KS": 30, "nsmall": 405, "nA": 8, "nC": 0, "secs": 1.3}
+{"N": 41540, "claimed": 41554, "mine": 41554, "ok": true, "above": [], "nhits": 1, "witness": [41554, true], "KS": 30, "nsmall": 361, "nA": 9, "nC": 0, "secs": 2.9}
+{"N": 45695, "claimed": 45712, "mine": 45712, "ok": true, "above": [], "nhits": 1, "witness": [45712, true], "KS": 30, "nsmall": 300, "nA": 1, "nC": 0, "secs": 4.7}
+{"N": 50265, "claimed": 50278, "mine": 50278, "ok": true, "above": [], "nhits": 4, "witness": [50278, true], "KS": 30, "nsmall": 383, "nA": 8, "nC": 0, "secs": 4.1}
+{"N": 55292, "claimed": 55308, "mine": 55308, "ok": true, "above": [], "nhits": 1, "witness": [55308, true], "KS": 30, "nsmall": 320, "nA": 1, "nC": 0, "secs": 4.2}
+{"N": 60821, "claimed": 60836, "mine": 60836, "ok": true, "above": [], "nhits": 1, "witness": [60836, true], "KS": 30, "nsmall": 340, "nA": 2, "nC": 0, "secs": 5.0}
+{"N": 66903, "claimed": 66923, "mine": 66923, "ok": true, "above": [], "nhits": 1, "witness": [66923, true], "KS": 30, "nsmall": 244, "nA": 2, "nC": 0, "secs": 4.2}
+{"N": 73593, "claimed": 73609, "mine": 73609, "ok": true, "above": [], "nhits": 2, "witness": [73609, true], "KS": 30, "nsmall": 320, "nA": 2, "nC": 0, "secs": 4.1}
+{"N": 80952, "claimed": 80972, "mine": 80972, "ok": true, "above": [], "nhits": 1, "witness": [80972, true], "KS": 30, "nsmall": 244, "nA": 1, "nC": 0, "secs": 5.8}
+{"N": 89047, "claimed": 89063, "mine": 89063, "ok": true, "above": [], "nhits": 2, "witness": [89063, true], "KS": 30, "nsmall": 320, "nA": 5, "nC": 0, "secs": 10.0}
+{"N": 97951, "claimed": 97965, "mine": 97965, "ok": true, "above": [], "nhits": 1, "witness": [97965, true], "KS": 30, "nsmall": 361, "nA": 5, "nC": 0, "secs": 9.1}

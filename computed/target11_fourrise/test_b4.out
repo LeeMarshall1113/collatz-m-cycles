@@ -1,0 +1,20 @@
+N=4 brute B4=7 (N+3)  per t (t, best==brute, all found, #truth): [(-3, True, True, 8), (-1, True, True, 8), (1, True, True, 5)]  18.3s
+N=5 brute B4=11 (N+6)  per t (t, best==brute, all found, #truth): [(0, True, True, 11), (2, True, True, 3), (4, True, True, 2)]  0.1s
+N=6 brute B4=15 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 7), (5, True, True, 2), (7, True, True, 1)]  0.1s
+N=7 brute B4=16 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 11), (5, True, True, 3), (7, True, True, 3)]  0.1s
+N=8 brute B4=16 (N+8)  per t (t, best==brute, all found, #truth): [(2, True, True, 30), (4, True, True, 10), (6, True, True, 6)]  0.1s
+N=9 brute B4=16 (N+7)  per t (t, best==brute, all found, #truth): [(1, True, True, 59), (3, True, True, 23), (5, True, True, 10)]  0.1s
+N=10 brute B4=16 (N+6)  per t (t, best==brute, all found, #truth): [(0, True, True, 116), (2, True, True, 49), (4, True, True, 18)]  0.1s
+N=11 brute B4=21 (N+10)  per t (t, best==brute, all found, #truth): [(4, True, True, 18), (6, True, True, 2), (8, True, True, 2)]  0.1s
+N=12 brute B4=22 (N+10)  per t (t, best==brute, all found, #truth): [(4, True, True, 26), (6, True, True, 7), (8, True, True, 5)]  0.1s
+N=13 brute B4=22 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 63), (5, True, True, 21), (7, True, True, 9)]  0.1s
+N=14 brute B4=23 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 74), (5, True, True, 32), (7, True, True, 11)]  0.1s
+N=15 brute B4=24 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 102), (5, True, True, 39), (7, True, True, 9)]  0.2s
+N=16 brute B4=25 (N+9)  per t (t, best==brute, all found, #truth): [(3, True, True, 122), (5, True, True, 39), (7, True, True, 6)]  0.2s
+N=17 brute B4=25 (N+8)  per t (t, best==brute, all found, #truth): [(2, True, True, 245), (4, True, True, 88), (6, True, True, 19)]  0.2s
+N=18 brute B4=32 (N+14)  per t (t, best==brute, all found, #truth): [(8, True, True, 3), (10, True, True, 2), (12, True, True, 2)]  0.2s
+N=19 brute B4=32 (N+13)  per t (t, best==brute, all found, #truth): [(7, True, True, 7), (9, True, True, 5), (11, True, True, 5)]  0.4s
+N=20 brute B4=32 (N+12)  per t (t, best==brute, all found, #truth): [(6, True, True, 19), (8, True, True, 10), (10, True, True, 6)]  0.7s
+N=21 brute B4=34 (N+13)  per t (t, best==brute, all found, #truth): [(7, True, True, 21), (9, True, True, 9), (11, True, True, 4)]  1.4s
+N=22 brute B4=34 (N+12)  per t (t, best==brute, all found, #truth): [(6, True, True, 46), (8, True, True, 17), (10, True, True, 8)]  2.5s
+ALL OK

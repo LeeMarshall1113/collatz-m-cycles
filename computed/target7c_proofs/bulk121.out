@@ -1,0 +1,13 @@
+lease-run: request collatz-loop-3263
+GRANTED 3.0 GB
+lease-run: hard commit cap 9.0 GB for the whole job tree
+jobcap: pid 36928 capped at 9 GB commit (whole process tree)
+m=121 shapes 334036 kinds {'screen': 334036} FAILURES 0 time 1063s
+  ratio<=0.996289 K=27444133206411171953 p=43497921996957973433 via screen
+  ratio<=0.351932 K=77692117359936589403 p=123139092617126647266 via screen
+  ratio<=0.260064 K=105136250566347761356 p=166637014614084620699 via screen
+  ratio<=0.175966 K=155384234719873178806 p=246278185234253294532 via screen
+  ratio<=0.134554 K=205632218873398596256 p=325919355854421968365 via screen
+  ratio<=0.117310 K=233076352079809768209 p=369417277851379941798 via screen
+jobcap: exit 0, peak job commit 0.22 GB of 9 GB cap
+lease-run: released collatz-loop-3263

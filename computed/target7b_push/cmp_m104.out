@@ -1,0 +1,2 @@
+m=104 Kceil=1.1712e+24 intervals=38 iters=190 cand=156 surv=138  t_int=0.7s t_enum=0.1s t_filter=0.5s
+m=104 fast 138 (1.2s)  shapes.py 138 strip 74434 (249.5s)  Kceil equal True  IDENTICAL True
