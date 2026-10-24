@@ -3,9 +3,8 @@ import Collatz
 /-!
 # The statement, spelled out
 
-This file restates the main theorems (the headline one is `main_statement_110`, at the end of the file)
-with every hypothesis written in full and checks that `Collatz.no_101_cycle_2_71`, ...,
-`Collatz.no_110_cycle_2_71` prove exactly these. Run: `lake env lean scripts/Statement.lean`.
+This file restates the main theorem with every hypothesis written in full and checks that
+`Collatz.no_101_cycle_2_71` proves exactly this. Run: `lake env lean scripts/Statement.lean`.
 
 * `T n = n / 2` for even `n` and `(3n + 1) / 2` for odd `n` (`Collatz/Defs.lean`);
 * `Reaches T n 1 ↔ ∃ k, T^[k] n = 1` (`Collatz/Defs.lean`);
@@ -110,3 +109,13 @@ theorem main_statement_110
   no_110_cycle_2_71 hX hR
 
 #print axioms main_statement_110
+
+/-- **Extension to `m = 111`** (three-rise chain with B3 498, 522 and the 80-digit shape bound).
+Same hypotheses: every positive `T`-cycle other than `1 → 2 → 1` has at least 112 local
+minima. -/
+theorem main_statement_111
+    (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Reaches T n 1) (hR : RhinBound) :
+    ∀ x p, 0 < x → 0 < p → T^[p] x = x → x ≠ 1 → x ≠ 2 → 112 ≤ numLocalMin x p :=
+  no_111_cycle_2_71 hX hR
+
+#print axioms main_statement_111

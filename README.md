@@ -1,21 +1,21 @@
 # collatz-m-cycles
 
-**Every nontrivial positive Collatz cycle has at least 111 local minima** (no m-cycle with m <= 110), proved in
+**Every nontrivial positive Collatz cycle has at least 112 local minima** (no m-cycle with m <= 111), proved in
 Lean 4 and kernel-checked, assuming two published inputs (stated precisely below). A further extension to
 m <= 127 is **computed and independently re-computed, but not formally verified**.
 
 ## The theorem
 
 ```lean
--- Collatz/MCycle110.lean
-theorem Collatz.no_110_cycle_2_71
+-- Collatz/MCycle111.lean
+theorem Collatz.no_111_cycle_2_71
     (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Reaches T n 1)
     (hR : RhinBound) :
-    ∀ x p, 0 < x → 0 < p → T^[p] x = x → x ≠ 1 → x ≠ 2 → 111 ≤ numLocalMin x p
+    ∀ x p, 0 < x → 0 < p → T^[p] x = x → x ≠ 1 → x ≠ 2 → 112 ≤ numLocalMin x p
 ```
 
 In words: if every `n` with `0 < n <= 2^71` reaches 1 under the Collatz map, and `RhinBound` holds, then every
-positive cycle of `T` other than `1 -> 2 -> 1` has at least 111 local minima.
+positive cycle of `T` other than `1 -> 2 -> 1` has at least 112 local minima.
 
 Definitions the statement depends on (in `Collatz/Defs.lean`, `Collatz/Statements.lean`,
 `Collatz/HercherRhin.lean`; `scripts/Statement.lean` re-states them unfolded and checks them with `rfl`):
@@ -49,11 +49,10 @@ def RhinBound : Prop :=                                                       --
 |---|---|---|
 | m <= 91 | Lean, kernel-checked (Hercher's theorem, formalised by Alick) | `Collatz/Hercher*.lean` |
 | m <= 101 | Lean, kernel-checked (Alick) | `Collatz.no_101_cycle_2_71` |
-| **m <= 110** | **Lean, kernel-checked (this repository)** | `Collatz.no_110_cycle_2_71`, `main_statement_110` |
-| m = 111 | in progress; **no claim** | |
+| **m <= 111** | **Lean, kernel-checked (this repository)** | `Collatz.no_111_cycle_2_71`, `main_statement_111` |
 | **m <= 127** | **Computed (exact rational arithmetic), re-computed by independent referee code; NOT formally verified** | `computed/`, `METHOD.md` section 7 |
 
-* **Lean-verified (m <= 110).** Kernel-checked from `hX` and `RhinBound`. `#print axioms main_statement_110`
+* **Lean-verified (m <= 111).** Kernel-checked from `hX` and `RhinBound`. `#print axioms main_statement_111`
   gives `[propext, Classical.choice, Quot.sound]`, and the audit of all 37,298 declarations in the `Collatz`
   namespace finds nothing else (`AXIOM_AUDIT.txt`). The numerical facts the chain argument needs (rise bounds, shape
   lists, per-shape certificates) are re-checked by the kernel; the Python generators are not trusted.
@@ -89,6 +88,7 @@ Expected output of the second command (`scripts/Statement.lean`):
 'main_statement_108' depends on axioms: [propext, Classical.choice, Quot.sound]
 'main_statement_109' depends on axioms: [propext, Classical.choice, Quot.sound]
 'main_statement_110' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_111' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
 Optional full audit of every `Collatz` declaration (expected: `audited 37298 declarations: only propext,
@@ -112,7 +112,7 @@ python scripts/build_serial.py --list     # just print the order
 ### Cost (approximate, from our own incremental runs; not a clean from-scratch measurement)
 
 * **Time.** About 1,200 generated modules (shape walks, per-shape certificates, rise-bound checks). Our incremental
-  builds on one Lean process: m <= 108 about 40 minutes, m = 109 about 2 hours, m = 110 about 6 hours on top, so
+  builds on one Lean process: m <= 108 about 40 minutes, m = 109 about 2 hours, m = 110 about 6 hours and m = 111 about 15 hours on top, so
   **roughly 9-10 hours** for a serial from-scratch build after the Mathlib cache download. Alick's original m <= 101
   build took about 18 minutes on a GitHub runner.
 * **Peak RAM per Lean process.** Working set below about 4 GB for the logged m <= 110 modules (most 1.7-2.6 GB; the
@@ -120,7 +120,7 @@ python scripts/build_serial.py --list     # just print the order
   `MCycle102Data` were measured at about 15 GB commit on our machine (his README says 2 GB; we have not re-measured
   in this clone). Do not run many in parallel on a small machine: on our shared machine memory was exhausted
   repeatedly.
-* **CI.** `.github/workflows/lean.yml` is manual-only (`workflow_dispatch`); the m <= 110 build does not fit the
+* **CI.** `.github/workflows/lean.yml` is manual-only (`workflow_dispatch`); the m <= 111 build does not fit the
   original 90-minute timeout.
 
 ## Prior work
@@ -163,8 +163,9 @@ certificate modules and their generators (`research/scripts/mcycle101_certgen`, 
   (`research/scripts/mcycle{103_split,105,107,109}`, `research/scripts/lean127/gen*.py`) and the theorems `no_102_cycle_2_71 ...
   no_110_cycle_2_71`.
 * **Four-rise extension to m <= 127** (computed, not in Lean): `METHOD.md` section 7 and `computed/`.
-* Prepared but **not used** by the m <= 110 theorem and not in the default build: `LogTwoThreeBounds80.lean` and
-  `MCycleChain3D.lean` (a 10^-80 enclosure of log2 3, needed from m = 111) and `BenchKernel.lean` (a benchmark).
+* **Extension to m = 111**: `LogTwoThreeBounds80.lean` and `MCycleChain3D.lean` (a 10^-80 enclosure of log2 3, needed
+  from m = 111 for one shape), the three-rise grid `grid3_111` (B3 at 498 and 522) and `MCycle111*`. `BenchKernel.lean`
+  is a benchmark, not used by any theorem.
 * `METHOD.md`, `computed/`, `NOTICE`, `AXIOM_AUDIT.txt`, `scripts/build_serial.py`, and this README.
 
 Commit history: `d189594` is the only upstream commit; later commits are ours. The git author recorded on
@@ -185,7 +186,7 @@ Commit history: `d189594` is the only upstream commit; later commits are ours. T
 | `research/scripts/` | generators of the Lean data modules |
 | `computed/` | Python reproducing m <= 127, with certificates and referee code (`computed/README.md`) |
 | `METHOD.md` | the mathematics, and what is formalised |
-| `AXIOM_AUDIT.txt` | recorded output of the axiom checks for m <= 110 |
+| `AXIOM_AUDIT.txt` | recorded output of the axiom checks for m <= 111 |
 
 ## License
 
