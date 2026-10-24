@@ -174,7 +174,7 @@ certificate modules and their generators (`research/scripts/mcycle101_certgen`, 
   points (`TwoRise2_*.lean`, up to N = 647,476), replacing a checker that stalled on large N.
 * **Extension to m = 102 ... 110**: shape walks, per-shape certificates and data modules
   (`MCycle102* ... MCycle110*`, `WalkSplit.lean`, `MCycleGrid102 ... 110`), their generators
-  (`research/scripts/mcycle10*`, `research/scripts/lean127/gen*.py`) and the theorems `no_102_cycle_2_71 ...
+  (`research/scripts/mcycle{103_split,105,107,109}`, `research/scripts/lean127/gen*.py`) and the theorems `no_102_cycle_2_71 ...
   no_110_cycle_2_71`.
 * **Four-rise extension to m <= 127** (computed, not in Lean): `METHOD.md` section 7 and `computed/`.
 * Prepared but **not used** by the m <= 110 theorem and not in the default build: `LogTwoThreeBounds80.lean` and
