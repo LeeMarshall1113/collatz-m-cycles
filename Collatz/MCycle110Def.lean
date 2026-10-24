@@ -2,6 +2,7 @@ import Collatz.MCycleChain3
 import Collatz.WalkSplit
 
 set_option maxRecDepth 100000
+set_option maxHeartbeats 0
 
 /-!
 # The exclusion data for `m = 110` (three-rise chain)
