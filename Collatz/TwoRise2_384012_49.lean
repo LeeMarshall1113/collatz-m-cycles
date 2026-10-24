@@ -1,4 +1,4 @@
-import Collatz.TwoRiseCheck2
+import Collatz.TwoRiseCheck3
 
 /-!
 # `AllPairs 384012 384028`, first rises 384001..384012 (part 49 of 49)
@@ -12,10 +12,10 @@ namespace Collatz.TwoRise2
 
 open Collatz.TwoRise
 
-theorem t384012_384012 : rangeOK2 384012 384028 22 768132 384012 12 (powLo 768132 64 ((2 ^ (768132 + 1) + 1) / 3) 384012 1) = true := by
+theorem t384012_384012 : rangeOK2x 384012 384028 22 54 15 768132 384012 12 (powLo 768132 64 ((2 ^ (768132 + 1) + 1) / 3) 384012 1) = true := by
   decide +kernel
 
 theorem rc384012_49 : RangeCond 384012 384028 384001 384013 :=
-  (rangeOK2_sound t384012_384012)
+  (rangeOK2x_sound t384012_384012)
 
 end Collatz.TwoRise2

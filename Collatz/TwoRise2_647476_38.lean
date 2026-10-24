@@ -1,4 +1,4 @@
-import Collatz.TwoRiseCheck2
+import Collatz.TwoRiseCheck3
 
 /-!
 # `AllPairs 647476 647493`, first rises 177601..182400 (part 38 of 135)
@@ -12,157 +12,157 @@ namespace Collatz.TwoRise2
 
 open Collatz.TwoRise
 
-theorem t647476_177696 : rangeOK2 647476 647493 23 1295062 177696 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177696 1) = true := by
+theorem t647476_177696 : rangeOK2x 647476 647493 23 55 15 1295062 177696 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177696 1) = true := by
   decide +kernel
 
-theorem t647476_177792 : rangeOK2 647476 647493 23 1295062 177792 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177792 1) = true := by
+theorem t647476_177792 : rangeOK2x 647476 647493 23 55 15 1295062 177792 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177792 1) = true := by
   decide +kernel
 
-theorem t647476_177888 : rangeOK2 647476 647493 23 1295062 177888 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177888 1) = true := by
+theorem t647476_177888 : rangeOK2x 647476 647493 23 55 15 1295062 177888 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177888 1) = true := by
   decide +kernel
 
-theorem t647476_177984 : rangeOK2 647476 647493 23 1295062 177984 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177984 1) = true := by
+theorem t647476_177984 : rangeOK2x 647476 647493 23 55 15 1295062 177984 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 177984 1) = true := by
   decide +kernel
 
-theorem t647476_178080 : rangeOK2 647476 647493 23 1295062 178080 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178080 1) = true := by
+theorem t647476_178080 : rangeOK2x 647476 647493 23 55 15 1295062 178080 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178080 1) = true := by
   decide +kernel
 
-theorem t647476_178176 : rangeOK2 647476 647493 23 1295062 178176 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178176 1) = true := by
+theorem t647476_178176 : rangeOK2x 647476 647493 23 55 15 1295062 178176 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178176 1) = true := by
   decide +kernel
 
-theorem t647476_178272 : rangeOK2 647476 647493 23 1295062 178272 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178272 1) = true := by
+theorem t647476_178272 : rangeOK2x 647476 647493 23 55 15 1295062 178272 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178272 1) = true := by
   decide +kernel
 
-theorem t647476_178368 : rangeOK2 647476 647493 23 1295062 178368 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178368 1) = true := by
+theorem t647476_178368 : rangeOK2x 647476 647493 23 55 15 1295062 178368 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178368 1) = true := by
   decide +kernel
 
-theorem t647476_178464 : rangeOK2 647476 647493 23 1295062 178464 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178464 1) = true := by
+theorem t647476_178464 : rangeOK2x 647476 647493 23 55 15 1295062 178464 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178464 1) = true := by
   decide +kernel
 
-theorem t647476_178560 : rangeOK2 647476 647493 23 1295062 178560 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178560 1) = true := by
+theorem t647476_178560 : rangeOK2x 647476 647493 23 55 15 1295062 178560 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178560 1) = true := by
   decide +kernel
 
-theorem t647476_178656 : rangeOK2 647476 647493 23 1295062 178656 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178656 1) = true := by
+theorem t647476_178656 : rangeOK2x 647476 647493 23 55 15 1295062 178656 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178656 1) = true := by
   decide +kernel
 
-theorem t647476_178752 : rangeOK2 647476 647493 23 1295062 178752 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178752 1) = true := by
+theorem t647476_178752 : rangeOK2x 647476 647493 23 55 15 1295062 178752 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178752 1) = true := by
   decide +kernel
 
-theorem t647476_178848 : rangeOK2 647476 647493 23 1295062 178848 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178848 1) = true := by
+theorem t647476_178848 : rangeOK2x 647476 647493 23 55 15 1295062 178848 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178848 1) = true := by
   decide +kernel
 
-theorem t647476_178944 : rangeOK2 647476 647493 23 1295062 178944 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178944 1) = true := by
+theorem t647476_178944 : rangeOK2x 647476 647493 23 55 15 1295062 178944 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 178944 1) = true := by
   decide +kernel
 
-theorem t647476_179040 : rangeOK2 647476 647493 23 1295062 179040 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179040 1) = true := by
+theorem t647476_179040 : rangeOK2x 647476 647493 23 55 15 1295062 179040 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179040 1) = true := by
   decide +kernel
 
-theorem t647476_179136 : rangeOK2 647476 647493 23 1295062 179136 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179136 1) = true := by
+theorem t647476_179136 : rangeOK2x 647476 647493 23 55 15 1295062 179136 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179136 1) = true := by
   decide +kernel
 
-theorem t647476_179232 : rangeOK2 647476 647493 23 1295062 179232 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179232 1) = true := by
+theorem t647476_179232 : rangeOK2x 647476 647493 23 55 15 1295062 179232 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179232 1) = true := by
   decide +kernel
 
-theorem t647476_179328 : rangeOK2 647476 647493 23 1295062 179328 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179328 1) = true := by
+theorem t647476_179328 : rangeOK2x 647476 647493 23 55 15 1295062 179328 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179328 1) = true := by
   decide +kernel
 
-theorem t647476_179424 : rangeOK2 647476 647493 23 1295062 179424 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179424 1) = true := by
+theorem t647476_179424 : rangeOK2x 647476 647493 23 55 15 1295062 179424 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179424 1) = true := by
   decide +kernel
 
-theorem t647476_179520 : rangeOK2 647476 647493 23 1295062 179520 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179520 1) = true := by
+theorem t647476_179520 : rangeOK2x 647476 647493 23 55 15 1295062 179520 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179520 1) = true := by
   decide +kernel
 
-theorem t647476_179616 : rangeOK2 647476 647493 23 1295062 179616 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179616 1) = true := by
+theorem t647476_179616 : rangeOK2x 647476 647493 23 55 15 1295062 179616 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179616 1) = true := by
   decide +kernel
 
-theorem t647476_179712 : rangeOK2 647476 647493 23 1295062 179712 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179712 1) = true := by
+theorem t647476_179712 : rangeOK2x 647476 647493 23 55 15 1295062 179712 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179712 1) = true := by
   decide +kernel
 
-theorem t647476_179808 : rangeOK2 647476 647493 23 1295062 179808 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179808 1) = true := by
+theorem t647476_179808 : rangeOK2x 647476 647493 23 55 15 1295062 179808 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179808 1) = true := by
   decide +kernel
 
-theorem t647476_179904 : rangeOK2 647476 647493 23 1295062 179904 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179904 1) = true := by
+theorem t647476_179904 : rangeOK2x 647476 647493 23 55 15 1295062 179904 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 179904 1) = true := by
   decide +kernel
 
-theorem t647476_180000 : rangeOK2 647476 647493 23 1295062 180000 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180000 1) = true := by
+theorem t647476_180000 : rangeOK2x 647476 647493 23 55 15 1295062 180000 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180000 1) = true := by
   decide +kernel
 
-theorem t647476_180096 : rangeOK2 647476 647493 23 1295062 180096 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180096 1) = true := by
+theorem t647476_180096 : rangeOK2x 647476 647493 23 55 15 1295062 180096 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180096 1) = true := by
   decide +kernel
 
-theorem t647476_180192 : rangeOK2 647476 647493 23 1295062 180192 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180192 1) = true := by
+theorem t647476_180192 : rangeOK2x 647476 647493 23 55 15 1295062 180192 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180192 1) = true := by
   decide +kernel
 
-theorem t647476_180288 : rangeOK2 647476 647493 23 1295062 180288 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180288 1) = true := by
+theorem t647476_180288 : rangeOK2x 647476 647493 23 55 15 1295062 180288 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180288 1) = true := by
   decide +kernel
 
-theorem t647476_180384 : rangeOK2 647476 647493 23 1295062 180384 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180384 1) = true := by
+theorem t647476_180384 : rangeOK2x 647476 647493 23 55 15 1295062 180384 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180384 1) = true := by
   decide +kernel
 
-theorem t647476_180480 : rangeOK2 647476 647493 23 1295062 180480 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180480 1) = true := by
+theorem t647476_180480 : rangeOK2x 647476 647493 23 55 15 1295062 180480 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180480 1) = true := by
   decide +kernel
 
-theorem t647476_180576 : rangeOK2 647476 647493 23 1295062 180576 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180576 1) = true := by
+theorem t647476_180576 : rangeOK2x 647476 647493 23 55 15 1295062 180576 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180576 1) = true := by
   decide +kernel
 
-theorem t647476_180672 : rangeOK2 647476 647493 23 1295062 180672 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180672 1) = true := by
+theorem t647476_180672 : rangeOK2x 647476 647493 23 55 15 1295062 180672 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180672 1) = true := by
   decide +kernel
 
-theorem t647476_180768 : rangeOK2 647476 647493 23 1295062 180768 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180768 1) = true := by
+theorem t647476_180768 : rangeOK2x 647476 647493 23 55 15 1295062 180768 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180768 1) = true := by
   decide +kernel
 
-theorem t647476_180864 : rangeOK2 647476 647493 23 1295062 180864 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180864 1) = true := by
+theorem t647476_180864 : rangeOK2x 647476 647493 23 55 15 1295062 180864 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180864 1) = true := by
   decide +kernel
 
-theorem t647476_180960 : rangeOK2 647476 647493 23 1295062 180960 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180960 1) = true := by
+theorem t647476_180960 : rangeOK2x 647476 647493 23 55 15 1295062 180960 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 180960 1) = true := by
   decide +kernel
 
-theorem t647476_181056 : rangeOK2 647476 647493 23 1295062 181056 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181056 1) = true := by
+theorem t647476_181056 : rangeOK2x 647476 647493 23 55 15 1295062 181056 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181056 1) = true := by
   decide +kernel
 
-theorem t647476_181152 : rangeOK2 647476 647493 23 1295062 181152 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181152 1) = true := by
+theorem t647476_181152 : rangeOK2x 647476 647493 23 55 15 1295062 181152 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181152 1) = true := by
   decide +kernel
 
-theorem t647476_181248 : rangeOK2 647476 647493 23 1295062 181248 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181248 1) = true := by
+theorem t647476_181248 : rangeOK2x 647476 647493 23 55 15 1295062 181248 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181248 1) = true := by
   decide +kernel
 
-theorem t647476_181344 : rangeOK2 647476 647493 23 1295062 181344 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181344 1) = true := by
+theorem t647476_181344 : rangeOK2x 647476 647493 23 55 15 1295062 181344 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181344 1) = true := by
   decide +kernel
 
-theorem t647476_181440 : rangeOK2 647476 647493 23 1295062 181440 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181440 1) = true := by
+theorem t647476_181440 : rangeOK2x 647476 647493 23 55 15 1295062 181440 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181440 1) = true := by
   decide +kernel
 
-theorem t647476_181536 : rangeOK2 647476 647493 23 1295062 181536 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181536 1) = true := by
+theorem t647476_181536 : rangeOK2x 647476 647493 23 55 15 1295062 181536 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181536 1) = true := by
   decide +kernel
 
-theorem t647476_181632 : rangeOK2 647476 647493 23 1295062 181632 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181632 1) = true := by
+theorem t647476_181632 : rangeOK2x 647476 647493 23 55 15 1295062 181632 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181632 1) = true := by
   decide +kernel
 
-theorem t647476_181728 : rangeOK2 647476 647493 23 1295062 181728 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181728 1) = true := by
+theorem t647476_181728 : rangeOK2x 647476 647493 23 55 15 1295062 181728 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181728 1) = true := by
   decide +kernel
 
-theorem t647476_181824 : rangeOK2 647476 647493 23 1295062 181824 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181824 1) = true := by
+theorem t647476_181824 : rangeOK2x 647476 647493 23 55 15 1295062 181824 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181824 1) = true := by
   decide +kernel
 
-theorem t647476_181920 : rangeOK2 647476 647493 23 1295062 181920 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181920 1) = true := by
+theorem t647476_181920 : rangeOK2x 647476 647493 23 55 15 1295062 181920 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 181920 1) = true := by
   decide +kernel
 
-theorem t647476_182016 : rangeOK2 647476 647493 23 1295062 182016 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182016 1) = true := by
+theorem t647476_182016 : rangeOK2x 647476 647493 23 55 15 1295062 182016 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182016 1) = true := by
   decide +kernel
 
-theorem t647476_182112 : rangeOK2 647476 647493 23 1295062 182112 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182112 1) = true := by
+theorem t647476_182112 : rangeOK2x 647476 647493 23 55 15 1295062 182112 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182112 1) = true := by
   decide +kernel
 
-theorem t647476_182208 : rangeOK2 647476 647493 23 1295062 182208 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182208 1) = true := by
+theorem t647476_182208 : rangeOK2x 647476 647493 23 55 15 1295062 182208 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182208 1) = true := by
   decide +kernel
 
-theorem t647476_182304 : rangeOK2 647476 647493 23 1295062 182304 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182304 1) = true := by
+theorem t647476_182304 : rangeOK2x 647476 647493 23 55 15 1295062 182304 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182304 1) = true := by
   decide +kernel
 
-theorem t647476_182400 : rangeOK2 647476 647493 23 1295062 182400 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182400 1) = true := by
+theorem t647476_182400 : rangeOK2x 647476 647493 23 55 15 1295062 182400 96 (powLo 1295062 64 ((2 ^ (1295062 + 1) + 1) / 3) 182400 1) = true := by
   decide +kernel
 
 theorem rc647476_38 : RangeCond 647476 647493 177601 182401 :=
-  (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (rangeOK2_sound t647476_177696) (rangeOK2_sound t647476_177792)) (rangeOK2_sound t647476_177888)) (rangeOK2_sound t647476_177984)) (rangeOK2_sound t647476_178080)) (rangeOK2_sound t647476_178176)) (rangeOK2_sound t647476_178272)) (rangeOK2_sound t647476_178368)) (rangeOK2_sound t647476_178464)) (rangeOK2_sound t647476_178560)) (rangeOK2_sound t647476_178656)) (rangeOK2_sound t647476_178752)) (rangeOK2_sound t647476_178848)) (rangeOK2_sound t647476_178944)) (rangeOK2_sound t647476_179040)) (rangeOK2_sound t647476_179136)) (rangeOK2_sound t647476_179232)) (rangeOK2_sound t647476_179328)) (rangeOK2_sound t647476_179424)) (rangeOK2_sound t647476_179520)) (rangeOK2_sound t647476_179616)) (rangeOK2_sound t647476_179712)) (rangeOK2_sound t647476_179808)) (rangeOK2_sound t647476_179904)) (rangeOK2_sound t647476_180000)) (rangeOK2_sound t647476_180096)) (rangeOK2_sound t647476_180192)) (rangeOK2_sound t647476_180288)) (rangeOK2_sound t647476_180384)) (rangeOK2_sound t647476_180480)) (rangeOK2_sound t647476_180576)) (rangeOK2_sound t647476_180672)) (rangeOK2_sound t647476_180768)) (rangeOK2_sound t647476_180864)) (rangeOK2_sound t647476_180960)) (rangeOK2_sound t647476_181056)) (rangeOK2_sound t647476_181152)) (rangeOK2_sound t647476_181248)) (rangeOK2_sound t647476_181344)) (rangeOK2_sound t647476_181440)) (rangeOK2_sound t647476_181536)) (rangeOK2_sound t647476_181632)) (rangeOK2_sound t647476_181728)) (rangeOK2_sound t647476_181824)) (rangeOK2_sound t647476_181920)) (rangeOK2_sound t647476_182016)) (rangeOK2_sound t647476_182112)) (rangeOK2_sound t647476_182208)) (rangeOK2_sound t647476_182304)) (rangeOK2_sound t647476_182400))
+  (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (RangeCond.trans (rangeOK2x_sound t647476_177696) (rangeOK2x_sound t647476_177792)) (rangeOK2x_sound t647476_177888)) (rangeOK2x_sound t647476_177984)) (rangeOK2x_sound t647476_178080)) (rangeOK2x_sound t647476_178176)) (rangeOK2x_sound t647476_178272)) (rangeOK2x_sound t647476_178368)) (rangeOK2x_sound t647476_178464)) (rangeOK2x_sound t647476_178560)) (rangeOK2x_sound t647476_178656)) (rangeOK2x_sound t647476_178752)) (rangeOK2x_sound t647476_178848)) (rangeOK2x_sound t647476_178944)) (rangeOK2x_sound t647476_179040)) (rangeOK2x_sound t647476_179136)) (rangeOK2x_sound t647476_179232)) (rangeOK2x_sound t647476_179328)) (rangeOK2x_sound t647476_179424)) (rangeOK2x_sound t647476_179520)) (rangeOK2x_sound t647476_179616)) (rangeOK2x_sound t647476_179712)) (rangeOK2x_sound t647476_179808)) (rangeOK2x_sound t647476_179904)) (rangeOK2x_sound t647476_180000)) (rangeOK2x_sound t647476_180096)) (rangeOK2x_sound t647476_180192)) (rangeOK2x_sound t647476_180288)) (rangeOK2x_sound t647476_180384)) (rangeOK2x_sound t647476_180480)) (rangeOK2x_sound t647476_180576)) (rangeOK2x_sound t647476_180672)) (rangeOK2x_sound t647476_180768)) (rangeOK2x_sound t647476_180864)) (rangeOK2x_sound t647476_180960)) (rangeOK2x_sound t647476_181056)) (rangeOK2x_sound t647476_181152)) (rangeOK2x_sound t647476_181248)) (rangeOK2x_sound t647476_181344)) (rangeOK2x_sound t647476_181440)) (rangeOK2x_sound t647476_181536)) (rangeOK2x_sound t647476_181632)) (rangeOK2x_sound t647476_181728)) (rangeOK2x_sound t647476_181824)) (rangeOK2x_sound t647476_181920)) (rangeOK2x_sound t647476_182016)) (rangeOK2x_sound t647476_182112)) (rangeOK2x_sound t647476_182208)) (rangeOK2x_sound t647476_182304)) (rangeOK2x_sound t647476_182400))
 
 end Collatz.TwoRise2
