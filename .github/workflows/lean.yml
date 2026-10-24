@@ -1,14 +1,14 @@
 name: lean
 
+# Manual only: the full m <= 110 build is far larger than the original m <= 101 build and does not
+# fit a standard runner's 90-minute timeout (see README, "Checking it").
 on:
-  push:
-  pull_request:
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1

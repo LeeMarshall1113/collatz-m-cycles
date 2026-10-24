@@ -1,0 +1,21 @@
+# Axiom-audit output for the m <= 110 tree (commit 3da875e), condensed from the build logs.
+# Commands: lake env lean scripts/Statement.lean ; lake env lean scripts/AxiomAudit.lean
+# Individual per-module build logs are not in the tree (they are in the development history only).
+
+## scripts/Statement.lean
+'main_statement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_102' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_103' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_105' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_106' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_107' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_108' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_109' depends on axioms: [propext, Classical.choice, Quot.sound]
+'main_statement_110' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+## scripts/AxiomAudit.lean
+audited 37298 declarations: only propext, Classical.choice, Quot.sound
+
+## measured, one Lean process, Mathlib already built (Windows)
+Statement.lean: RC=0 wall=11s peak_lean_ws_KB=1645132
+AxiomAudit.lean: RC=0 wall=11s peak_lean_ws_KB=1645464
