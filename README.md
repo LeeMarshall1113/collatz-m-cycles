@@ -53,7 +53,7 @@ def RhinBound : Prop :=                                                       --
 | **m <= 127** | **Computed (exact rational arithmetic), re-computed by independent referee code; NOT formally verified** | `computed/`, `METHOD.md` section 7 |
 
 * **Lean-verified (m <= 111).** Kernel-checked from `hX` and `RhinBound`. `#print axioms main_statement_111`
-  gives `[propext, Classical.choice, Quot.sound]`, and the audit of all 37,298 declarations in the `Collatz`
+  gives `[propext, Classical.choice, Quot.sound]`, and the audit of all 64,104 declarations in the `Collatz`
   namespace finds nothing else (`AXIOM_AUDIT.txt`). The numerical facts the chain argument needs (rise bounds, shape
   lists, per-shape certificates) are re-checked by the kernel; the Python generators are not trusted.
 * **Computed and refereed, not verified (m <= 127).** The same method with an added *four-rise* bound closes every
