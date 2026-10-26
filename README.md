@@ -91,7 +91,7 @@ Expected output of the second command (`scripts/Statement.lean`):
 'main_statement_111' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
-Optional full audit of every `Collatz` declaration (expected: `audited 37298 declarations: only propext,
+Optional full audit of every `Collatz` declaration (expected: `audited 64104 declarations: only propext,
 Classical.choice, Quot.sound`):
 
 ```sh
