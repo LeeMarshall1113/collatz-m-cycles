@@ -1,5 +1,7 @@
 # collatz-m-cycles
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23748154.svg)](https://doi.org/10.5281/zenodo.23748154)
+
 **Every nontrivial positive Collatz cycle has at least 112 local minima** (no m-cycle with m <= 111), proved in
 Lean 4 and kernel-checked, assuming two published inputs (stated precisely below). A further extension to
 m <= 127 is **computed and independently re-computed, but not formally verified**.
