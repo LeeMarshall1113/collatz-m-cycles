@@ -1,0 +1,12 @@
+lease-run: request collatz-m127-pilot-4464
+GRANTED 2.0 GB
+lease-run: hard commit cap 8.0 GB for the whole job tree
+jobcap: pid 22852 capped at 8 GB commit (whole process tree)
+B2 155 refereed 155 missing []
+B3 126 refereed 126 missing []
+B4 122 refereed 72 missing [76, 80, 85, 90, 95, 100, 106, 112, 114, 115, 121, 123, 124, 125, 126, 130, 131, 138, 145, 153, 161, 170, 179, 219, 230, 242, 255, 268, 282, 297, 305, 320, 345, 363, 382, 402, 423, 445, 472, 492, 511, 516, 518, 527, 528, 598, 634, 673, 714, 757]
+tops 1039710 38243 852
+m=127 Kceil=5.5609e+28 candidates=5291301 screened-closed=5291298 exact-needed=0 failures=0 B4top=852 enum 89s screen 1186s exact 2s
+  m=127: worst exact ratio 0.996288 at K=27444133206411171953 use={1: 68, 2: 15, 3: 26, 4: 17} maxN={2: 986679, 3: 35571, 4: 818} (worst valid as global max: True; cut bound 0.001831); failures 0; CLOSED
+jobcap: exit 0, peak job commit 1.23 GB of 8 GB cap
+lease-run: released collatz-m127-pilot-4464
