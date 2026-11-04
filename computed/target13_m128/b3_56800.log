@@ -1,0 +1,23 @@
+lease-run: request collatz-m128-4484
+GRANTED 4.0 GB
+lease-run: hard commit cap 10.0 GB for the whole job tree
+jobcap: pid 33088 capped at 10 GB commit (whole process tree)
+  N=56800 part 0/16 n=100780690 matches=8007726 filtered=9 104s
+  N=56800 part 1/16 n=100793513 matches=16015838 filtered=13 202s
+  N=56800 part 2/16 n=100814827 matches=24578194 filtered=21 301s
+  N=56800 part 3/16 n=100826269 matches=77379306 filtered=32 521s
+  N=56800 part 4/16 n=100812836 matches=85391392 filtered=34 618s
+  N=56800 part 5/16 n=100849405 matches=547113661 filtered=38 1947s
+  N=56800 part 6/16 n=100802894 matches=550151367 filtered=42 2031s
+  N=56800 part 7/16 n=100839827 matches=563141271 filtered=44 2141s
+  N=56800 part 8/16 n=100804125 matches=616542592 filtered=51 2358s
+  N=56800 part 9/16 n=100805736 matches=624566245 filtered=55 2453s
+  N=56800 part 10/16 n=100815694 matches=677379568 filtered=63 2668s
+  N=56800 part 11/16 n=100810481 matches=685958164 filtered=68 2765s
+  N=56800 part 12/16 n=100811792 matches=693979059 filtered=72 2863s
+  N=56800 part 13/16 n=100802685 matches=701997903 filtered=75 2958s
+  N=56800 part 14/16 n=100822315 matches=760385651 filtered=83 3192s
+  N=56800 part 15/16 n=100841712 matches=763423320 filtered=87 3275s
+{'N': 56800, 'B3': 56828, 'lower': 56828, 'exact': True, 't': 24, 'Kmax': 56813, 's': 4, 'packed': True, 'bestC': 56803, 'argC': (56800, 7, 2, 2), 'arg': (47273, 10, 4149, 1), 'nfound': 87, 'ncand': 87, 'nmatch': 763423320, 'nfilt': 87, 'secs': 3274.8, 'secs_pack': 0.0, 'witness_ks': [47273, 4149, 5406]}
+jobcap: exit 0, peak job commit 3.30 GB of 10 GB cap
+lease-run: released collatz-m128-4484

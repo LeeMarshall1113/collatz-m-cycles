@@ -1,0 +1,1 @@
+{"56800": {"N": 56800, "B3": 56828, "exc": 28, "sigma": [47273, 10, 4149, 1], "ks": [47273, 4149, 5406], "t": 24, "Kmax": 56813, "secs": 3274.8, "src": "b3join.py auto 56800, b3_56800.log", "referee": "myb3 on Modal: 56828 (modal_logs/ref_b3_56800.log)"}}

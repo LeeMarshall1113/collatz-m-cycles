@@ -1,0 +1,30 @@
+# job smoke_b2fast: python b2fast.py 5000 20000 (cwd target7b_push, 1 threads)
+# code manifest:
+target7_threerise/b3.py e1edf1462df8dab1
+target7_threerise/brute.py 5dacc4cc0b33571f
+target7_threerise/chain3.py 7787f36d96cd96a0
+target7_threerise/test_b3.py e2012a63fb20edb4
+target7b_push/b2fast.py c77fb1c7d4ce0efd
+target7b_push/b3join.py 308413470d63bd27
+target7b_push/fastshapes.py 29e8edcb5fcefb56
+target7b_push/grid7b.py c95ecc7a04fc7867
+target7b_push/run7b.py f8c1b67cc4dd7cd9
+target7b_push/test_join.py 8d7b491214f8f9e7
+target7b_referee/myb2.py 91779a92cda4f22b
+target7b_referee/myb3.py d26cf418652ef7c0
+target7b_referee/mychain.py 9c7d409c3e246185
+target7b_referee/myshapes.py 84c3a009b1fe8fc4
+target7b_referee/slack.py 3ff53a96f84b1619
+target10_rrise/chainr.py b4a0f1937a68524a
+target11_fourrise/adapt.py fee5f291083fc980
+target11_fourrise/b4join.py 37ad618bdcdd4238
+target11_fourrise/fastchain.py e0e725ff779c1f5d
+target11_fourrise/grid4.py 91b3242375a3309b
+target11_fourrise/run11.py c8c0d52e1466d90d
+target11_fourrise/test_b4.py 4f8e0c94de1bc316
+N=5000 B2=5009 (B2-N=9) arg=('pair', 188, 3, 4821) ncand=4971 witness_sum=5009 0.5s
+N=20000 B2=20014 (B2-N=14) arg=('pair', 11709, 1, 8305) ncand=19943 witness_sum=20014 0.7s
+
+# stderr:
+
+# exit 0 wall 2s

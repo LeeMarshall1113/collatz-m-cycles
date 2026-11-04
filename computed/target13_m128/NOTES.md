@@ -1,0 +1,125 @@
+# Target 13: past m = 127
+
+Labels: [proved] chain theorem (METHOD.md §4) applied to exact tables; [computed] exact computation;
+[heuristic] model or synthetic grid values. Nothing here is committed, published or in Lean.
+
+## 1. Why m = 128 fails (scoping) [computed: exact chain, real grids]
+
+`trace.py 128`: the hard shape K = 27,444,133,206,411,171,953 (worst shape for every m >= 110) runs through phases:
+
+| steps t | rule | Y range | grid used |
+|---|---|---|---|
+| 1..24 | 4-windows (a few 2/3 at the start) | 72 -> 1,328 | B4 to 852 |
+| 25..48 | 3-windows | 1,328 -> 56,689 | B3 to 38,243 |
+| 49..62 | 2-windows (two delta steps at the 3->2 hand-over) | 56,689 -> 1.59e6 | B2 to 1,039,710 |
+| 63..m-1 | pure delta steps (Lemma 20) | 1.6e6 -> ~1e19 | none |
+
+Each extra m appends one delta step, so the ratio is multiplied by about 1.585 (0.9963 -> 1.579). The ratio 0.99629
+is the same at m = 121 and 127 because both chains leave the grids through the same top B2 point. To gain one m
+the slow phase must last one step longer, which means *extending a grid past its top*. Tightening binding values
+below the tops does not help: filling every gap of the B4 grid below 852 changes the ratio from 0.9963 to 0.9962.
+
+## 2. Routes ranked [heuristic: synthetic B = N + gap model, b = +6 pessimistic; chain itself exact]
+
+`explore.py`, single-point tests. One new point beyond a top gives about +1 m:
+
+| new point(s) | m reached (hard shape) | CPU-h per point (central, range) | memory |
+|---|---|---|---|
+| B2 at ~1,600,000 | 128 (0.9975) | measured below | < 0.5 GB |
+| + B2 at ~2,540,000 | 129 (0.9988) | ~2.5-5 | < 0.5 GB |
+| + B3 at ~56,800 | 130 (0.9982) | ~2 (1.5-3.5) | ~1-2 GB |
+| + B2 at ~4,015,000 | 131 | ~5-12 | < 1 GB |
+| B5 to 72 / 150 (new code) | +1 (b = 0; +0 at b = +6) / +2 | few CPU-h, plus new code and referee | ~1-4 GB |
+| B4 to 1,400 | +1 | ~50-100 | ~2 GB |
+| denser B4/B3 below their tops, LP over windows | ~0 | - | - |
+
+B2 tolerates huge errors (gap +30 still closes); B3 at 56,800 tolerates b = +12.
+
+## 3. Generalisation [heuristic, checked against the exact chain]
+
+    m* ~= 1 + L_1 + sum_{r=2..R} L_r,   L_r = log_delta(T_r / x0),   L_1 = log_delta(K_h (delta-1)/delta / x0)
+
+T_r = top of the B_r grid (dense enough from x0 up), x0 = log2 Ub of the hard shape (~ K_B + 0.85 for Barina's
+2^K_B), K_h = hard-shape K (heuristically ~ 1.5 * 2^K_B / m). Derivation: in phase r the chain grows by delta per
+r steps; the last (delta) phase ends where Y delta/(delta-1) ~ K; telescoping. `formula.py`: on 12 grid scenarios
+the continuous m (m + log_delta(1/ratio)) is within -0.7..+0.9 of the rule; real grids: rule 126.5, chain 127.0.
+
+* +1.505 m per doubling of any one level's top; ~+1.4 m per extra verified bit (discrete in practice: K_h is a
+  convergent denominator).
+* With B_r cost ~ N^{e_r}, level r gives 1.505 max(0, log2 W / e_r - log2 x0): m grows only logarithmically in
+  compute, and levels beyond r ~ 1 + log2 W / (2 log2 K_B) (6-7 for W ~ 1e12 operations) add nothing.
+* What is proved: only the chain theorem for given exact tables. The rule is a model of where the computation lands.
+* A proved B_r(N) <= N + O(r log N) for all N would remove the delta phase; that is an open digit-run problem for
+  1/3^k (target10 WRITEUP 2.3).
+
+## 4. Shape enumeration fix (referee F1)
+
+`shapes13.py`: `box_points` with the y-window computed from the corners of the enclosures of e_n, e_{n+1} (exact
+Fractions, +-1 pad) instead of midpoints +-2. Monkey-patched into fastshapes by `fastchain13.py`.
+
+## 5. Runs and CPU ledger
+
+| run | lease | CPU | result |
+|---|---|---|---|
+| shapes y-window fix vs original, m = 110/115/120 | local 1 thr | 40 s | identical sets (2130 / 21105 / 210755) — `cmp_shapes.log` |
+| B2(1,600,000) b2fast | local 1 thr | 2123 s | **1,600,019** (gap 19) |
+| B2(1,600,000) referee myb2 | Modal 4 cpu | 754 s wall | **1,600,019** — agrees |
+| chain m = 128, all shapes (fixed enumerator, +B2(1.6e6)) | local 1 thr | 2050 s | 8,385,563 candidates, 0 failures, worst 0.997472 at the hard shape — **CLOSED** (`chain_128.out`) |
+| B2(56,800) b2fast | local | 4 s | 56,813 (Kmax for B3) |
+| B2(2,540,000) b2fast | local 1 thr | 6062 s | **2,540,021** (gap 21) |
+| B2(2,540,000) referee myb2 (all hits >= N+16) | Modal 4 cpu | 1869 s wall | **2,540,021** — agrees |
+| chain m = 129, all shapes | local 1 thr | 3089 s | 13,289,304 candidates, 0 failures, worst 0.998809 (hard shape) — **CLOSED** (`chain_129.out`) |
+| B3(56,800) b3join (t = 24) | local 1 thr | 3275 s, 3.3 GB peak | **56,828** (gap 28), witness ks (47273, 4149, 5406) |
+| B3(56,800) referee myb3 (all hits >= N+27, KQ = 56,813) | Modal 4 cpu | 11,470 s wall | **56,828** — agrees |
+| B2(56,800) referee myb2 | local 1 thr | 3 s | 56,813 — agrees (the Kmax used by both B3 codes) |
+| chain m = 130, all shapes | local 1 thr | 5225 s | 21,060,865 candidates, 0 failures, worst 0.998225 (hard shape) — **CLOSED** (`chain_130.out`) |
+| B2(4,015,000) referee myb2 (all hits >= N+16) | Modal 4 cpu | 4290 s wall | **4,015,020** |
+| B2(4,015,000) b2fast | Modal 1 cpu | 24,457 s (Modal core ~4x slower than local) | **4,015,020** — agrees with myb2 (same maximiser k0 = 1,085,023, l0 = 1) |
+| chain m = 131, all shapes | local 1 thr | 6844 s | 33,377,017 candidates, 0 failures, worst 0.998291 (hard shape) — **CLOSED** (`chain_131.out`) |
+
+Totals: local ~28,700 CPU-s = **8.0 CPU-h** (1 thread throughout, peak commit 3.3 GB); Modal ~99,200 core-s =
+**27.6 core-h, $1.71** (billing report; ledger in collatz-loop/personal/modal-ledger.md). All Modal logs are in
+`modal_logs/`, each with the sha256 manifest of the code it ran (identical to main at 315e822).
+
+## 6. Result [computed; same status as m <= 127: exact, doubly computed tables, not in Lean]
+
+**No m-cycle for m <= 131** (given Barina 2^71 and Rhin), extending m <= 127 by four new table points, each computed
+by two independent codes with identical values:
+
+| point | value | code 1 | code 2 |
+|---|---|---|---|
+| B2(1,600,000) | 1,600,019 | b2fast (local) | myb2 (Modal) |
+| B2(2,540,000) | 2,540,021 | b2fast (local) | myb2 (Modal) |
+| B2(4,015,000) | 4,015,020 | b2fast (Modal) | myb2 (Modal) |
+| B3(56,800) | 56,828 | b3join (local) | myb3 (Modal); Kmax B2(56,800) = 56,813 by b2fast and myb2 |
+
+Spot rule: the 1.6e6 and 2.54e6 points were computed locally and on Modal (different codes) with identical results.
+
+| m | candidates (fixed enumerator) | failures | worst ratio (hard shape K = 27,444,133,206,411,171,953) |
+|---|---|---|---|
+| 128 | 8,385,563 | 0 | 0.997472 |
+| 129 | 13,289,304 | 0 | 0.998809 |
+| 130 | 21,060,865 | 0 | 0.998225 |
+| 131 | 33,377,017 | 0 | 0.998291 |
+
+Caveats: the m >= 128 chains used one implementation (fastchain + chainr, as refereed for m <= 127) and the
+patched enumerator; no independent chain (refchain) or independent survivor count has been run at m = 128..131.
+That is the cheapest remaining double-check (refchain on the hard shapes: seconds; refshapes survivor count:
+about 1-3 CPU-h per m, parallel on Modal). Margins are as thin as at 127 (0.1-0.25%), but B2 tolerates +30 on
+its new points and B3(56,800) about +12 (heuristic tolerance tests, section 2).
+
+The phase-sum rule held: each new point past a grid top gave exactly +1 m, as predicted.
+
+## 7. What each further m costs [heuristic: synthetic lookups; costs extrapolated from the measured runs]
+
+| m | cheapest new point(s) (hard shape lookups) | main CPU | referee | all-shapes chain (1 thread) |
+|---|---|---|---|---|
+| 132 | B3 at ~90,000 (or B2 at ~6.35e6, or B4 at ~1,330, or B5 at 72 with new code) | B3: ~3 h (b3join ~N^2.5) | myb3 ~10-40 core-h (depends on V margin) | ~3 h (53M shapes) |
+| 133 | + B2 at ~6.35e6 | ~13 h local (b2fast ~N^2.3), ~50 h on a Modal core | myb2 ~12 core-h | ~5 h |
+| 134 | + B3 at ~142,500 (or B2 at ~9.5e6) | B3 ~9 h; B2 ~33 h | ~40-150 / ~30 core-h | ~7.5 h |
+| 135 | + the other | | | ~12 h |
+
+Each +1 m along one axis costs about delta^e times the previous point on that axis (e ~ 2.3 for B2, ~2.5 for B3:
+x2.9-3.2 per m), and the shape count grows x1.585 per m, so the chain alone reaches ~12 h at m = 135. Alternating
+B2/B3 points keeps the per-m cost to roughly x1.7-2. The rule predicts the m; it gets expensive around m ~ 134-136.
+Next cheap axis not yet used: B5 at small N (new join code + validation + referee; +1 to +2 m).

@@ -1,0 +1,9 @@
+lease-run: request collatz-m128-4471
+GRANTED 1.0 GB
+lease-run: hard commit cap 7.0 GB for the whole job tree
+jobcap: pid 31896 capped at 7 GB commit (whole process tree)
+m=110 orig=2130 fixed=2130 new-only=0 [] 1s
+m=115 orig=21105 fixed=21105 new-only=0 [] 11s
+m=120 orig=210755 fixed=210755 new-only=0 [] 27s
+jobcap: exit 0, peak job commit 0.04 GB of 7 GB cap
+lease-run: released collatz-m128-4471

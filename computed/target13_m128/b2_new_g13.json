@@ -1,0 +1,44 @@
+{
+ "1600000": {
+  "N": 1600000,
+  "B2": 1600019,
+  "exc": 19,
+  "arg": [
+   "pair",
+   927813,
+   1,
+   672206
+  ],
+  "secs": 2123.1,
+  "src": "b2fast.py, b2_1600000.log",
+  "referee": "myb2 on Modal: 1600019 (modal_logs/ref_b2_1600000.log)"
+ },
+ "2540000": {
+  "N": 2540000,
+  "B2": 2540021,
+  "exc": 21,
+  "arg": [
+   "pair",
+   1603403,
+   5,
+   936618
+  ],
+  "secs": 6061.7,
+  "src": "b2fast.py, b2_2540000.log",
+  "referee": "myb2 on Modal: 2540021 (modal_logs/ref_b2_2540000.log)"
+ },
+ "4015000": {
+  "N": 4015000,
+  "B2": 4015020,
+  "exc": 20,
+  "arg": [
+   "pair",
+   1085023,
+   1,
+   2929997
+  ],
+  "secs": 24456.7,
+  "src": "b2fast on Modal 1 cpu (modal_logs/main_b2_4015000.log)",
+  "referee": "myb2 on Modal: 4015020 (modal_logs/ref_b2_4015000.log)"
+ }
+}

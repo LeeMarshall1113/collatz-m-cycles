@@ -1,0 +1,103 @@
+# job ref_b3_56800: python myb3.py one 56800 56827 56813 4 (cwd target7b_referee, 4 threads)
+# code manifest:
+target7_threerise/b3.py e1edf1462df8dab1
+target7_threerise/brute.py 5dacc4cc0b33571f
+target7_threerise/chain3.py 7787f36d96cd96a0
+target7_threerise/test_b3.py e2012a63fb20edb4
+target7b_push/b2fast.py c77fb1c7d4ce0efd
+target7b_push/b3join.py 308413470d63bd27
+target7b_push/fastshapes.py 29e8edcb5fcefb56
+target7b_push/grid7b.py c95ecc7a04fc7867
+target7b_push/run7b.py f8c1b67cc4dd7cd9
+target7b_push/test_join.py 8d7b491214f8f9e7
+target7b_referee/myb2.py 91779a92cda4f22b
+target7b_referee/myb3.py d26cf418652ef7c0
+target7b_referee/mychain.py 9c7d409c3e246185
+target7b_referee/myshapes.py 84c3a009b1fe8fc4
+target7b_referee/slack.py 3ff53a96f84b1619
+target10_rrise/chainr.py b4a0f1937a68524a
+target11_fourrise/adapt.py fee5f291083fc980
+target11_fourrise/b4join.py 37ad618bdcdd4238
+target11_fourrise/fastchain.py e0e725ff779c1f5d
+target11_fourrise/grid4.py 91b3242375a3309b
+target11_fourrise/run11.py c8c0d52e1466d90d
+target11_fourrise/test_b4.py 4f8e0c94de1bc316
+   N=56800 part 0/64 size 25233168 matches 28482 second 1 202s
+   N=56800 part 1/64 size 25196547 matches 56975 second 3 382s
+   N=56800 part 2/64 size 25212509 matches 84583 second 4 558s
+   N=56800 part 3/64 size 25207743 matches 112519 second 5 737s
+   N=56800 part 4/64 size 25202131 matches 140711 second 5 916s
+   N=56800 part 5/64 size 25207170 matches 168781 second 5 1099s
+   N=56800 part 6/64 size 25204805 matches 196984 second 6 1276s
+   N=56800 part 7/64 size 25203004 matches 224714 second 6 1456s
+   N=56800 part 8/64 size 25205562 matches 252644 second 6 1633s
+   N=56800 part 9/64 size 25204710 matches 280527 second 6 1812s
+   N=56800 part 10/64 size 25201006 matches 308751 second 6 1989s
+   N=56800 part 11/64 size 25196653 matches 337380 second 8 2166s
+   N=56800 part 12/64 size 25195915 matches 366805 second 8 2342s
+   N=56800 part 13/64 size 25203446 matches 395444 second 9 2523s
+   N=56800 part 14/64 size 25208878 matches 423711 second 11 2699s
+   N=56800 part 15/64 size 25201462 matches 452080 second 11 2880s
+   N=56800 part 16/64 size 25205152 matches 480121 second 11 3057s
+   N=56800 part 17/64 size 25196508 matches 508441 second 12 3235s
+   N=56800 part 18/64 size 25200471 matches 536721 second 12 3413s
+   N=56800 part 19/64 size 25203630 matches 565404 second 12 3590s
+   N=56800 part 20/64 size 25203125 matches 593728 second 12 3768s
+   N=56800 part 21/64 size 25242084 matches 622164 second 13 3945s
+   N=56800 part 22/64 size 25195469 matches 650404 second 13 4122s
+   N=56800 part 23/64 size 25208339 matches 678646 second 14 4300s
+   N=56800 part 24/64 size 25198371 matches 706708 second 15 4481s
+   N=56800 part 25/64 size 25198315 matches 734707 second 15 4658s
+   N=56800 part 26/64 size 25205064 matches 763146 second 15 4838s
+   N=56800 part 27/64 size 25195889 matches 792056 second 15 5018s
+   N=56800 part 28/64 size 25211567 matches 820469 second 16 5201s
+   N=56800 part 29/64 size 25195091 matches 849080 second 19 5383s
+   N=56800 part 30/64 size 25198727 matches 877726 second 19 5560s
+   N=56800 part 31/64 size 25201346 matches 906162 second 19 5744s
+   N=56800 part 32/64 size 25198290 matches 934835 second 19 5921s
+   N=56800 part 33/64 size 25194397 matches 962700 second 24 6101s
+   N=56800 part 34/64 size 25192361 matches 990988 second 24 6282s
+   N=56800 part 35/64 size 25222821 matches 1018786 second 25 6460s
+   N=56800 part 36/64 size 25200777 matches 1046353 second 25 6637s
+   N=56800 part 37/64 size 25194983 matches 1074383 second 25 6815s
+   N=56800 part 38/64 size 25201038 matches 1102665 second 25 6993s
+   N=56800 part 39/64 size 25209684 matches 1131610 second 25 7170s
+   N=56800 part 40/64 size 25207238 matches 1160486 second 25 7351s
+   N=56800 part 41/64 size 25194646 matches 1189494 second 28 7531s
+   N=56800 part 42/64 size 25210907 matches 1218065 second 29 7709s
+   N=56800 part 43/64 size 25201044 matches 1246418 second 30 7887s
+   N=56800 part 44/64 size 25196295 matches 1274683 second 30 8066s
+   N=56800 part 45/64 size 25210875 matches 1302578 second 32 8243s
+   N=56800 part 46/64 size 25201385 matches 1330813 second 32 8420s
+   N=56800 part 47/64 size 25200341 matches 1359412 second 32 8598s
+   N=56800 part 48/64 size 25203236 matches 1387971 second 33 8779s
+   N=56800 part 49/64 size 25198790 matches 1416645 second 33 8956s
+   N=56800 part 50/64 size 25190265 matches 1445129 second 36 9134s
+   N=56800 part 51/64 size 25205227 matches 1473699 second 36 9312s
+   N=56800 part 52/64 size 25201636 matches 1502050 second 40 9491s
+   N=56800 part 53/64 size 25208626 matches 1530393 second 41 9670s
+   N=56800 part 54/64 size 25198562 matches 1558978 second 42 9853s
+   N=56800 part 55/64 size 25204277 matches 1587430 second 42 10036s
+   N=56800 part 56/64 size 25203905 matches 1615889 second 44 10214s
+   N=56800 part 57/64 size 25217042 matches 1644798 second 44 10392s
+   N=56800 part 58/64 size 25201243 matches 1673771 second 44 10570s
+   N=56800 part 59/64 size 25208303 matches 1702536 second 46 10747s
+   N=56800 part 60/64 size 25206801 matches 1731654 second 46 10923s
+   N=56800 part 61/64 size 25204236 matches 1761094 second 47 11100s
+   N=56800 part 62/64 size 25206446 matches 1790483 second 48 11277s
+   N=56800 part 63/64 size 25195267 matches 1819384 second 48 11456s
+56828 {'N': 56800, 'V': 56827, 'KQ': 56813, 's': 6, 'r0': 23, 'Ks': 24, 'nsmall': 2966, 'first': 1819384, 'second': 48, 'group': 0, 'nhits': 12, 'regionC_best': 56803, 'secs': 11470.2}
+   ((22109, 1, 16229, 1), 56828)
+   ((22110, 2, 16228, 1), 56828)
+   ((2019, 3, 19151, 1), 56828)
+   ((47273, 10, 4149, 1), 56828)
+   ((33302, 1, 20952, 1), 56827)
+   ((22108, 1, 16229, 1), 56827)
+   ((22109, 2, 16228, 1), 56827)
+   ((34709, 1, 10391, 2), 56827)
+   ((47272, 10, 4149, 1), 56827)
+   ((21052, 3, 11286, 1), 56827)
+
+# stderr:
+
+# exit 0 wall 11471s
