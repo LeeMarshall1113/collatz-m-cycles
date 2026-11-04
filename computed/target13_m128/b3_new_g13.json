@@ -1,1 +1,45 @@
-{"56800": {"N": 56800, "B3": 56828, "exc": 28, "sigma": [47273, 10, 4149, 1], "ks": [47273, 4149, 5406], "t": 24, "Kmax": 56813, "secs": 3274.8, "src": "b3join.py auto 56800, b3_56800.log", "referee": "myb3 on Modal: 56828 (modal_logs/ref_b3_56800.log)"}}
+{
+ "56800": {
+  "N": 56800,
+  "B3": 56828,
+  "exc": 28,
+  "sigma": [
+   47273,
+   10,
+   4149,
+   1
+  ],
+  "ks": [
+   47273,
+   4149,
+   5406
+  ],
+  "t": 24,
+  "Kmax": 56813,
+  "secs": 3274.8,
+  "src": "b3join.py auto 56800, b3_56800.log",
+  "referee": "myb3 on Modal: 56828 (modal_logs/ref_b3_56800.log)"
+ },
+ "90000": {
+  "N": 90000,
+  "B3": 90031,
+  "exc": 31,
+  "sigma": [
+   44137,
+   2,
+   23465,
+   4
+  ],
+  "ks": [
+   44137,
+   23465,
+   22429
+  ],
+  "t": 25,
+  "s": 6,
+  "Kmax": 90015,
+  "secs": 15388.4,
+  "src": "b3join via b3drive.py 90000 6 (b3_90000.log)",
+  "referee": "myb3 on Modal 8 cpu: 90031, same maximiser (44137, 2, 23465, 4) (modal_logs/ref_b3_90000.log)"
+ }
+}

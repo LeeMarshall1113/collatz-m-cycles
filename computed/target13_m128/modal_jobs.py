@@ -46,11 +46,16 @@ def run4(name, subdir, args):
     return _run(name, subdir, args, 4)
 
 
+@app.function(cpu=8.0, memory=12288, timeout=86400)
+def run8(name, subdir, args):
+    return _run(name, subdir, args, 8)
+
+
 @app.local_entrypoint()
 def main(jobs: str):
     jl = json.loads(open(jobs).read() if os.path.exists(jobs) else jobs)
     os.makedirs(os.path.join(HERE, 'modal_logs'), exist_ok=True)
-    calls = [((run4 if cpu >= 4 else run1).spawn(name, sub, args), name) for name, sub, cpu, args in jl]
+    calls = [((run8 if cpu >= 8 else run4 if cpu >= 4 else run1).spawn(name, sub, args), name) for name, sub, cpu, args in jl]
     for c, name in calls:
         try:
             n, log = c.get()

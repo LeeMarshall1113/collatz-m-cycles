@@ -149,3 +149,25 @@ Next cheap axis not yet used: B5 at small N (new join code + validation + refere
 Cost: one local thread, ~70 min, peak commit 0.2 GB (lease `collatz-m128-4495`). **Status of m <= 131: closed by
 two independent chain implementations on doubly computed tables, survivor sets identical** (still not in Lean;
 same external hypotheses).
+
+## 9. m = 132 [computed; two codes for the new point, two chain implementations]
+
+| run | where | CPU | result |
+|---|---|---|---|
+| B3(90,000) b3join, first try (s = 8, 256 partitions) | local 1 thr | 466 s, killed | projected 6.5 h > ETA: every partition re-enumerates Q (`b3_90000_s8_killed.log`) |
+| B3(90,000) b3join via `b3drive.py 90000 6` (64 partitions; s is a performance parameter only) | local 1 thr | 15,388 s, 5.2 GB peak | **90,031** (gap 31), witness ks (44137, 23465, 22429). One partition (j = 21, key prefix 010101: the periodic 1/3 pattern) held 1.52e9 structured false matches and took 4,470 s |
+| B2(90,000) (Kmax) | b2fast inside b3join; myb2 local | 6 s | 90,015 / 90,015 — agree |
+| B3(90,000) referee myb3 (all hits >= N+28, KQ = 90,015) | Modal 8 cpu | 18,994 s wall, $2.84 | **90,031** — agrees, same maximiser (44137, 2, 23465, 4) |
+| chain m = 132, all shapes | local 1 thr | 11,515 s | 52,895,924 candidates, 0 failures, worst **0.984008** (hard shape) — CLOSED (`chain_132.out`) |
+| refchain hard shapes m = 132 | local | s | hard shape 0.9840082 (`refchain_hard_132.log`) |
+| refshapes m = 132 | local 1 thr | ~800 s | floor-sum = own test in every piece; 52,895,906 survivors; screen with B4: 0 open; exact own chain 0 failures |
+| setcmp m = 132 | local 1 thr | ~1,000 s | SETS IDENTICAL, sha256 5ca79c4a912f2f4555d8d625d7d80672138abe3a4e1d6f08f2465d5add4f30ff |
+
+**m <= 132 closed**: five doubly computed new points (B2 at 1.6e6, 2.54e6, 4.015e6; B3 at 56,800, 90,000), two
+chain implementations, identical survivor sets at every m = 128..132. Not in Lean; hypotheses Barina 2^71, Rhin.
+
+Lesson for B3 beyond 65,000: b3join's packed path stops at N < 65,000; the unpacked path pays one Q enumeration
+per partition and a fixed structured cluster in the 0101 partition (it grows ~N^3). myb3 (exhaustive small-K
+branch) has no such cluster and on 8 cores was faster in wall time. For B3 at ~142,500 (m = 134) expect b3join
+~15-25 h local (s = 6 or 7) and myb3 ~20-25 h wall on 8 Modal cores (~$10-12, i.e. over the $10 per-job limit
+unless split across containers by partition).

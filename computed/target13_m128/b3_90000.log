@@ -1,0 +1,72 @@
+lease-run: request collatz-m128-4497
+GRANTED 5.0 GB
+lease-run: hard commit cap 12.5 GB for the whole job tree
+jobcap: pid 5612 capped at 12.5 GB commit (whole process tree)
+N=90000 Kmax=B2(N)=90015 t=25 s=6
+  N=90000 part 0/64 n=63283025 matches=2320565 filtered=5 123s
+  N=90000 part 1/64 n=63270455 matches=10806641 filtered=5 244s
+  N=90000 part 2/64 n=63268665 matches=68741405 filtered=8 411s
+  N=90000 part 3/64 n=63276398 matches=77296109 filtered=10 532s
+  N=90000 part 4/64 n=63270812 matches=85150671 filtered=11 653s
+  N=90000 part 5/64 n=63279315 matches=88156287 filtered=11 769s
+  N=90000 part 6/64 n=63268770 matches=96021420 filtered=14 889s
+  N=90000 part 7/64 n=63285382 matches=154554481 filtered=15 1055s
+  N=90000 part 8/64 n=63278251 matches=163103700 filtered=15 1176s
+  N=90000 part 9/64 n=63274451 matches=220975085 filtered=18 1343s
+  N=90000 part 10/64 n=63271167 matches=223360504 filtered=18 1463s
+  N=90000 part 11/64 n=63269355 matches=237405207 filtered=18 1609s
+  N=90000 part 12/64 n=63264375 matches=240412078 filtered=18 1743s
+  N=90000 part 13/64 n=63288431 matches=248346446 filtered=19 1882s
+  N=90000 part 14/64 n=63287560 matches=756210810 filtered=20 2547s
+  N=90000 part 15/64 n=63272771 matches=764766069 filtered=20 2686s
+  N=90000 part 16/64 n=63280104 matches=823235483 filtered=22 2873s
+  N=90000 part 17/64 n=63272352 matches=825617720 filtered=24 2990s
+  N=90000 part 18/64 n=63273574 matches=839727786 filtered=30 3117s
+  N=90000 part 19/64 n=63271476 matches=842030494 filtered=33 3233s
+  N=90000 part 20/64 n=63270536 matches=850587998 filtered=33 3356s
+  N=90000 part 21/64 n=63343815 matches=2370940626 filtered=35 7827s
+  N=90000 part 22/64 n=63270311 matches=2379498808 filtered=36 7965s
+  N=90000 part 23/64 n=63279698 matches=2438068762 filtered=41 8156s
+  N=90000 part 24/64 n=63276023 matches=2440382732 filtered=45 8289s
+  N=90000 part 25/64 n=63269885 matches=2448320522 filtered=51 8428s
+  N=90000 part 26/64 n=63279603 matches=2456807264 filtered=53 8569s
+  N=90000 part 27/64 n=63281185 matches=2465366924 filtered=54 8703s
+  N=90000 part 28/64 n=63272656 matches=2523320295 filtered=55 8892s
+  N=90000 part 29/64 n=63263086 matches=2525638729 filtered=55 9026s
+  N=90000 part 30/64 n=63284466 matches=2589742346 filtered=56 9226s
+  N=90000 part 31/64 n=63267424 matches=2592676453 filtered=57 9350s
+  N=90000 part 32/64 n=63282031 matches=2600611875 filtered=59 9474s
+  N=90000 part 33/64 n=63265687 matches=2609166899 filtered=64 9601s
+  N=90000 part 34/64 n=63287426 matches=2617040375 filtered=71 9732s
+  N=90000 part 35/64 n=63292118 matches=3125621153 filtered=71 10358s
+  N=90000 part 36/64 n=63279572 matches=3127936646 filtered=74 10484s
+  N=90000 part 37/64 n=63276667 matches=3192052051 filtered=76 10664s
+  N=90000 part 38/64 n=63260042 matches=3195048749 filtered=77 10791s
+  N=90000 part 39/64 n=63281040 matches=3202921920 filtered=79 10923s
+  N=90000 part 40/64 n=63274629 matches=3210873440 filtered=80 11054s
+  N=90000 part 41/64 n=63281544 matches=3219363249 filtered=82 11187s
+  N=90000 part 42/64 n=63288617 matches=3727868171 filtered=83 11855s
+  N=90000 part 43/64 n=63279170 matches=3730250554 filtered=85 11990s
+  N=90000 part 44/64 n=63271235 matches=3738113624 filtered=89 12132s
+  N=90000 part 45/64 n=63287172 matches=3796590747 filtered=92 12326s
+  N=90000 part 46/64 n=63273173 matches=3805153867 filtered=92 12468s
+  N=90000 part 47/64 n=63273254 matches=3813079756 filtered=96 12609s
+  N=90000 part 48/64 n=63278792 matches=3821633211 filtered=97 12751s
+  N=90000 part 49/64 n=63268322 matches=3879508532 filtered=98 12945s
+  N=90000 part 50/64 n=63278451 matches=3882437160 filtered=99 13081s
+  N=90000 part 51/64 n=63282489 matches=3890380614 filtered=101 13222s
+  N=90000 part 52/64 n=63287550 matches=3948935396 filtered=102 13412s
+  N=90000 part 53/64 n=63271811 matches=3957477222 filtered=102 13550s
+  N=90000 part 54/64 n=63266527 matches=3965346657 filtered=103 13686s
+  N=90000 part 55/64 n=63285033 matches=3967651166 filtered=106 13817s
+  N=90000 part 56/64 n=63288717 matches=4481718739 filtered=108 14490s
+  N=90000 part 57/64 n=63267673 matches=4484720703 filtered=109 14618s
+  N=90000 part 58/64 n=63280592 matches=4492659594 filtered=113 14739s
+  N=90000 part 59/64 n=63281546 matches=4550526668 filtered=115 14907s
+  N=90000 part 60/64 n=63299438 matches=4559010832 filtered=121 15029s
+  N=90000 part 61/64 n=63285077 matches=4567567753 filtered=122 15151s
+  N=90000 part 62/64 n=63281846 matches=4569953484 filtered=122 15267s
+  N=90000 part 63/64 n=63342383 matches=4577804529 filtered=124 15388s
+{'N': 90000, 'B3': 90031, 'lower': 90031, 'exact': True, 't': 25, 'Kmax': 90015, 's': 6, 'packed': False, 'bestC': 90003, 'argC': (89998, 3, 4, 1), 'arg': (44137, 2, 23465, 4), 'nfound': 124, 'ncand': 124, 'nmatch': 4577804529, 'nfilt': 124, 'secs': 15388.4, 'secs_pack': 0.0, 'witness_ks': [44137, 23465, 22429]}
+jobcap: exit 0, peak job commit 5.21 GB of 12.5 GB cap
+lease-run: released collatz-m128-4497
