@@ -1,0 +1,16 @@
+m=113: Kceil=79471882849145900873382049; 2522 merged intervals; referee pieces 89483; floor-sum survivor count 8404; ambiguous pieces 0 (20s)
+m=113: candidates 8419; REF survivors 8404; FAST survivors 8404; both 8404; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 3784 (22s)
+m=113: sha256 REF afa8b6c21efc148d88261db057390903b899b088dd3b9ec88299af0de5ee1c50
+m=113: sha256 FAST afa8b6c21efc148d88261db057390903b899b088dd3b9ec88299af0de5ee1c50
+m=113: floor-sum count 8404 == REF 8404: True; SETS IDENTICAL
+m=115: Kceil=202733495587380435160655477; 4841 merged intervals; referee pieces 91085; floor-sum survivor count 21097; ambiguous pieces 0 (22s)
+m=115: candidates 21105; REF survivors 21097; FAST survivors 21097; both 21097; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 5998 (38s)
+m=115: sha256 REF c8db58bfac09765492364f8f3ff0856c1d7b30d58d14d7cf9fb8e99b21d2badb
+m=115: sha256 FAST c8db58bfac09765492364f8f3ff0856c1d7b30d58d14d7cf9fb8e99b21d2badb
+m=115: floor-sum count 21097 == REF 21097: True; SETS IDENTICAL
+m=127: Kceil=55608821502614112688924539592; 16912 merged intervals; referee pieces 100700; floor-sum survivor count 5291294; ambiguous pieces 0 (26s)
+m=127: candidates 5291301; REF survivors 5291294; FAST survivors 5291294; both 5291294; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 18596 (221s)
+m=127: sha256 REF 544c846c1058da6aee302d3242ceca4fc907b2f1f09112545a4c35c469977771
+m=127: sha256 FAST 544c846c1058da6aee302d3242ceca4fc907b2f1f09112545a4c35c469977771
+m=127: floor-sum count 5291294 == REF 5291294: True; SETS IDENTICAL
+exit 0
