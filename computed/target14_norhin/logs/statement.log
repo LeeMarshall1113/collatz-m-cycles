@@ -1,0 +1,6 @@
+'main_statement_111_noRhin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Collatz.effMeasure_of_rhinAll' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+real	0m14.738s
+user	0m0.015s
+sys	0m0.015s
