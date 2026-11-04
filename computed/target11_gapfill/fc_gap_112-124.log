@@ -1,0 +1,17 @@
+B2 155 refereed 155 missing []
+B3 126 refereed 126 missing []
+B4 122 refereed 72 missing [76, 80, 85, 90, 95, 100, 106, 112, 114, 115, 121, 123, 124, 125, 126, 130, 131, 138, 145, 153, 161, 170, 179, 219, 230, 242, 255, 268, 282, 297, 305, 320, 345, 363, 382, 402, 423, 445, 472, 492, 511, 516, 518, 527, 528, 598, 634, 673, 714, 757]
+tops 1039710 38243 852
+m=112 Kceil=4.9753e+25 candidates=5317 screened-closed=5310 exact-needed=0 failures=0 B4top=852 enum 2s screen 2s exact 2s
+  m=112: worst exact ratio 0.000996 at K=27444133206411171953 use={1: 52, 2: 15, 3: 25, 4: 19} maxN={2: 986677, 3: 35570, 4: 816} (worst valid as global max: True; cut bound 0.000001); failures 0; CLOSED
+m=113 Kceil=7.9472e+25 candidates=8419 screened-closed=8413 exact-needed=0 failures=0 B4top=852 enum 3s screen 3s exact 2s
+  m=113: worst exact ratio 0.001578 at K=27444133206411171953 use={1: 53, 2: 15, 3: 25, 4: 19} maxN={2: 986677, 3: 35570, 4: 816} (worst valid as global max: True; cut bound 0.000001); failures 0; CLOSED
+m=115 Kceil=2.0273e+26 candidates=21105 screened-closed=21100 exact-needed=0 failures=0 B4top=852 enum 5s screen 6s exact 2s
+  m=115: worst exact ratio 0.003964 at K=27444133206411171953 use={1: 55, 2: 15, 3: 26, 4: 18} maxN={2: 986677, 3: 35570, 4: 816} (worst valid as global max: True; cut bound 0.000004); failures 0; CLOSED
+m=122 Kceil=5.3657e+27 candidates=529362 screened-closed=529359 exact-needed=0 failures=0 B4top=852 enum 16s screen 126s exact 2s
+  m=122: worst exact ratio 0.099607 at K=27444133206411171953 use={1: 63, 2: 15, 3: 27, 4: 16} maxN={2: 986678, 3: 35570, 4: 817} (worst valid as global max: True; cut bound 0.000151); failures 0; CLOSED
+m=123 Kceil=8.5660e+27 candidates=838840 screened-closed=838836 exact-needed=0 failures=0 B4top=852 enum 22s screen 194s exact 2s
+  m=123: worst exact ratio 0.157873 at K=27444133206411171953 use={1: 64, 2: 15, 3: 27, 4: 16} maxN={2: 986678, 3: 35570, 4: 817} (worst valid as global max: True; cut bound 0.000255); failures 0; CLOSED
+m=124 Kceil=1.3674e+28 candidates=1329423 screened-closed=1329419 exact-needed=0 failures=0 B4top=852 enum 28s screen 300s exact 2s
+  m=124: worst exact ratio 0.250223 at K=27444133206411171953 use={1: 65, 2: 15, 3: 26, 4: 17} maxN={2: 986678, 3: 35571, 4: 817} (worst valid as global max: True; cut bound 0.000429); failures 0; CLOSED
+exit 0

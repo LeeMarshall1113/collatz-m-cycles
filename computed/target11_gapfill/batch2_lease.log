@@ -1,0 +1,13 @@
+lease-run: request collatz-m112-126-4468
+GRANTED 2.0 GB
+lease-run: hard commit cap 8.0 GB for the whole job tree
+jobcap: pid 31688 capped at 8 GB commit (whole process tree)
+Wed Nov  4 03:35:12 UTC 2026
+Wed Nov  4 03:36:03 UTC 2026
+Wed Nov  4 03:37:02 UTC 2026
+Wed Nov  4 03:38:12 UTC 2026
+Wed Nov  4 03:39:45 UTC 2026
+Wed Nov  4 03:41:46 UTC 2026
+Wed Nov  4 03:56:33 UTC 2026
+jobcap: exit 0, peak job commit 0.18 GB of 8 GB cap
+lease-run: released collatz-m112-126-4468
