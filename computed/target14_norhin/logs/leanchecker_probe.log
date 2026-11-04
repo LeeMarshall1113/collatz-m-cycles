@@ -1,0 +1,22 @@
+lease-run: request collatz-lean-rhin-4476
+GRANTED 10.0 GB
+lease-run: hard commit cap 25.0 GB for the whole job tree
+jobcap: pid 26636 capped at 25 GB commit (whole process tree)
+warning: mathlib: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\mathlib
+warning: batteries: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\batteries
+
+real	0m39.666s
+user	0m0.000s
+sys	0m0.000s
+warning: mathlib: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\mathlib
+warning: batteries: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\batteries
+
+real	0m37.258s
+user	0m0.000s
+sys	0m0.015s
+jobcap: exit 0, peak job commit 5.72 GB of 25 GB cap
+lease-run: released collatz-lean-rhin-4476

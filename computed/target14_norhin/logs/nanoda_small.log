@@ -1,0 +1,47 @@
+lease-run: request collatz-lean-rhin-4486
+GRANTED 8.0 GB
+lease-run: hard commit cap 25.0 GB for the whole job tree
+jobcap: pid 2348 capped at 25 GB commit (whole process tree)
+warning: mathlib: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\mathlib
+warning: batteries: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\batteries
+
+real	0m15.341s
+user	0m0.000s
+sys	0m0.016s
+export_rc=0
+total 155016
+drwxr-xr-x 1 hackathon 197609         0 Nov  4 02:17 .
+drwxr-xr-x 1 hackathon 197609         0 Nov  4 02:17 ..
+-rw-r--r-- 1 hackathon 197609 158704572 Nov  4 02:17 eff_small.ndjson
+theorem Collatz.K_lt_of_ceilOK (hE : Collatz.EffMeasure) :
+  forall {x p : Nat},
+  LT.lt (OfNat.ofNat 0) x → LT.lt (OfNat.ofNat 0) p → Eq (Nat.iterate Collatz.T p x) x → (forall {m Kf : Nat},
+  Eq (Collatz.numLocalMin x p) m → Eq (Collatz.ceilOK m Kf) Bool.true → LT.lt (Collatz.oddCount Collatz.T x p)
+    Kf) :=
+  _
+
+def Collatz.EffMeasure :
+  Prop :=
+  forall (p K : Nat),
+  LE.le (HPow.hPow (OfNat.ofNat 10) (OfNat.ofNat 36)) K → LT.lt
+    (Real.exp (Neg.neg (HDiv.hDiv (Nat.cast K) (HPow.hPow (OfNat.ofNat 2) (OfNat.ofNat 80)))))
+    (abs
+      (HSub.hSub (HMul.hMul (Nat.cast p) (Real.log (OfNat.ofNat 2)))
+        (HMul.hMul (Nat.cast K) (Real.log (OfNat.ofNat 3)))))
+
+axiom propext {a b : Prop} : Iff a b → Eq a b
+
+axiom Quot.sound.{u} {α : Sort u} {r : α → α → Prop} {a b : α} : r a b → Eq (Quot.mk r a) (Quot.mk r b)
+
+axiom Classical.choice.{u} {α : Sort u} : Nonempty α → α
+
+Checked 28712 declarations with no errors
+
+real	0m21.149s
+user	0m0.000s
+sys	0m0.000s
+nanoda_rc=0
+jobcap: exit 0, peak job commit 5.84 GB of 25 GB cap
+lease-run: released collatz-lean-rhin-4486

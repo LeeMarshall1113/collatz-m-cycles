@@ -128,7 +128,32 @@ interface, then route 1 or 2 only if Lee accepts a multi-week, about 20-35% lane
     three v4.35.0 fixes. They matter for untrusted proof terms; our proofs are our own code.
   - v4.34.1 (all fixes) is installed locally.
   - Moving to v4.35.0 final needs a matching Mathlib cache, which was not checked.
-- **Independent checkers:** the official v4.35.0-rc3 toolchain ships `leanchecker`,
-  `leanchecker-paranoid`, `lean4lean`, `nanoda_bin` and `con-leche`, so no extra downloads are needed.
-  This repo has no `.lake` build in place, so nothing was replayed. Replaying applies once a no-Rhin
-  theorem exists.
+- **v4.35.0-rc3** was tagged on 24 Sep. #15241 was backported to the v4.35 branch the same day (#15301).
+  #15288 and #15289 came later, so rc3 most likely lacks them. They are refcount and sharing undefined
+  behaviour, reachable only with crafted terms or inputs over 100 GB.
+- **Rebuild on 4.34.1: not done.**
+  - No Mathlib build or cache for 4.34.1 exists locally; every local Lean project pins v4.35.0-rc3.
+  - A from-scratch rebuild of the m <= 111 tree took about 8.5 h for the m = 111 modules alone
+    (`b111_*.log` in the dev repo). It needs Lee's go-ahead for that much machine time.
+- **What was replayed (2026-11-04), all on the bundled rc3 checkers, each under a broker lease:**
+  - `leanchecker Collatz.NoRhin Collatz.EffMeasure`: exit 0, peak 5.5 GB.
+  - `leanchecker Collatz.MCycle111Walk1` and `Collatz.MCycle111Certs1` (probe): exit 0, about 38 s each.
+  - **nanoda_bin 0.4.17**, via `leanexport` (lean4export 3.1.0), on the closure of `K_lt_of_ceilOK`,
+    `effMeasure_of_rhinAll` and `hercherCeil_ok`:
+    - "Checked 28712 declarations with no errors", 21 s;
+    - this replays from scratch, including the Mathlib dependencies;
+    - only propext, Quot.sound and Classical.choice appear;
+    - the pretty-printed `EffMeasure` and `K_lt_of_ceilOK` match the source (`logs/nanoda_small.log`).
+  - Full-tree `leanchecker` (all 1908 modules in 4 batches): **stopped, unfinished.** Batch 1 (m = 110/111
+    certs) ran 3 h 07 min without finishing, past the lease ETA, while another job was waiting. leanchecker
+    prints nothing per module, so the partial run proves nothing.
+  - Full-closure nanoda on `no_111_cycle_2_71_eff` and `no_111_cycle_2_71`:
+    - the export is 336 MB (27 s);
+    - nanoda ran 143 min (single thread, under 2 GB) and was **stopped unfinished** at the lease end;
+    - the export is kept at `C:/Users/hackathon/lean-export-tmp/m111_full.ndjson` for a rerun.
+  - `lean4lean` (bundled): unusable here. It fails with "incompatible header" on our oleans, so its build
+    does not match this toolchain.
+- **To finish the full replay:**
+  - a detached leased job of about 10-20 h single-thread for leanchecker, or nanoda on the existing
+    export with no time limit (`nanoda_full.json`);
+  - better, leanchecker in chunks of about 20 modules with per-chunk logging, so it can resume.

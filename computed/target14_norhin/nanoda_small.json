@@ -1,0 +1,11 @@
+{
+  "export_file_path": "C:/Users/hackathon/lean-export-tmp/eff_small.ndjson",
+  "use_stdin": false,
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound", "Lean.trustCompiler"],
+  "unpermitted_axiom_hard_error": false,
+  "nat_extension": true,
+  "string_extension": true,
+  "pp_declars": ["Collatz.K_lt_of_ceilOK", "Collatz.EffMeasure"],
+  "pp_to_stdout": true,
+  "print_success_message": true
+}

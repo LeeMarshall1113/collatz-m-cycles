@@ -1,0 +1,14 @@
+lease-run: request collatz-lean-rhin-4477
+GRANTED 11.0 GB
+lease-run: hard commit cap 27.5 GB for the whole job tree
+jobcap: pid 7508 capped at 27.5 GB commit (whole process tree)
+== batch computed/target14_norhin/logs/modbatch_00 (498 modules) start 04:06:44
+uncaught exception: Could not find any oleans for: Collatz.BenchKernel
+== batch computed/target14_norhin/logs/modbatch_00 rc=1 end 04:07:07
+== batch computed/target14_norhin/logs/modbatch_01 (476 modules) start 04:07:07
+== batch computed/target14_norhin/logs/modbatch_01 rc=127 end 07:14:53
+== batch computed/target14_norhin/logs/modbatch_02 (476 modules) start 07:14:53
+== batch computed/target14_norhin/logs/modbatch_02 rc=127 end 07:15:11
+== batch computed/target14_norhin/logs/modbatch_03 (458 modules) start 07:15:11
+jobcap: exit 4294967295, peak job commit 5.88 GB of 27.5 GB cap
+lease-run: released collatz-lean-rhin-4477
