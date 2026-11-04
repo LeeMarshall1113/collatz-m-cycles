@@ -1,0 +1,20 @@
+m=128: Kceil=88752603985990523337678360839; 17840 merged intervals; referee pieces 101507; floor-sum survivor count 8385549; ambiguous pieces 0 (20s)
+m=128: candidates 8385563; REF survivors 8385549; FAST survivors 8385549; both 8385549; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 19513 (257s)
+m=128: sha256 REF 83b95cec3934193ca41180599e064b76ae0c9ccc5b2ad6b1f124a3f3bc6ba5a2
+m=128: sha256 FAST 83b95cec3934193ca41180599e064b76ae0c9ccc5b2ad6b1f124a3f3bc6ba5a2
+m=128: floor-sum count 8385549 == REF 8385549: True; SETS IDENTICAL
+m=129: Kceil=141643725982313035784178638122; 18762 merged intervals; referee pieces 102292; floor-sum survivor count 13289292; ambiguous pieces 0 (21s)
+m=129: candidates 13289304; REF survivors 13289292; FAST survivors 13289292; both 13289292; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 20426 (336s)
+m=129: sha256 REF 153ef11f501809b9b78acc9d65e486db816c6c74aa22b068a0fe5374797893ee
+m=129: sha256 FAST 153ef11f501809b9b78acc9d65e486db816c6c74aa22b068a0fe5374797893ee
+m=129: floor-sum count 13289292 == REF 13289292: True; SETS IDENTICAL
+m=130: Kceil=226043854392736866420542025143; 19651 merged intervals; referee pieces 103105; floor-sum survivor count 21060852; ambiguous pieces 0 (22s)
+m=130: candidates 21060865; REF survivors 21060852; FAST survivors 21060852; both 21060852; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 21287 (464s)
+m=130: sha256 REF 4ce9aeaf8e41eb6bf7c239ae9f2d991e5adad6325b9bf0d655e109fd2961625e
+m=130: sha256 FAST 4ce9aeaf8e41eb6bf7c239ae9f2d991e5adad6325b9bf0d655e109fd2961625e
+m=130: floor-sum count 21060852 == REF 21060852: True; SETS IDENTICAL
+m=131: Kceil=360717722230229715981589233773; 20532 merged intervals; referee pieces 103899; floor-sum survivor count 33377004; ambiguous pieces 0 (22s)
+m=131: candidates 33377017; REF survivors 33377004; FAST survivors 33377004; both 33377004; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 22160 (653s)
+m=131: sha256 REF 7225b86738968feefde69f4cf1e3062746065a00d52bf5a7ced53c1f8c177870
+m=131: sha256 FAST 7225b86738968feefde69f4cf1e3062746065a00d52bf5a7ced53c1f8c177870
+m=131: floor-sum count 33377004 == REF 33377004: True; SETS IDENTICAL

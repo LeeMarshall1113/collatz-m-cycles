@@ -123,3 +123,29 @@ Each +1 m along one axis costs about delta^e times the previous point on that ax
 x2.9-3.2 per m), and the shape count grows x1.585 per m, so the chain alone reaches ~12 h at m = 135. Alternating
 B2/B3 points keeps the per-m cost to roughly x1.7-2. The rule predicts the m; it gets expensive around m ~ 134-136.
 Next cheap axis not yet used: B5 at small N (new join code + validation + referee; +1 to +2 m).
+
+## 8. Independent check of m = 128..131 (referee code) [computed]
+
+`ref13.py` drives the referee's own code unmodified (`target11_referee/refchain.py`, `refshapes.main_stream`,
+`target11_gapfill/setcmp.py`); the only injections are this folder's four doubly computed points into
+`refchain.load_grids` and the endpoint y-window into the candidate stream. refchain uses the 117-point B4 snapshot
+(fastchain used the run11 B4 grid), so the two chains share no chain code and no B4 table file.
+
+* refchain on the hard shapes (`refchain_hard_128-131.log`, all four new points loaded): hard shape 0.2507265 /
+  0.3973921 / 0.6298516 / **0.9982912** at m = 128..131 (fastchain at 131: 0.998291; at 128-130 fastchain had
+  fewer of the new points, hence its larger ratios). Next worst K = 205,632,218,873,398,596,256: 0.7926643 at 131.
+* refshapes (`refshapes_128..131.log`): own Rhin check passes, own floor-sum survivor count equals the count of
+  candidates passing its own exact test in every piece (0 mismatches, 0 ambiguous) -> candidate list contains all
+  survivors; own screen of every survivor with B4: 0 open; own exact chain on the open/top-50 shapes: 0 failures.
+* setcmp (`setcmp_128-131.log`): referee survivor set == common.survives set (fastchain's test), element by element:
+
+| m | candidates | survivors | sha256 of survivor list (`"K p\n"`, increasing K) |
+|---|---|---|---|
+| 128 | 8,385,563 | 8,385,549 | 83b95cec3934193ca41180599e064b76ae0c9ccc5b2ad6b1f124a3f3bc6ba5a2 |
+| 129 | 13,289,304 | 13,289,292 | 153ef11f501809b9b78acc9d65e486db816c6c74aa22b068a0fe5374797893ee |
+| 130 | 21,060,865 | 21,060,852 | 4ce9aeaf8e41eb6bf7c239ae9f2d991e5adad6325b9bf0d655e109fd2961625e |
+| 131 | 33,377,017 | 33,377,004 | 7225b86738968feefde69f4cf1e3062746065a00d52bf5a7ced53c1f8c177870 |
+
+Cost: one local thread, ~70 min, peak commit 0.2 GB (lease `collatz-m128-4495`). **Status of m <= 131: closed by
+two independent chain implementations on doubly computed tables, survivor sets identical** (still not in Lean;
+same external hypotheses).
