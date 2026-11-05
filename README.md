@@ -4,7 +4,8 @@
 
 **Every nontrivial positive Collatz cycle has at least 112 local minima** (no m-cycle with m <= 111), proved in
 Lean 4 and kernel-checked, assuming two published inputs (stated precisely below). A further extension to
-m <= 127 is **computed and independently re-computed, but not formally verified**.
+m <= 132 is **computed, with every table value computed by two independent codes and every m checked by two
+independent chain implementations, but not formally verified**.
 
 ## The theorem
 
@@ -53,6 +54,7 @@ def RhinBound : Prop :=                                                       --
 | m <= 101 | Lean, kernel-checked (Alick) | `Collatz.no_101_cycle_2_71` |
 | **m <= 111** | **Lean, kernel-checked (this repository)** | `Collatz.no_111_cycle_2_71`, `main_statement_111` |
 | **m <= 127** | **Computed (exact rational arithmetic), re-computed by independent referee code; NOT formally verified** | `computed/`, `METHOD.md` section 7 |
+| **m <= 132** | **Computed as for m <= 127, with new rise-bound points past the old grid tops; NOT formally verified** | `computed/target13_m128/` |
 
 * **Lean-verified (m <= 111).** Kernel-checked from `hX` and `RhinBound`. `#print axioms main_statement_111`
   gives `[propext, Classical.choice, Quot.sound]`, and the audit of all 64,104 declarations in the `Collatz`
@@ -66,6 +68,13 @@ def RhinBound : Prop :=                                                       --
   It is **not** in Lean: the rise bounds needed for m <= 127 would take more than 10^6 kernel-hours with the present
   approach. Treat m <= 127 as a strongly cross-checked computation, not as a theorem. The margin at m = 127 is
   0.37%, and the argument is sensitive to the exactness of the rise-bound tables (`METHOD.md` section 9).
+* **Computed and refereed, not verified (m = 128 ... 132).** Three new two-rise points (N = 1,600,000, 2,540,000 and
+  4,015,000) and two new three-rise points (N = 56,800 and 90,000), each computed by two independent codes with
+  identical values, close every candidate shape for m = 128 ... 132 (52,895,924 candidates at m = 132, no failures;
+  tightest ratio 0.9840 at m = 132, 0.9988 at m = 129). For every m, the referee's own enumeration and chain
+  produce exactly the same survivor set as the main code (sha256 match). The candidate enumerator's y-window was
+  also made rigorous (interval endpoints instead of a padded midpoint; identical sets at m = 110, 115, 120). Details
+  and logs: `computed/target13_m128/NOTES.md`.
 * **Hypotheses `hX` and `RhinBound` apply to both.**
 
 ## Check it
@@ -186,7 +195,7 @@ Commit history: `d189594` is the only upstream commit; later commits are ours. T
 | `Collatz/MCycle92.lean` ... `MCycle110*.lean`, `WalkSplit.lean` | shapes, walks, certificates, main theorems |
 | `scripts/Statement.lean`, `AxiomAudit.lean`, `build_serial.py` | statement check, axiom audit, serial build |
 | `research/scripts/` | generators of the Lean data modules |
-| `computed/` | Python reproducing m <= 127, with certificates and referee code (`computed/README.md`) |
+| `computed/` | Python reproducing m <= 132, with certificates and referee code (`computed/README.md`, `computed/target13_m128/`) |
 | `METHOD.md` | the mathematics, and what is formalised |
 | `AXIOM_AUDIT.txt` | recorded output of the axiom checks for m <= 111 |
 
@@ -201,7 +210,7 @@ certificate modules, the Python computations, the proofs in `METHOD.md`, and thi
 system, Claude (Anthropic), working in Claude Code under the direction of Lee Marshall
 ([@LeeMarshall1113](https://github.com/LeeMarshall1113)).** The Lean parts are checked by the Lean kernel, so
 their correctness does not depend on trusting the generator; the *statement* they prove should be read by a human
-(see `scripts/Statement.lean`). The computed m <= 127 part is checked only by independent re-computation, also
+(see `scripts/Statement.lean`). The computed m <= 132 part is checked only by independent re-computation, also
 AI-written, and has had no human referee. This is **not peer reviewed**. The repository builds on the Lean
 project of Justin Alick, which was itself prepared with an AI assistant; see "What is Alick's and what is new".
 
