@@ -1,0 +1,29 @@
+# job ref_b2_2344024: python myb2.py 4 ref13.jsonl [[2344024, 2344039]] (cwd target7b_referee, 4 threads)
+# code manifest:
+target7_threerise/b3.py 8d42839da3711a15
+target7_threerise/brute.py 7fbf8b590a76ddaf
+target7_threerise/chain3.py 7b808b1cf15e0a0b
+target7_threerise/test_b3.py 04ef06e12164591e
+target7b_push/b2fast.py c77fb1c7d4ce0efd
+target7b_push/b3join.py 308413470d63bd27
+target7b_push/fastshapes.py 29e8edcb5fcefb56
+target7b_push/grid7b.py 184d3814622c8b2e
+target7b_push/run7b.py f8c1b67cc4dd7cd9
+target7b_push/test_join.py 7e01d394348e758d
+target7b_referee/myb2.py e009c7c2152e586d
+target7b_referee/myb3.py d26cf418652ef7c0
+target7b_referee/mychain.py 11b2cde8a54fe242
+target7b_referee/myshapes.py 84c3a009b1fe8fc4
+target7b_referee/slack.py 548b4f487538cbb7
+target10_rrise/chainr.py 138ec31d377ffc56
+target11_fourrise/adapt.py 54b89ec246dc97f0
+target11_fourrise/b4join.py 37ad618bdcdd4238
+target11_fourrise/fastchain.py 554c299f3552b99c
+target11_fourrise/grid4.py 91b3242375a3309b
+target11_fourrise/run11.py fe0014b0040b6498
+target11_fourrise/test_b4.py 4f8e0c94de1bc316
+{"N": 2344024, "claimed": 2344039, "mine": 2344044, "ok": false, "above": [[[142217, 1], 2344040], [[254574, 1], 2344040], [[334790, 1], 2344040], [[334791, 1], 2344041], [[334791, 2], 2344040], [[334792, 2], 2344041], [[424553, 4], 2344040], [[424554, 4], 2344041], [[424555, 4], 2344042], [[424556, 4], 2344043], [[651765, 1], 2344042], [[651766, 1], 2344043], [[651767, 1], 2344044], [[651768, 2], 2344044], [[716275, 3], 2344040], [[859428, 1], 2344040], [[859429, 1], 2344041], [[859429, 2], 2344040], [[859430, 2], 2344041], [[1103817, 1], 2344041], [[1121066, 1], 2344040], [[1121067, 2], 2344040], [[1363212, 7], 2344040], [[1363213, 7], 2344041], [[1561101, 1], 2344041], [[1561102, 1], 2344042], [[1802991, 1], 2344041], [[1823890, 1], 2344040], [[1823891, 1], 2344041], [[1823892, 2], 2344041], [[1965146, 1], 2344040], [[1965147, 2], 2344040], [[2290535, 1], 2344040], [[2290536, 2], 2344040]], "nhits": 74, "witness": [2344044, true], "KS": 30, "nsmall": 340, "nA": 172, "nC": 0, "secs": 1711.8}
+
+# stderr:
+
+# exit 0 wall 1713s

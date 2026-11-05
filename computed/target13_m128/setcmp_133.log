@@ -1,0 +1,5 @@
+m=133: Kceil=918451882855175196316669581285; 22359 merged intervals; referee pieces 105502; floor-sum survivor count 83829302; ambiguous pieces 0 (21s)
+m=133: candidates 83829317; REF survivors 83829302; FAST survivors 83829302; both 83829302; REF-only 0 []; FAST-only 0 []; ambiguous 0; lam pieces 23942 (1332s)
+m=133: sha256 REF 366cf71609087eb66fc1a14414a7d3eb7ab3d3bad4bac8793de735f70eb4acf2
+m=133: sha256 FAST 366cf71609087eb66fc1a14414a7d3eb7ab3d3bad4bac8793de735f70eb4acf2
+m=133: floor-sum count 83829302 == REF 83829302: True; SETS IDENTICAL

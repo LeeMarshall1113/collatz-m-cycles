@@ -1,0 +1,158 @@
+lease-run: request collatz-m128-4507
+GRANTED 1.0 GB
+lease-run: hard commit cap 7.0 GB for the whole job tree
+jobcap: pid 24820 capped at 7 GB commit (whole process tree)
+C:\Users\hackathon\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:43: DeprecationWarning: 'asyncio.WindowsSelectorEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+C:\Users\hackathon\AppData\Roaming\Python\Python314\site-packages\modal\_utils\async_utils.py:43: DeprecationWarning: 'asyncio.set_event_loop_policy' is deprecated and slated for removal in Python 3.16
+  asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+✓ Initialized. View run at 
+https://modal.com/apps/leemarshall1113/main/ap-WVmXd25hG4UwBjYGGqAuHc
+✓ Created objects.
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget13_m128\modal_jobs.py
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget10_rrise
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget7_threerise
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget11_fourrise
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget7b_referee
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget1a
+├── 🔨 Created mount 
+│   C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release-t13\computed\t
+│   arget7b_push
+├── 🔨 Created function run1.
+├── 🔨 Created function run4.
+└── 🔨 Created function run8.
+[16:04:22] done ref_b2_142591: # exit 0 wall 12s
+[16:04:29] done ref_b2_227256: # exit 0 wall 19s
+[16:05:00] done ref_b2_360191: # exit 0 wall 50s
+[16:05:47] done ref_b2_579108: # exit 0 wall 97s
+[16:15:02] done ref_b2_1478908: # exit 0 wall 652s
+[16:32:45] done ref_b2_2344024: # exit 0 wall 1713s
+[16:55:30] done ref_b2_3715201: # exit 0 wall 3077s
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+[18:46:41] done ref_b2_5888465: # exit 0 wall 9749s
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/leemarshall1113/main/ap-WVmXd25hG4UwBjYGGqAuHc
+jobcap: exit 0, peak job commit 0.07 GB of 7 GB cap
+lease-run: released collatz-m128-4507

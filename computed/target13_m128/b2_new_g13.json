@@ -40,5 +40,117 @@
   "secs": 24456.7,
   "src": "b2fast on Modal 1 cpu (modal_logs/main_b2_4015000.log)",
   "referee": "myb2 on Modal: 4015020 (modal_logs/ref_b2_4015000.log)"
+ },
+ "142591": {
+  "N": 142591,
+  "B2": 142606,
+  "exc": 15,
+  "arg": [
+   "pair",
+   97599,
+   4,
+   45007
+  ],
+  "secs": 18.9,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_142591.log)"
+ },
+ "227256": {
+  "N": 227256,
+  "B2": 227273,
+  "exc": 17,
+  "arg": [
+   "pair",
+   225457,
+   1,
+   1816
+  ],
+  "secs": 45.3,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_227256.log)"
+ },
+ "360191": {
+  "N": 360191,
+  "B2": 360209,
+  "exc": 18,
+  "arg": [
+   "pair",
+   242865,
+   1,
+   117344
+  ],
+  "secs": 112.6,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_360191.log)"
+ },
+ "579108": {
+  "N": 579108,
+  "B2": 579125,
+  "exc": 17,
+  "arg": [
+   "pair",
+   540257,
+   1,
+   38868
+  ],
+  "secs": 293.0,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_579108.log)"
+ },
+ "1478908": {
+  "N": 1478908,
+  "B2": 1478927,
+  "exc": 19,
+  "arg": [
+   "pair",
+   104584,
+   1,
+   1374343
+  ],
+  "secs": 1856.3,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_1478908.log)"
+ },
+ "2344024": {
+  "N": 2344024,
+  "B2": 2344044,
+  "exc": 20,
+  "arg": [
+   "pair",
+   651767,
+   1,
+   1692277
+  ],
+  "secs": 4108.1,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_2344024.log)"
+ },
+ "3715201": {
+  "N": 3715201,
+  "B2": 3715221,
+  "exc": 20,
+  "arg": [
+   "pair",
+   839074,
+   1,
+   2876147
+  ],
+  "secs": 11632.4,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_3715201.log)"
+ },
+ "5888465": {
+  "N": 5888465,
+  "B2": 5888484,
+  "exc": 19,
+  "arg": [
+   "pair",
+   33788,
+   1,
+   5854696
+  ],
+  "secs": 23531.4,
+  "src": "b2fast local (b2_133.log)",
+  "referee": "myb2 on Modal (modal_logs/ref_b2_5888465.log)"
  }
 }

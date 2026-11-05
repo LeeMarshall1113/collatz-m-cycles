@@ -1,0 +1,8 @@
+lease-run: request collatz-m128-4510
+GRANTED 1.0 GB
+lease-run: hard commit cap 7.0 GB for the whole job tree
+jobcap: pid 29808 capped at 7 GB commit (whole process tree)
+m=133 Kceil=9.1845e+29 candidates=83829317 screened-closed=83829312 exact-needed=0 failures=0 B2top=5888465 B3top=90000 B4top=852 enum+screen 14957s exact 2s
+  m=133: worst exact ratio 0.923646 at K=27444133206411171953 use={1: 68, 2: 22, 3: 26, 4: 16} maxN={2: 5886388, 3: 89929, 4: 819} (worst valid as global max: True; cut bound 0.003039); failures 0; CLOSED
+jobcap: exit 0, peak job commit 0.05 GB of 7 GB cap
+lease-run: released collatz-m128-4510

@@ -171,3 +171,28 @@ per partition and a fixed structured cluster in the 0101 partition (it grows ~N^
 branch) has no such cluster and on 8 cores was faster in wall time. For B3 at ~142,500 (m = 134) expect b3join
 ~15-25 h local (s = 6 or 7) and myb3 ~20-25 h wall on 8 Modal cores (~$10-12, i.e. over the $10 per-job limit
 unless split across containers by partition).
+
+## 10. m = 133 [computed; two codes per new point, two chain implementations]
+
+One B2 point near the grid top does not close m = 133: a point a little above the looked-up N gains nothing over
+the delta step. The gain has to come from filling the B2 grid where the hard shape looks. A cost-greedy search over
+the 17 missing lookups gave 8 points (dropping any one pushes the hard shape above 0.995):
+
+| N | B2 (b2fast, local) | myb2 (Modal) |
+|---|---|---|
+| 142591 | 142606 | 142606 |
+| 227256 | 227273 | 227273 |
+| 360191 | 360209 | 360209 |
+| 579108 | 579125 | 579125 |
+| 1478908 | 1478927 | 1478927 |
+| 2344024 | 2344044 | 2344044 |
+| 3715201 | 3715221 | 3715221 |
+| 5888465 | 5888484 | 5888484 |
+
+* b2fast: 1 local thread, sequential, preemptible lease `collatz-m128-4508`, ~16.6 h in total (5,888,465 alone 23,531 s), peak 1.1 GB.
+  myb2: Modal 4 cpu each, $1.13.
+* chain m = 133, all shapes (`chain_133.out`): 83,829,317 candidates, 0 failures, worst **0.923646** (hard shape), 14,957 s.
+* refchain hard shape 0.9236464; refshapes: floor-sum = own test in every piece, 83,829,302 survivors, 0 open, 0 failures;
+  setcmp: SETS IDENTICAL, sha256 366cf71609087eb66fc1a14414a7d3eb7ab3d3bad4bac8793de735f70eb4acf2.
+
+**m <= 133 closed** (computed, not in Lean; Barina 2^71 and Rhin).

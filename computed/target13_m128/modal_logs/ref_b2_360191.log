@@ -1,0 +1,29 @@
+# job ref_b2_360191: python myb2.py 4 ref13.jsonl [[360191, 360206]] (cwd target7b_referee, 4 threads)
+# code manifest:
+target7_threerise/b3.py 8d42839da3711a15
+target7_threerise/brute.py 7fbf8b590a76ddaf
+target7_threerise/chain3.py 7b808b1cf15e0a0b
+target7_threerise/test_b3.py 04ef06e12164591e
+target7b_push/b2fast.py c77fb1c7d4ce0efd
+target7b_push/b3join.py 308413470d63bd27
+target7b_push/fastshapes.py 29e8edcb5fcefb56
+target7b_push/grid7b.py 184d3814622c8b2e
+target7b_push/run7b.py f8c1b67cc4dd7cd9
+target7b_push/test_join.py 7e01d394348e758d
+target7b_referee/myb2.py e009c7c2152e586d
+target7b_referee/myb3.py d26cf418652ef7c0
+target7b_referee/mychain.py 11b2cde8a54fe242
+target7b_referee/myshapes.py 84c3a009b1fe8fc4
+target7b_referee/slack.py 548b4f487538cbb7
+target10_rrise/chainr.py 138ec31d377ffc56
+target11_fourrise/adapt.py 54b89ec246dc97f0
+target11_fourrise/b4join.py 37ad618bdcdd4238
+target11_fourrise/fastchain.py 554c299f3552b99c
+target11_fourrise/grid4.py 91b3242375a3309b
+target11_fourrise/run11.py fe0014b0040b6498
+target11_fourrise/test_b4.py 4f8e0c94de1bc316
+{"N": 360191, "claimed": 360206, "mine": 360209, "ok": false, "above": [[[242816, 3], 360207], [[242863, 1], 360207], [[242864, 1], 360208], [[242865, 1], 360209], [[242866, 2], 360209], [[279494, 3], 360207]], "nhits": 9, "witness": [360209, true], "KS": 30, "nsmall": 340, "nA": 21, "nC": 0, "secs": 49.0}
+
+# stderr:
+
+# exit 0 wall 50s
