@@ -146,6 +146,68 @@ Every margin is positive.
 - These are design numbers from analytic upper bounds; the Lean proof needs only inequalities of the
   same shape.
 
+## 3a. The parameter inequalities in exact rationals (to be checked without scripts)
+
+These are the inequalities that `Setup.ext` and `Setup.fin` (`Collatz/Gelfond/Core.lean`) demand. The
+definitions in that file are the ones used here.
+
+**Parameters.**
+- `b` is the bit length of `K`: `2^{b−1} ≤ K < 2^b`. Then `K ≥ 10^100 > 2^332` gives `b ≥ 333`.
+- `L = 400b`, `M = 24L = 9600b`, `N = L² = 160000 b²`, `h₀ = 4b`, `δ = exp(−K/2^80) ≤ exp(−2^{b−81})`.
+- `J` is the least `j` with `h₀ 2^j ≥ N²/10`, and `H = h₀ 2^J`, so `N²/10 ≤ H < N²/5 = 5.12·10^9 b^4`.
+  Every `h` used in `Ext` satisfies `4b ≤ h < N²/5`.
+
+**Siegel condition.** `2 h₀ M = 76800 b² ≤ 160000 b² = N`.
+
+**Facts used.** Each is a one-line check from the series for log, or by monotonicity.
+- (F1) `69/100 < ln 2 < 7/10`, `ln 3 < 11/10`, `ln 6 < 9/5`, `ln 7 > 19/10`, `ln 19 > 29/10`,
+  `ln 36 < 18/5`, `ln(100/69) < 3/8`.
+- (F2) `ln b ≤ b/50` for `b ≥ 333`: at 333, `5.81 ≤ 6.66`, and the derivative satisfies `1/b ≤ 1/50`.
+  Hence `ln(400b) ≤ 6 + b/50`, `ln(1200b) ≤ 71/10 + b/50`, `ln(9600b) ≤ 46/5 + b/50`,
+  `ln(720b) ≤ 33/5 + b/50`.
+- (F3) `ln n! ≤ n ln n`, `ln K < 7b/10`, and `w_max ≤ (L−1) ln 6 < 9L/5`.
+- (F4) For `4b ≤ h ≤ 2N²/5`, `ln(34h)` and `ln(42h)` are at most `ln(2.2·10^11 b^4) ≤ 26.2 + 4 ln b ≤ 4b/25`.
+  This needs `26.2 ≤ 0.08b`, i.e. `b ≥ 328`.
+
+**Siegel constant.** For `C = siegelC`,
+`ln C ≤ 2 ln(400b) + M(ln(1200b) + 7b/10) + (9/5) L h₀`. This is at most
+`12 + 0.04b + 9600b(7.1 + 0.72b) + 2880b² = 9792b² + 68160.04b + 12 ≤ 10000b²`, since
+`208b² ≥ 68160.04b + 12` for `b ≥ 333`. So `A := ln(L² C) ≤ 10001 b²`.
+
+**Common factor of the Ext terms.**
+`ln(K^M M! 2^M) ≤ M(7b/10) + M ln M + (7/10)M`. This is at most
+`6720b² + 9600b(46/5 + b/50) + 6720b = 6912b² + 95040b`.
+
+**Ext(h), main term T1′.** We need
+`ln[K^M M! 2^M · L²C e^{29Lh} (1/7)^{hM}] ≤ 6912b² + 95040b + 10001b² + 11600bh − (19/10)·9600bh`.
+- The right-hand side is `16913b² + 95040b − 6640bh`.
+- Since `h ≥ 4b`, it is at most `−9647b² + 95040b ≤ −9361b²`.
+- That is below `−(3/8)M − 2 = −3600b − 2`, so `T1′ ≤ e^{−2}(69/100)^M`.
+
+**Ext(h), the δ terms** (T1″, T2, T3; each carries the factor `δ`). Their logs are at most
+`LOSS − 2^{b−81}`, where:
+- `LOSS ≤ 6912b² + 95040b + 10001b² + ln(ML) + M ln(1200b) + 720bh + ln(hM) + hM·(4b/25)`, using F4;
+- with `hM ≤ 4.92·10^13 b^5` and `720bh ≤ 3.7·10^12 b^5`, this gives
+  `LOSS ≤ 7.9·10^12 b^6 + 4·10^12 b^5 + 10^5 b² ≤ 10^13 b^6`.
+
+**Final-step terms** (L7, `FinIneq`).
+- The prefactor `N (N−1)! (9L/5)^{N(N−1)/2} 36^{L N(N−1)/2} N!` has log at most
+  `ln N + 2N ln N + (N²/2)(ln(720b) + (18/5)·400b)`.
+  That is at most `10^6 b^5 + (N²/2)·1441b = 1.8445·10^13 b^5 + 10^6 b^5`, using `33/5 ≤ 0.98b`.
+- The main part of `Fmax`, `ln[L²C e^{36LH} (1/19)^{HM}]`, is at most
+  `10001b² + 14400bH − (29/10)·9600bH = 10001b² − 13440bH ≤ −3.4406·10^13 b^5`, since
+  `H ≥ N²/10 = 2.56·10^9 b^4`.
+- Together: `ln(prefactor · main) ≤ −1.59·10^13 b^5 < −2`.
+- The δ parts of `Fmax` give at most `1.85·10^13 b^5 + 10^13 b^6 − 2^{b−81} < −2` (F4 with `42H`).
+
+**What remains.** Every inequality reduces to the single fact `10^13 b^6 + 3600 b + 2 ≤ 2^{b−81}` for
+all `b ≥ 333`.
+- At `b = 333`: `1.38·10^28 ≤ 7.2·10^75`.
+- Induction: `(b+1)^6 ≤ 2b^6` for `b ≥ 9`.
+- In Lean (L9) this is one lemma on ℕ; everything else is the rational bookkeeping above.
+- `pade/gdata_check.py` evaluates the same expressions in high precision, as a cross-check only. At
+  `b = 333` the margins are `Ext ≥ 1.26·10^9` and `Fin ≥ 1.46·10^26`.
+
 ## 4. Threshold `10^100`: finite part re-checked
 
 - `pade/segs_hi.py`, run with a mock 210-digit enclosure, finds 207 consecutive-convergent Farey
