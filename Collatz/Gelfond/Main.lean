@@ -39,20 +39,18 @@ theorem effMeasure100 : EffMeasure100 := by
   · have h3 := one_third_le_abs_lam_of_range hK1 (by omega)
     have hKR : (10 : ℝ) ^ 100 ≤ K := by exact_mod_cast hK
     have hexp : Real.exp (-((K : ℝ) / 2 ^ 80)) < 1 / 3 := by
-      have : Real.exp (-((K : ℝ) / 2 ^ 80)) ≤ Real.exp (-2) := by
+      have h1 : Real.exp (-((K : ℝ) / 2 ^ 80)) ≤ Real.exp (-2) := by
         apply Real.exp_le_exp.mpr
-        have : (2 : ℝ) ≤ (K : ℝ) / 2 ^ 80 := by
+        have h22 : (2 : ℝ) ≤ (K : ℝ) / 2 ^ 80 := by
           rw [le_div_iff₀ (by positivity)]
-          nlinarith
+          have : (2 : ℝ) * 2 ^ 80 ≤ 10 ^ 100 := by norm_num
+          linarith
         linarith
       have h2 : Real.exp (-2) < 1 / 3 := by
         rw [Real.exp_neg]
-        have := Real.exp_one_gt_d9
-        have he2 : (2.7182818283 : ℝ) ^ 2 ≤ Real.exp 2 := by
-          rw [show (2 : ℝ) = 1 + 1 by norm_num, Real.exp_add]
-          nlinarith
+        have h3 := Real.add_one_lt_exp (by norm_num : (2 : ℝ) ≠ 0)
         rw [inv_lt_comm₀ (Real.exp_pos 2) (by norm_num)]
-        norm_num at he2 ⊢
+        norm_num
         linarith
       linarith
     linarith

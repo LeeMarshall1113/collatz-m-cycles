@@ -100,7 +100,9 @@ theorem extrapolate (S : Setup) {c : Idx S.L → ℤ}
     have hj' : j < S.J := by omega
     have hstep := ext_step S hc hΛ (h := S.h0 * 2 ^ j)
       (le_mul_of_one_le_right (Nat.zero_le _) (Nat.one_le_two_pow)) (S.ext j hj') (ih hj'.le)
-    exact hstep l (by rw [pow_succ] at hl; linarith) m hm
+    have e : S.h0 * 2 ^ (j + 1) = 2 * (S.h0 * 2 ^ j) := by ring
+    rw [e] at hl
+    exact hstep l hl m hm
 
 /-- **L7 (final step).** -/
 theorem final_step (S : Setup) {c : Idx S.L → ℤ} (hc0 : c ≠ 0)
