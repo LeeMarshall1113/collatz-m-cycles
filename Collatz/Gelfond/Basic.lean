@@ -107,11 +107,90 @@ theorem approx {L p K : ℕ} (hpK : p ≤ 2 * K) (c : Idx L → ℤ) {C : ℝ} (
 /-- **L8.** `|a log 2 + b log 3| ≥ 36^{−L}` for `(a, b) ≠ 0`, `|a|, |b| ≤ L`. -/
 theorem sep {L : ℕ} (hL : 1 ≤ L) (a b : ℤ) (hab : a ≠ 0 ∨ b ≠ 0) (ha : |a| ≤ L) (hb : |b| ≤ L) :
     (1 / 36 : ℝ) ^ L ≤ |(a : ℝ) * Real.log 2 + (b : ℝ) * Real.log 3| := by
-  sorry
+  set A : ℕ := 2 ^ a.toNat * 3 ^ b.toNat with hA
+  set B : ℕ := 2 ^ (-a).toNat * 3 ^ (-b).toNat with hB
+  have habs := abs_le.mp ha
+  have hbbs := abs_le.mp hb
+  have hApos : 0 < A := by positivity
+  have hBpos : 0 < B := by positivity
+  have hA6 : A ≤ 6 ^ L := by
+    have h1 : 2 ^ a.toNat ≤ 2 ^ L := Nat.pow_le_pow_right (by norm_num) (by omega)
+    have h2 : 3 ^ b.toNat ≤ 3 ^ L := Nat.pow_le_pow_right (by norm_num) (by omega)
+    calc A ≤ 2 ^ L * 3 ^ L := Nat.mul_le_mul h1 h2
+      _ = 6 ^ L := by rw [← mul_pow]; norm_num
+  have hB6 : B ≤ 6 ^ L := by
+    have h1 : 2 ^ (-a).toNat ≤ 2 ^ L := Nat.pow_le_pow_right (by norm_num) (by omega)
+    have h2 : 3 ^ (-b).toNat ≤ 3 ^ L := Nat.pow_le_pow_right (by norm_num) (by omega)
+    calc B ≤ 2 ^ L * 3 ^ L := Nat.mul_le_mul h1 h2
+      _ = 6 ^ L := by rw [← mul_pow]; norm_num
+  have hne : A ≠ B := by
+    intro hAB
+    have h2 := congrArg (fun n => Nat.factorization n 2) hAB
+    have h3 := congrArg (fun n => Nat.factorization n 3) hAB
+    simp [hA, hB, Nat.factorization_mul, Nat.factorization_pow,
+      Nat.Prime.factorization Nat.prime_two, Nat.Prime.factorization Nat.prime_three] at h2 h3
+    omega
+  have hx : (a : ℝ) * Real.log 2 + (b : ℝ) * Real.log 3 = Real.log A - Real.log B := by
+    have e1 : Real.log A = (a.toNat : ℝ) * Real.log 2 + (b.toNat : ℝ) * Real.log 3 := by
+      rw [hA]; push_cast
+      rw [Real.log_mul (by positivity) (by positivity), Real.log_pow, Real.log_pow]
+    have e2 : Real.log B = ((-a).toNat : ℝ) * Real.log 2 + ((-b).toNat : ℝ) * Real.log 3 := by
+      rw [hB]; push_cast
+      rw [Real.log_mul (by positivity) (by positivity), Real.log_pow, Real.log_pow]
+    have ea : (a : ℝ) = (a.toNat : ℝ) - ((-a).toNat : ℝ) := by
+      exact_mod_cast (Int.toNat_sub_toNat_neg a).symm
+    have eb : (b : ℝ) = (b.toNat : ℝ) - ((-b).toNat : ℝ) := by
+      exact_mod_cast (Int.toNat_sub_toNat_neg b).symm
+    rw [e1, e2, ea, eb]; ring
+  have gap : ∀ U V : ℕ, 0 < V → V < U → U ≤ 6 ^ L →
+      (1 / 36 : ℝ) ^ L ≤ Real.log U - Real.log V := by
+    intro U V hV hVU hU
+    have hVr : (0 : ℝ) < V := by exact_mod_cast hV
+    have hUr : (0 : ℝ) < U := by exact_mod_cast hV.trans hVU
+    have h1 := Real.log_le_sub_one_of_pos (show 0 < (V : ℝ) / U by positivity)
+    rw [Real.log_div hVr.ne' hUr.ne'] at h1
+    have h2 : (1 : ℝ) / U ≤ 1 - (V : ℝ) / U := by
+      rw [div_le_iff₀ hUr, sub_mul, div_mul_cancel₀ _ hUr.ne']
+      have : (V : ℝ) + 1 ≤ U := by exact_mod_cast hVU
+      linarith
+    have h3 : (1 / 36 : ℝ) ^ L ≤ 1 / (U : ℝ) := by
+      have hU' : (U : ℝ) ≤ 6 ^ L := by exact_mod_cast hU
+      have h4 : (1 / 36 : ℝ) ^ L ≤ (1 / 6 : ℝ) ^ L :=
+        pow_le_pow_left₀ (by norm_num) (by norm_num) L
+      calc (1 / 36 : ℝ) ^ L ≤ (1 / 6 : ℝ) ^ L := h4
+        _ = 1 / 6 ^ L := by rw [one_div, inv_pow, one_div]
+        _ ≤ 1 / U := one_div_le_one_div_of_le hUr hU'
+    linarith
+  rw [hx]
+  rcases lt_or_gt_of_ne hne with h | h
+  · rw [abs_sub_comm, abs_of_nonneg]
+    · exact gap B A hApos h hB6
+    · have := gap B A hApos h hB6
+      have : (0 : ℝ) ≤ (1 / 36 : ℝ) ^ L := by positivity
+      linarith
+  · rw [abs_of_nonneg]
+    · exact gap A B hBpos h hA6
+    · have := gap A B hBpos h hA6
+      have : (0 : ℝ) ≤ (1 / 36 : ℝ) ^ L := by positivity
+      linarith
 
 /-- Distinct exponents are `36^{−L}`-separated. -/
 theorem sep_w {L : ℕ} (hL : 1 ≤ L) {i j : Idx L} (hij : i ≠ j) :
     (1 / 36 : ℝ) ^ L ≤ |w i - w j| := by
-  sorry
+  have hi1 := i.1.isLt
+  have hi2 := i.2.isLt
+  have hj1 := j.1.isLt
+  have hj2 := j.2.isLt
+  have key := sep hL (((i.1 : ℕ) : ℤ) - ((j.1 : ℕ) : ℤ)) (((i.2 : ℕ) : ℤ) - ((j.2 : ℕ) : ℤ))
+    (by
+      by_contra hcon
+      push Not at hcon
+      apply hij
+      exact Prod.ext (Fin.ext (by omega)) (Fin.ext (by omega)))
+    (by rw [abs_le]; constructor <;> omega) (by rw [abs_le]; constructor <;> omega)
+  have e : w i - w j = (((((i.1 : ℕ) : ℤ) - ((j.1 : ℕ) : ℤ) : ℤ)) : ℝ) * Real.log 2 +
+      (((((i.2 : ℕ) : ℤ) - ((j.2 : ℕ) : ℤ) : ℤ)) : ℝ) * Real.log 3 := by
+    unfold w; push_cast; ring
+  rw [e]; exact key
 
 end Collatz.Gelfond
