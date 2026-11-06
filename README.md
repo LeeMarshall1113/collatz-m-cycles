@@ -3,10 +3,30 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23748154.svg)](https://doi.org/10.5281/zenodo.23748154)
 
 **Every nontrivial positive Collatz cycle has at least 112 local minima** (no m-cycle with m <= 111), proved in
-Lean 4 and kernel-checked, assuming two published inputs (stated precisely below). A further extension to
+Lean 4 and kernel-checked, assuming one published input, Barina's verification to 2^71 (stated precisely below;
+an earlier version of the theorem also assumed Rhin's bound and is kept). A further extension to
 m <= 127 is **computed and independently re-computed, but not formally verified**.
 
 ## The theorem
+
+Headline result, with Barina's verification as the only hypothesis (no `RhinBound`):
+
+```lean
+-- Collatz/Gelfond/Main.lean
+theorem Collatz.Gelfond.main_statement_111_barina_only
+    (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Collatz.Reaches Collatz.T n 1) :
+    ∀ x p, 0 < x → 0 < p → Collatz.T^[p] x = x → x ≠ 1 → x ≠ 2 →
+      112 ≤ Collatz.numLocalMin x p
+```
+
+The Rhin input is removed by a from-scratch Lean proof of an effective Gelfond-type lower bound
+(`Collatz/Gelfond/`, entry point `effMeasure100`): for `K >= 10^100` and every integer `p`,
+`|p log 2 - K log 3| > exp(-K / 2^80)`. This is a Gelfond-type argument with explicit constants, proved inside Lean.
+For `10^36 <= K < 10^100` a Farey-fraction check covers the middle range (`noRhin_of_effMeasure100`). Together
+these replace `RhinBound` in the chain argument. We are not aware of a published statement in this
+exact form; it is a weaker, self-contained bound than Rhin's, sufficient for this application.
+
+The earlier form of the theorem, which takes `RhinBound` as a second hypothesis, is still in the repository:
 
 ```lean
 -- Collatz/MCycle111.lean
@@ -33,16 +53,19 @@ def RhinBound : Prop :=                                                       --
       (p : ℝ) * Real.log 2 - (oddCount T x p : ℝ) * Real.log 3
 ```
 
-### Hypotheses (these are parameters of the theorem, not axioms)
+### Hypotheses (these are parameters of the theorems, not axioms)
+
+`main_statement_111_barina_only` uses only `hX`. `no_111_cycle_2_71` uses `hX` and `RhinBound`.
 
 * **`hX`**: every `0 < n <= 2^71` reaches 1. This is a published computation, D. Bařina, *J. Supercomput.* 81
   (2025), art. 810 (verified to just above 2^71; `n = 2^71` is a power of 2). It is **not** verified here.
 * **`RhinBound`**: Rhin's effective irrationality measure for `log 3 / log 2`, in the form used for cycles by
   J. Simons and B. de Weger, *Acta Arith.* 117 (2005), Lemma 12 (G. Rhin, *Progr. Math.* 71 (1987), 155-164). It is
-  a transcendence-theory input that is not in Mathlib, so it is carried as a hypothesis.
+  a transcendence-theory input that is not in Mathlib, so the older theorem carries it as a hypothesis. The
+  Barina-only theorem does not need it (see above).
 * `p` need not be the least period; taking `p` minimal gives the count for the cycle itself, and a multiple of the
   period multiplies the count, so the theorem covers the minimal case.
-* Beyond `hX` and `RhinBound`, the proof uses only `propext`, `Classical.choice`, `Quot.sound` (see below). The
+* Beyond `hX` (and `RhinBound` for the older theorem), the proof uses only `propext`, `Classical.choice`, `Quot.sound` (see below). The
   sources contain no `sorry`, no `native_decide` and no user `axiom`.
 
 ## What is verified, and what is not
@@ -51,7 +74,7 @@ def RhinBound : Prop :=                                                       --
 |---|---|---|
 | m <= 91 | Lean, kernel-checked (Hercher's theorem, formalised by Alick) | `Collatz/Hercher*.lean` |
 | m <= 101 | Lean, kernel-checked (Alick) | `Collatz.no_101_cycle_2_71` |
-| **m <= 111** | **Lean, kernel-checked (this repository)** | `Collatz.no_111_cycle_2_71`, `main_statement_111` |
+| **m <= 111** | **Lean, kernel-checked (this repository)** | `Collatz.Gelfond.main_statement_111_barina_only` (only `hX`); `Collatz.no_111_cycle_2_71`, `main_statement_111` (`hX` and `RhinBound`) |
 | **m <= 127** | **Computed (exact rational arithmetic), re-computed by independent referee code; NOT formally verified** | `computed/`, `METHOD.md` section 7 |
 
 * **Lean-verified (m <= 111).** Kernel-checked from `hX` and `RhinBound`. `#print axioms main_statement_111`
@@ -66,7 +89,7 @@ def RhinBound : Prop :=                                                       --
   It is **not** in Lean: the rise bounds needed for m <= 127 would take more than 10^6 kernel-hours with the present
   approach. Treat m <= 127 as a strongly cross-checked computation, not as a theorem. The margin at m = 127 is
   0.37%, and the argument is sensitive to the exactness of the rise-bound tables (`METHOD.md` section 9).
-* **Hypotheses `hX` and `RhinBound` apply to both.**
+* **Hypothesis `hX` applies to both; `RhinBound` is needed only for the older m <= 111 theorem, and the m <= 127 computation was not rerun without it.**
 
 ## Check it
 
@@ -77,6 +100,9 @@ Requirements: [elan](https://github.com/leanprover/elan) (toolchain `leanprover/
 lake exe cache get          # prebuilt Mathlib
 lake build Collatz && lake env lean scripts/Statement.lean
 ```
+
+How to check the Barina-only theorem: after `lake build Collatz`, run `#print axioms Collatz.Gelfond.main_statement_111_barina_only`
+in a file that imports `Collatz`; it should list only `propext`, `Classical.choice`, `Quot.sound`.
 
 Expected output of the second command (`scripts/Statement.lean`):
 
