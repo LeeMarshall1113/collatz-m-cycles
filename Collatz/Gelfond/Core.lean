@@ -21,6 +21,8 @@ namespace Collatz.Gelfond
 
 open Finset
 
+attribute [local instance] Matrix.seminormedAddCommGroup
+
 /-- The coefficient bound from Siegel's lemma: `L² (3LK)^M 6^{L h₀}`. -/
 noncomputable def siegelC (L M h0 K : ℕ) : ℝ := (L : ℝ) ^ 2 * (3 * L * K) ^ M * 6 ^ (L * h0)
 
@@ -78,7 +80,100 @@ theorem siegel {L M h0 p K : ℕ} (hL : 1 ≤ L) (hM : 1 ≤ M) (hh0 : 1 ≤ h0)
     (hS : 2 * h0 * M ≤ L * L) (hK : 1 ≤ K) (hpK : p ≤ 2 * K) :
     ∃ c : Idx L → ℤ, c ≠ 0 ∧ (∀ l < h0, ∀ m < M, Psi p K c l m = 0) ∧
       ∀ i, |(c i : ℝ)| ≤ siegelC L M h0 K := by
-  sorry
+  classical
+  let A : Matrix (Fin h0 × Fin M) (Idx L) ℤ := fun r i =>
+    u p K i ^ (r.2 : ℕ) * (2 : ℤ) ^ ((i.1 : ℕ) * (r.1 : ℕ)) * (3 : ℤ) ^ ((i.2 : ℕ) * (r.1 : ℕ))
+  have hcr : Fintype.card (Fin h0 × Fin M) = h0 * M := by simp
+  have hcb : Fintype.card (Idx L) = L * L := by simp
+  have hr0 : 0 < h0 * M := Nat.mul_pos hh0 hM
+  have hn : Fintype.card (Fin h0 × Fin M) < Fintype.card (Idx L) := by
+    rw [hcr, hcb]; nlinarith
+  have hm : 0 < Fintype.card (Fin h0 × Fin M) := by rw [hcr]; exact hr0
+  -- entry bound
+  set B : ℝ := (3 * L * K : ℝ) ^ M * 6 ^ (L * h0) with hB
+  have hLK : (1 : ℝ) ≤ 3 * L * K := by
+    have : (1 : ℝ) ≤ L := by exact_mod_cast hL
+    have : (1 : ℝ) ≤ K := by exact_mod_cast hK
+    nlinarith
+  have hB1 : 1 ≤ B := by
+    rw [hB]
+    exact one_le_mul_of_one_le_of_one_le (one_le_pow₀ hLK) (one_le_pow₀ (by norm_num))
+  have hnorm : ‖A‖ ≤ B := by
+    rw [Matrix.norm_le_iff (by linarith)]
+    intro r i
+    rw [Int.norm_eq_abs]
+    have hu0 : 0 ≤ u p K i := by unfold u; exact Int.natCast_nonneg _
+    have hu : (u p K i : ℝ) ≤ 3 * L * K := by
+      simp only [u]
+      push_cast
+      have h1 : ((i.1 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.1.isLt.le
+      have h2 : ((i.2 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.2.isLt.le
+      have h3 : (p : ℝ) ≤ 2 * K := by exact_mod_cast hpK
+      have h4 : (0 : ℝ) ≤ K := Nat.cast_nonneg _
+      have h5 : (0 : ℝ) ≤ p := Nat.cast_nonneg _
+      have h6 : (0 : ℝ) ≤ ((i.1 : ℕ) : ℝ) := Nat.cast_nonneg _
+      have h7 : (0 : ℝ) ≤ ((i.2 : ℕ) : ℝ) := Nat.cast_nonneg _
+      nlinarith [mul_le_mul h1 (le_refl (K : ℝ)) h4 (Nat.cast_nonneg L),
+        mul_le_mul h2 h3 h5 (Nat.cast_nonneg L)]
+    have hl : (r.1 : ℕ) ≤ h0 := r.1.isLt.le
+    have hmM : (r.2 : ℕ) ≤ M := r.2.isLt.le
+    have e1 : (|A r i| : ℝ) = (u p K i : ℝ) ^ (r.2 : ℕ) * (2 : ℝ) ^ ((i.1 : ℕ) * (r.1 : ℕ)) *
+        (3 : ℝ) ^ ((i.2 : ℕ) * (r.1 : ℕ)) := by
+      have : ((|A r i| : ℤ) : ℝ) = |((A r i : ℤ) : ℝ)| := by push_cast; rfl
+      rw [← Int.cast_abs] at *
+      simp only [A]
+      push_cast
+      rw [abs_of_nonneg]
+      positivity
+    rw [e1]
+    have hp1 : (u p K i : ℝ) ^ (r.2 : ℕ) ≤ (3 * L * K : ℝ) ^ M :=
+      (pow_le_pow_left₀ (by exact_mod_cast hu0) hu _).trans
+        (pow_le_pow_right₀ hLK hmM)
+    have i1 : (i.1 : ℕ) * (r.1 : ℕ) ≤ L * h0 := Nat.mul_le_mul i.1.isLt.le hl
+    have i2 : (i.2 : ℕ) * (r.1 : ℕ) ≤ L * h0 := Nat.mul_le_mul i.2.isLt.le hl
+    have hp2 : (2 : ℝ) ^ ((i.1 : ℕ) * (r.1 : ℕ)) * (3 : ℝ) ^ ((i.2 : ℕ) * (r.1 : ℕ)) ≤
+        6 ^ (L * h0) := by
+      calc (2 : ℝ) ^ ((i.1 : ℕ) * (r.1 : ℕ)) * (3 : ℝ) ^ ((i.2 : ℕ) * (r.1 : ℕ))
+          ≤ (2 : ℝ) ^ (L * h0) * (3 : ℝ) ^ (L * h0) :=
+            mul_le_mul (pow_le_pow_right₀ (by norm_num) i1) (pow_le_pow_right₀ (by norm_num) i2)
+              (by positivity) (by positivity)
+        _ = 6 ^ (L * h0) := by rw [← mul_pow]; norm_num
+    rw [hB, mul_assoc]
+    exact mul_le_mul hp1 hp2 (by positivity) (by positivity)
+  obtain ⟨c, hc0, hAc, hcn⟩ := Int.Matrix.exists_ne_zero_int_vec_norm_le A hn hm
+  refine ⟨c, hc0, ?_, ?_⟩
+  · intro l hl m hm'
+    have := congrFun hAc (⟨l, hl⟩, ⟨m, hm'⟩)
+    simp only [Matrix.mulVec, dotProduct, A, Pi.zero_apply] at this
+    unfold Psi
+    rw [← this]
+    refine Finset.sum_congr rfl fun i _ => ?_
+    ring
+  · intro i
+    have hnb : (Fintype.card (Idx L) : ℝ) * max 1 ‖A‖ ≥ 1 := by
+      rw [hcb]
+      have : (1 : ℝ) ≤ ((L * L : ℕ) : ℝ) := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr (by positivity)
+      exact one_le_mul_of_one_le_of_one_le this (le_max_left _ _)
+    have hnbB : (Fintype.card (Idx L) : ℝ) * max 1 ‖A‖ ≤ (L : ℝ) ^ 2 * B := by
+      rw [hcb]; push_cast
+      rw [sq]
+      exact mul_le_mul_of_nonneg_left (max_le hB1 hnorm) (by positivity)
+    have hexp : ((Fintype.card (Fin h0 × Fin M) : ℕ) : ℝ) / ((Fintype.card (Idx L) : ℕ) - (Fintype.card (Fin h0 × Fin M) : ℕ)) ≤ 1 := by
+      rw [hcr, hcb]
+      have : ((2 * h0 * M : ℕ) : ℝ) ≤ ((L * L : ℕ) : ℝ) := by exact_mod_cast hS
+      have h' : (0 : ℝ) < ((h0 * M : ℕ) : ℝ) := by exact_mod_cast hr0
+      push_cast at this h' ⊢
+      rw [div_le_one (by nlinarith)]
+      nlinarith
+    have h1 : ‖c‖ ≤ (L : ℝ) ^ 2 * B := by
+      refine hcn.trans ?_
+      refine (Real.rpow_le_rpow_of_exponent_le hnb hexp).trans ?_
+      rw [Real.rpow_one]; exact hnbB
+    have h2 : ‖c i‖ ≤ ‖c‖ := norm_le_pi_norm c i
+    rw [Int.norm_eq_abs] at h2
+    have : |(c i : ℝ)| ≤ (L : ℝ) ^ 2 * B := by
+      exact h2.trans h1
+    simpa [siegelC, hB, mul_assoc] using this
 
 /-- **L6 (one extrapolation step).** -/
 theorem ext_step (S : Setup) {c : Idx S.L → ℤ} (hc : ∀ i, |(c i : ℝ)| ≤ siegelC S.L S.M S.h0 S.K)
