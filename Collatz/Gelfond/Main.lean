@@ -1,12 +1,14 @@
 import Collatz.Gelfond.Core
+import Collatz.Gelfond.Params
 import Collatz.NoRhin
 
 /-!
 # `EffMeasure` at `10^100` from the Gelfond argument, and the m ≤ 111 theorem from 2^71 alone
 
 * L9 `setup_exists` gives the concrete parameters, with `b` the bit length of `K` (`b ≥ 333`):
-  `L = 400b`, `M = 24L`, `h₀ = 4b`, `J` the least `j` with `h₀ 2^j ≥ L⁴/10`,
-  `δ = exp(−K/2⁸⁰)`. The inequalities are derived in exact rationals in `PADE-PLAN.md` §3a.
+  `L = 400b`, `M = 48L = 19200b`, `h₀ = 4b`, `J` the least `j` with `10 h₀ 2^j ≥ L⁴`,
+  `δ = exp(−K/2⁸⁰)`. The inequalities are proved in `Params.lean` with crude exponential bounds
+  (the multiplier 48 replaces the plan's 24 of `PADE-PLAN.md` §3a, which needs sharper constants).
 * L10 `effMeasure100` is proved here from L0, L9 and `gelfond_core`.
 * L11 `noRhin_of_effMeasure100` is the m ≤ 111 chain with the ceiling threshold moved from `10^36`
   to `10^100`: 207 Farey segments and a 210-digit enclosure of `log₂ 3`.
@@ -21,8 +23,8 @@ def EffMeasure100 : Prop :=
 
 /-- **L9.** The concrete parameters satisfy every inequality of `Setup`. -/
 theorem setup_exists {p K : ℕ} (hK : 10 ^ 100 ≤ K) (hpK : K ≤ p ∧ p ≤ 2 * K) :
-    ∃ S : Setup, S.p = p ∧ S.K = K ∧ S.δ = Real.exp (-((K : ℝ) / 2 ^ 80)) := by
-  sorry
+    ∃ S : Setup, S.p = p ∧ S.K = K ∧ S.δ = Real.exp (-((K : ℝ) / 2 ^ 80)) :=
+  Params.setup_exists' hK hpK
 
 /-- **L10.** The effective measure for `p log 2 − K log 3`, `K ≥ 10^100`. -/
 theorem effMeasure100 : EffMeasure100 := by
@@ -36,7 +38,7 @@ theorem effMeasure100 : EffMeasure100 := by
     apply gelfond_core S
     rw [hp, hK', hδ]
     exact hcon'
-  · have h3 := one_third_le_abs_lam_of_range hK1 (by omega)
+  · have h3 := one_third_le_abs_lam_of_range (p := p) hK1 (by omega)
     have hKR : (10 : ℝ) ^ 100 ≤ K := by exact_mod_cast hK
     have hexp : Real.exp (-((K : ℝ) / 2 ^ 80)) < 1 / 3 := by
       have h1 : Real.exp (-((K : ℝ) / 2 ^ 80)) ≤ Real.exp (-2) := by
