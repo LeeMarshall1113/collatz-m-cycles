@@ -20,7 +20,7 @@ theorem Collatz.Gelfond.main_statement_111_barina_only
 ```
 
 The Rhin input is removed by a from-scratch Lean proof of an effective Gelfond-type lower bound
-(`Collatz/Gelfond/`, entry point `effMeasure100`): for `K >= 10^100` and every integer `p`,
+(`Collatz/Gelfond/`, entry point `effMeasure100`): for every natural number `K >= 10^100` and every natural number `p`,
 `|p log 2 - K log 3| > exp(-K / 2^80)`. This is a Gelfond-type argument with explicit constants, proved inside Lean.
 For `10^36 <= K < 10^100` a Farey-fraction check covers the middle range (`noRhin_of_effMeasure100`). Together
 these replace `RhinBound` in the chain argument. We are not aware of a published statement in this
