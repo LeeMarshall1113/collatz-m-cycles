@@ -49,7 +49,31 @@ noncomputable def Lam (p K : ℕ) : ℝ := (p : ℝ) * Real.log 2 - (K : ℝ) * 
 /-- **L0.** Outside `K ≤ p ≤ 2K` the form is large. -/
 theorem one_third_le_abs_lam_of_range {p K : ℕ} (hK : 1 ≤ K) (h : p < K ∨ 2 * K < p) :
     (1 / 3 : ℝ) ≤ |Lam p K| := by
-  sorry
+  have h2 : (1 / 2 : ℝ) ≤ Real.log 2 := by
+    have := Real.log_two_gt_d9
+    norm_num at this ⊢
+    linarith
+  have h32 : Real.log 3 - Real.log 2 ≥ 1 / 3 := by
+    have := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 2 / 3 by norm_num)
+    rw [Real.log_div (by norm_num) (by norm_num)] at this
+    linarith
+  have h43 : Real.log 3 - 2 * Real.log 2 ≤ -(1 / 4) := by
+    have := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 3 / 4 by norm_num)
+    rw [Real.log_div (by norm_num) (by norm_num),
+      show (4 : ℝ) = 2 * 2 by norm_num, Real.log_mul (by norm_num) (by norm_num)] at this
+    linarith
+  have hK : (1 : ℝ) ≤ K := by exact_mod_cast hK
+  rcases h with h | h
+  · have hp : (p : ℝ) + 1 ≤ K := by exact_mod_cast h
+    have : -Lam p K ≥ 1 / 3 := by
+      unfold Lam
+      nlinarith
+    exact le_trans this (neg_le_abs _)
+  · have hp : 2 * (K : ℝ) + 1 ≤ p := by exact_mod_cast h
+    have : Lam p K ≥ 1 / 3 := by
+      unfold Lam
+      nlinarith
+    exact le_trans this (le_abs_self _)
 
 /-! ### L1: the auxiliary function -/
 
