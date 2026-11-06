@@ -80,7 +80,23 @@ theorem one_third_le_abs_lam_of_range {p K : ℕ} (hK : 1 ≤ K) (h : p < K ∨ 
 /-- **L1a.** Derivatives of `F`. -/
 theorem iteratedDeriv_auxF {L : ℕ} (c : Idx L → ℤ) (m : ℕ) (z : ℂ) :
     iteratedDeriv m (auxF c) z = ∑ i, (c i : ℂ) * (w i : ℂ) ^ m * Complex.exp ((w i : ℂ) * z) := by
-  sorry
+  have key : ∀ n : ℕ, iteratedDeriv n (auxF c) =
+      fun z => ∑ i, (c i : ℂ) * (w i : ℂ) ^ n * Complex.exp ((w i : ℂ) * z) := by
+    intro n
+    induction n with
+    | zero => funext z; simp [auxF]
+    | succ n ih =>
+      rw [iteratedDeriv_succ, ih]
+      funext z
+      have hd : HasDerivAt (fun z : ℂ => ∑ i, (c i : ℂ) * (w i : ℂ) ^ n * Complex.exp ((w i : ℂ) * z))
+          (∑ i, (c i : ℂ) * (w i : ℂ) ^ n * (Complex.exp ((w i : ℂ) * z) * ((w i : ℂ) * 1))) z := by
+        apply HasDerivAt.fun_sum
+        intro i _
+        exact (((hasDerivAt_id z).const_mul (w i : ℂ)).cexp).const_mul ((c i : ℂ) * (w i : ℂ) ^ n)
+      rw [hd.deriv]
+      refine Finset.sum_congr rfl fun i _ => ?_
+      ring
+  rw [key]
 
 /-- **L1b.** `F` is entire. -/
 theorem differentiable_auxF {L : ℕ} (c : Idx L → ℤ) : Differentiable ℂ (auxF c) := by
@@ -90,7 +106,40 @@ theorem differentiable_auxF {L : ℕ} (c : Idx L → ℤ) : Differentiable ℂ (
 /-- **L1c.** Growth: `|F(z)| ≤ L² C exp(9/5 · L |z|)` when `|c_i| ≤ C`. -/
 theorem norm_auxF_le {L : ℕ} (c : Idx L → ℤ) {C : ℝ} (hc : ∀ i, |(c i : ℝ)| ≤ C) (z : ℂ) :
     ‖auxF c z‖ ≤ (L : ℝ) ^ 2 * C * Real.exp (9 / 5 * L * ‖z‖) := by
-  sorry
+  have hlog6 : Real.log 2 + Real.log 3 ≤ 9 / 5 := by
+    rw [← Real.log_mul (by norm_num) (by norm_num), Real.log_le_iff_le_exp (by norm_num)]
+    have := Real.sum_le_exp_of_nonneg (show (0 : ℝ) ≤ 9 / 5 by norm_num) 8
+    refine le_trans ?_ this
+    norm_num [Finset.sum_range_succ, Nat.factorial]
+  have hw : ∀ i : Idx L, 0 ≤ w i ∧ w i ≤ 9 / 5 * L := by
+    intro i
+    have h1 : ((i.1 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.1.isLt.le
+    have h2 : ((i.2 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.2.isLt.le
+    have l2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+    have l3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
+    have n1 : (0 : ℝ) ≤ ((i.1 : ℕ) : ℝ) := Nat.cast_nonneg _
+    have n2 : (0 : ℝ) ≤ ((i.2 : ℕ) : ℝ) := Nat.cast_nonneg _
+    have hL0 : (0 : ℝ) ≤ L := Nat.cast_nonneg _
+    unfold w
+    constructor
+    · positivity
+    · nlinarith [mul_le_mul_of_nonneg_right h1 l2.le, mul_le_mul_of_nonneg_right h2 l3.le,
+        mul_le_mul_of_nonneg_left hlog6 hL0]
+  calc ‖auxF c z‖ ≤ ∑ i, ‖(c i : ℂ) * Complex.exp ((w i : ℂ) * z)‖ := norm_sum_le _ _
+    _ ≤ ∑ _i : Idx L, C * Real.exp (9 / 5 * L * ‖z‖) := by
+      refine Finset.sum_le_sum fun i _ => ?_
+      rw [norm_mul, Complex.norm_exp]
+      have hci : ‖(c i : ℂ)‖ ≤ C := by
+        simpa [Complex.norm_intCast] using hc i
+      have hC : 0 ≤ C := (norm_nonneg _).trans hci
+      refine mul_le_mul hci (Real.exp_le_exp.mpr ?_) (Real.exp_pos _).le hC
+      rw [Complex.re_ofReal_mul]
+      calc w i * z.re ≤ w i * ‖z‖ :=
+            mul_le_mul_of_nonneg_left (Complex.re_le_norm z) (hw i).1
+        _ ≤ 9 / 5 * L * ‖z‖ := mul_le_mul_of_nonneg_right (hw i).2 (norm_nonneg _)
+    _ = (L : ℝ) ^ 2 * C * Real.exp (9 / 5 * L * ‖z‖) := by
+      rw [Finset.sum_const, Finset.card_univ, Fintype.card_prod, Fintype.card_fin, nsmul_eq_mul]
+      push_cast; ring
 
 /-! ### L3: the integer approximants -/
 
