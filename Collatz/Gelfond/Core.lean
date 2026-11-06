@@ -175,12 +175,269 @@ theorem siegel {L M h0 p K : ℕ} (hL : 1 ≤ L) (hM : 1 ≤ M) (hh0 : 1 ≤ h0)
       exact h2.trans h1
     simpa [siegelC, hB, mul_assoc] using this
 
+/-- `n`-th iterated derivative of a polynomial function. -/
+theorem iteratedDeriv_polyEval (P : Polynomial ℂ) (m : ℕ) :
+    iteratedDeriv m (fun z : ℂ => P.eval z) = fun z => (Polynomial.derivative^[m] P).eval z := by
+  induction m generalizing P with
+  | zero => simp
+  | succ m ih =>
+    rw [iteratedDeriv_succ']
+    have : deriv (fun z : ℂ => P.eval z) = fun z => (Polynomial.derivative P).eval z := by
+      funext z; simp
+    rw [this, ih, Function.iterate_succ_apply]
+
+/-- Input jets: `Ψ = 0` at `l < h`, `m < M` makes `|F^{(m)}(l)| ≤ epsAt`. -/
+theorem jet_bound (S : Setup) {c : Idx S.L → ℤ}
+    (hc : ∀ i, |(c i : ℝ)| ≤ siegelC S.L S.M S.h0 S.K) (hΛ : |Lam S.p S.K| ≤ S.δ) {h : ℕ}
+    (hz : ∀ l < h, ∀ m < S.M, Psi S.p S.K c l m = 0) :
+    ∀ l < h, ∀ m < S.M, ‖iteratedDeriv m (auxF c) (l : ℂ)‖ ≤ epsAt S.L S.M S.h0 S.K S.δ h := by
+  intro l hl m hm
+  have hap := approx S.hpK.2 c hc l m
+  rw [hz l hl m hm] at hap
+  have hK : (1 : ℝ) ≤ S.K := by exact_mod_cast S.hK
+  have hL : (1 : ℝ) ≤ S.L := by exact_mod_cast S.hL
+  have hKm : (0 : ℝ) < (S.K : ℝ) ^ m := by positivity
+  have hC : 0 ≤ siegelC S.L S.M S.h0 S.K := by unfold siegelC; positivity
+  have hδ := S.hδ
+  simp only [Int.cast_zero, mul_zero, sub_zero, norm_mul, norm_pow, Complex.norm_natCast] at hap
+  have h3 : (3 * (S.L : ℝ) * S.K) ^ m = (3 * S.L) ^ m * S.K ^ m := by rw [mul_pow]
+  rw [h3] at hap
+  have key : ‖iteratedDeriv m (auxF c) (l : ℂ)‖ ≤
+      (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K| * (3 * S.L) ^ m *
+        6 ^ (S.L * l) := by
+    refine le_of_mul_le_mul_left ?_ hKm
+    calc _ ≤ _ := hap
+      _ = _ := by ring
+  refine key.trans ?_
+  unfold epsAt
+  have h3L : (1 : ℝ) ≤ 3 * S.L := by linarith
+  have hmM : (m : ℝ) ≤ S.M := by exact_mod_cast hm.le
+  have hlh : (6 : ℝ) ^ (S.L * l) ≤ (6 : ℝ) ^ (S.L * h) :=
+    pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_left _ hl.le)
+  have hpm : (3 * (S.L : ℝ)) ^ m ≤ (3 * S.L) ^ S.M := pow_le_pow_right₀ h3L hm.le
+  have hm0 : (0 : ℝ) ≤ m := Nat.cast_nonneg _
+  have hL0 : (0 : ℝ) ≤ S.L := by linarith
+  have hM0 : (0 : ℝ) ≤ S.M := by linarith
+  have hA : (0 : ℝ) ≤ |Lam S.p S.K| := abs_nonneg _
+  have e1 : (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K| ≤
+      (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * S.M * S.L * S.δ := by
+    have : (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K ≥ 0 := by positivity
+    gcongr
+  have e2 : (3 * (S.L : ℝ)) ^ m * 6 ^ (S.L * l) ≤ (3 * S.L) ^ S.M * 6 ^ (S.L * h) :=
+    mul_le_mul hpm hlh (by positivity) (by positivity)
+  have e0 : 0 ≤ (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K| := by positivity
+  calc _ = ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K|) *
+        ((3 * (S.L : ℝ)) ^ m * 6 ^ (S.L * l)) := by ring
+    _ ≤ ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * S.M * S.L * S.δ) *
+        ((3 * (S.L : ℝ)) ^ S.M * 6 ^ (S.L * h)) := mul_le_mul e1 e2 (by positivity) (by positivity)
+    _ = _ := by ring
+
+/-- The pointwise bound for `F` after interpolation and Schwarz. -/
+theorem F_bound (S : Setup) {c : Idx S.L → ℤ}
+    (hc : ∀ i, |(c i : ℝ)| ≤ siegelC S.L S.M S.h0 S.K) (hΛ : |Lam S.p S.K| ≤ S.δ) {h : ℕ}
+    (hz : ∀ l < h, ∀ m < S.M, Psi S.p S.K c l m = 0) {R : ℝ} (hR : (h : ℝ) < R) {z : ℂ}
+    (hzR : ‖z‖ ≤ R) :
+    ‖auxF c z‖ ≤ ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (9 / 5 * S.L * R) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M R) *
+        (∏ l ∈ range h, ‖z - (l : ℂ)‖ ^ S.M) / (R - h) ^ (h * S.M) +
+      epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M ‖z‖ := by
+  have hε : 0 ≤ epsAt S.L S.M S.h0 S.K S.δ h := by
+    have := S.hδ
+    unfold epsAt siegelC; positivity
+  obtain ⟨P, hP1, hP2⟩ := hermite h S.M (fun l m => iteratedDeriv m (auxF c) (l : ℂ))
+    (jet_bound S hc hΛ hz) hε
+  have hgd : Differentiable ℂ (fun z => auxF c z - P.eval z) :=
+    (differentiable_auxF c).sub P.differentiable
+  have hg0 : ∀ l < h, ∀ m < S.M,
+      iteratedDeriv m (fun z => auxF c z - P.eval z) (l : ℂ) = 0 := by
+    intro l hl m hm
+    rw [iteratedDeriv_fun_sub ((differentiable_auxF c).contDiff.contDiffAt)
+      (P.differentiable.contDiff.contDiffAt), iteratedDeriv_polyEval]
+    have : (Polynomial.derivative^[m] P).eval (l : ℂ) = iteratedDeriv m (auxF c) (l : ℂ) :=
+      hP1 l hl m hm
+    show iteratedDeriv m (auxF c) (l : ℂ) - (Polynomial.derivative^[m] P).eval (l : ℂ) = 0
+    rw [this]; exact sub_self _
+  have hS : ∀ ζ : ℂ, ‖ζ‖ = R → ‖auxF c ζ - P.eval ζ‖ ≤
+      (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (9 / 5 * S.L * R) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M R := by
+    intro ζ hζ
+    refine (norm_sub_le _ _).trans (add_le_add ?_ ?_)
+    · have := norm_auxF_le c hc ζ
+      rwa [hζ] at this
+    · have := hP2 ζ
+      rw [hζ] at this
+      exact le_of_le_of_eq this (by unfold hermB; ring)
+  have hsch : ‖auxF c z - P.eval z‖ ≤ _ := schwarz hgd h S.M hg0 hR hS hzR
+  calc ‖auxF c z‖ = ‖(auxF c z - P.eval z) + P.eval z‖ := by rw [sub_add_cancel]
+    _ ≤ ‖auxF c z - P.eval z‖ + ‖P.eval z‖ := norm_add_le _ _
+    _ ≤ _ := add_le_add hsch (le_of_le_of_eq (hP2 z) (by unfold hermB; ring))
+
 /-- **L6 (one extrapolation step).** -/
 theorem ext_step (S : Setup) {c : Idx S.L → ℤ} (hc : ∀ i, |(c i : ℝ)| ≤ siegelC S.L S.M S.h0 S.K)
     (hΛ : |Lam S.p S.K| ≤ S.δ) {h : ℕ} (hh : S.h0 ≤ h) (hE : ExtIneq S.L S.M S.h0 S.K S.δ h)
     (hz : ∀ l < h, ∀ m < S.M, Psi S.p S.K c l m = 0) :
     ∀ l < 2 * h, ∀ m < S.M, Psi S.p S.K c l m = 0 := by
-  sorry
+  intro l' hl' m hm
+  by_contra hne
+  have hh1 : 1 ≤ h := le_trans S.hh0 hh
+  have hh1r : (1 : ℝ) ≤ h := by exact_mod_cast hh1
+  have hl'r : (l' : ℝ) + 1 ≤ 2 * h := by exact_mod_cast hl'
+  have hK : (1 : ℝ) ≤ S.K := by exact_mod_cast S.hK
+  have hL : (1 : ℝ) ≤ S.L := by exact_mod_cast S.hL
+  have hL0 : (0 : ℝ) ≤ S.L := by linarith
+  have hC : 0 ≤ siegelC S.L S.M S.h0 S.K := by unfold siegelC; positivity
+  have hε : 0 ≤ epsAt S.L S.M S.h0 S.K S.δ h := by
+    have := S.hδ
+    unfold epsAt siegelC; positivity
+  have hδ := S.hδ
+  obtain ⟨B, hBdef⟩ : ∃ B : ℝ, B = ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K *
+        Real.exp (29 * S.L * h) + epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (16 * h)) *
+        (1 / 7) ^ (h * S.M) + epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (2 * h + 1) :=
+    ⟨_, rfl⟩
+  have hB16 : 0 ≤ hermB h S.M (16 * h) := by unfold hermB; positivity
+  have hB2 : 0 ≤ hermB h S.M (2 * h + 1) := by unfold hermB; positivity
+  have hB0 : 0 ≤ B := by rw [hBdef]; positivity
+  have hcirc : ∀ ζ : ℂ, ζ ∈ Metric.sphere (l' : ℂ) (1 / 2) → ‖auxF c ζ‖ ≤ B := by
+    intro ζ hζ
+    rw [mem_sphere_iff_norm] at hζ
+    have hnζ : ‖ζ‖ ≤ 2 * h + 1 / 2 := by
+      have e : ζ = (ζ - l') + l' := by ring
+      have := norm_add_le (ζ - (l' : ℂ)) (l' : ℂ)
+      rw [← e, hζ, Complex.norm_natCast] at this
+      linarith
+    have hR16 : (h : ℝ) < 16 * h := by linarith
+    have hnζ16 : ‖ζ‖ ≤ 16 * (h : ℝ) := by linarith
+    have hFb := F_bound S hc hΛ hz hR16 hnζ16
+    have hprod : ∏ l ∈ range h, ‖ζ - (l : ℂ)‖ ^ S.M ≤ ((2 * (h : ℝ)) ^ S.M) ^ h := by
+      have := Finset.prod_le_prod₀ (s :=range h) (f := fun l : ℕ => ‖ζ - (l : ℂ)‖ ^ S.M)
+        (g := fun _ => (2 * (h : ℝ)) ^ S.M) (fun l _ => by positivity) (by
+          intro l hl
+          have hl' : l < h := Finset.mem_range.mp hl
+          apply pow_le_pow_left₀ (norm_nonneg _)
+          have e : ζ - (l : ℂ) = (ζ - l') + (((l' : ℝ) - l : ℝ) : ℂ) := by push_cast; ring
+          have h1 : ‖ζ - (l : ℂ)‖ ≤ ‖ζ - (l' : ℂ)‖ + |(l' : ℝ) - l| := by
+            calc _ = ‖(ζ - (l' : ℂ)) + (((l' : ℝ) - l : ℝ) : ℂ)‖ := by rw [e]
+              _ ≤ _ := by
+                refine (norm_add_le _ _).trans ?_
+                rw [Complex.norm_real, Real.norm_eq_abs]
+          have hlr : (l : ℝ) + 1 ≤ h := by exact_mod_cast hl'
+          have hl0 : (0 : ℝ) ≤ l := Nat.cast_nonneg _
+          have h2 : |(l' : ℝ) - l| ≤ 2 * h - 1 := by
+            rw [abs_le]; constructor <;> linarith [(Nat.cast_nonneg l' : (0 : ℝ) ≤ l')]
+          rw [hζ] at h1
+          linarith)
+      rw [Finset.prod_const, Finset.card_range] at this
+      exact this
+    have hden : 0 < (16 * (h : ℝ) - h) := by linarith
+    have hratio : (∏ l ∈ range h, ‖ζ - (l : ℂ)‖ ^ S.M) / (16 * (h : ℝ) - h) ^ (h * S.M) ≤
+        (1 / 7) ^ (h * S.M) := by
+      rw [div_le_iff₀ (pow_pos hden _)]
+      calc _ ≤ ((2 * (h : ℝ)) ^ S.M) ^ h := hprod
+        _ = (2 * (h : ℝ)) ^ (h * S.M) := by rw [← pow_mul, mul_comm S.M h]
+        _ ≤ (1 / 7) ^ (h * S.M) * (16 * (h : ℝ) - h) ^ (h * S.M) := by
+          rw [← mul_pow]
+          apply pow_le_pow_left₀ (by positivity)
+          linarith
+    have hX0 : 0 ≤ (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (9 / 5 * S.L * (16 * h)) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (16 * h) := by positivity
+    have hXX : (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (9 / 5 * S.L * (16 * h)) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (16 * h) ≤
+        (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (29 * S.L * h) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (16 * h) := by
+      refine add_le_add (mul_le_mul_of_nonneg_left (Real.exp_le_exp.mpr ?_) (by positivity)) le_rfl
+      have := mul_nonneg hL0 (by linarith : (0 : ℝ) ≤ h)
+      nlinarith
+    have hmono : hermB h S.M ‖ζ‖ ≤ hermB h S.M (2 * h + 1) := by
+      unfold hermB
+      apply mul_le_mul_of_nonneg_left _ (by positivity)
+      apply pow_le_pow_left₀ (by positivity)
+      linarith
+    calc ‖auxF c ζ‖ ≤ _ := hFb
+      _ ≤ ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (29 * S.L * h) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (16 * h)) * (1 / 7) ^ (h * S.M) +
+        epsAt S.L S.M S.h0 S.K S.δ h * hermB h S.M (2 * h + 1) := by
+          refine add_le_add ?_ (mul_le_mul_of_nonneg_left hmono hε)
+          rw [mul_div_assoc]
+          exact (mul_le_mul_of_nonneg_left hratio hX0).trans
+            (mul_le_mul_of_nonneg_right hXX (by positivity))
+      _ = B := hBdef.symm
+  have hcau := Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le (c := (l' : ℂ))
+    (R := 1 / 2) (C := B) (f := auxF c) m (by norm_num) (differentiable_auxF c).diffContOnCl hcirc
+  have hder : ‖iteratedDeriv m (auxF c) (l' : ℂ)‖ ≤ (S.M.factorial : ℝ) * 2 ^ S.M * B := by
+    refine hcau.trans ?_
+    have e : (m.factorial : ℝ) * B / (1 / 2 : ℝ) ^ m = m.factorial * 2 ^ m * B := by
+      rw [one_div, inv_pow, div_inv_eq_mul]; ring
+    rw [e]
+    have h1 : (m.factorial : ℝ) ≤ S.M.factorial := by exact_mod_cast Nat.factorial_le hm.le
+    have h2 : (2 : ℝ) ^ m ≤ 2 ^ S.M := pow_le_pow_right₀ (by norm_num) hm.le
+    gcongr
+  have happ := approx S.hpK.2 c hc l' m
+  have hl2 : (69 / 100 : ℝ) ≤ Real.log 2 := by
+    have := Real.log_two_gt_d9
+    norm_num at this ⊢
+    linarith
+  have hPsi : (69 / 100 : ℝ) ^ S.M ≤ ‖((Real.log 2 : ℝ) : ℂ) ^ m * (Psi S.p S.K c l' m : ℂ)‖ := by
+    rw [norm_mul, norm_pow, Complex.norm_real, Real.norm_eq_abs,
+      abs_of_pos (Real.log_pos (by norm_num))]
+    have h1 : (1 : ℝ) ≤ ‖(Psi S.p S.K c l' m : ℂ)‖ := by
+      rw [Complex.norm_intCast]
+      have : (1 : ℤ) ≤ |Psi S.p S.K c l' m| := Int.one_le_abs hne
+      exact_mod_cast this
+    calc (69 / 100 : ℝ) ^ S.M ≤ (69 / 100) ^ m :=
+          pow_le_pow_of_le_one (by norm_num) (by norm_num) hm.le
+      _ ≤ (Real.log 2) ^ m := pow_le_pow_left₀ (by norm_num) hl2 m
+      _ = (Real.log 2) ^ m * 1 := (mul_one _).symm
+      _ ≤ _ := mul_le_mul_of_nonneg_left h1 (pow_nonneg (Real.log_pos (by norm_num)).le _)
+  have htri : ‖((Real.log 2 : ℝ) : ℂ) ^ m * (Psi S.p S.K c l' m : ℂ)‖ ≤
+      ‖(S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ)‖ +
+        ‖(S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ) -
+          ((Real.log 2 : ℝ) : ℂ) ^ m * (Psi S.p S.K c l' m : ℂ)‖ := by
+    calc _ = ‖(S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ) -
+          ((S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ) -
+            ((Real.log 2 : ℝ) : ℂ) ^ m * (Psi S.p S.K c l' m : ℂ))‖ := by rw [sub_sub_cancel]
+      _ ≤ _ := norm_sub_le _ _
+  have hA1 : ‖(S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ)‖ ≤
+      (S.K : ℝ) ^ S.M * ((S.M.factorial : ℝ) * 2 ^ S.M * B) := by
+    rw [norm_mul, norm_pow, Complex.norm_natCast]
+    exact mul_le_mul (pow_le_pow_right₀ hK hm.le) hder (norm_nonneg _) (by positivity)
+  have h3LK : (1 : ℝ) ≤ 3 * S.L * S.K := by nlinarith
+  have hA2 : ‖(S.K : ℂ) ^ m * iteratedDeriv m (auxF c) (l' : ℂ) -
+          ((Real.log 2 : ℝ) : ℂ) ^ m * (Psi S.p S.K c l' m : ℂ)‖ ≤
+      (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * S.M * S.L * S.δ * (3 * S.L * S.K) ^ S.M *
+        6 ^ (S.L * (2 * h)) := by
+    refine happ.trans ?_
+    have hmM : (m : ℝ) ≤ S.M := by exact_mod_cast hm.le
+    have hpm : (3 * (S.L : ℝ) * S.K) ^ m ≤ (3 * S.L * S.K) ^ S.M := pow_le_pow_right₀ h3LK hm.le
+    have hlh : (6 : ℝ) ^ (S.L * l') ≤ (6 : ℝ) ^ (S.L * (2 * h)) :=
+      pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_left _ hl'.le)
+    have hm0 : (0 : ℝ) ≤ m := Nat.cast_nonneg _
+    have hA : (0 : ℝ) ≤ |Lam S.p S.K| := abs_nonneg _
+    have e1 : (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K| ≤
+        (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * S.M * S.L * S.δ := by
+      have : (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K ≥ 0 := by positivity
+      gcongr
+    have e2 : (3 * (S.L : ℝ) * S.K) ^ m * 6 ^ (S.L * l') ≤
+        (3 * S.L * S.K) ^ S.M * 6 ^ (S.L * (2 * h)) :=
+      mul_le_mul hpm hlh (by positivity) (by positivity)
+    have e0 : 0 ≤ (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K| := by
+      positivity
+    calc _ = ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * m * S.L * |Lam S.p S.K|) *
+          ((3 * (S.L : ℝ) * S.K) ^ m * 6 ^ (S.L * l')) := by ring
+      _ ≤ ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * S.M * S.L * S.δ) *
+          ((3 * (S.L : ℝ) * S.K) ^ S.M * 6 ^ (S.L * (2 * h))) :=
+        mul_le_mul e1 e2 (by positivity) (by positivity)
+      _ = _ := by ring
+  have hE' := hE
+  unfold ExtIneq at hE'
+  rw [← hBdef] at hE'
+  have hfin : (69 / 100 : ℝ) ^ S.M < (69 / 100 : ℝ) ^ S.M := by
+    calc (69 / 100 : ℝ) ^ S.M ≤ _ := hPsi
+      _ ≤ _ := htri
+      _ ≤ _ := add_le_add hA1 hA2
+      _ < _ := by
+        convert hE' using 1
+        ring
+  exact lt_irrefl _ hfin
 
 /-- The extrapolation, iterated `J` times (proved from L6). -/
 theorem extrapolate (S : Setup) {c : Idx S.L → ℤ}
@@ -199,11 +456,212 @@ theorem extrapolate (S : Setup) {c : Idx S.L → ℤ}
     rw [e] at hl
     exact hstep l hl m hm
 
+/-- Elementary: `2^n ≤ (n+1)!`. -/
+theorem two_pow_le_factorial (n : ℕ) : 2 ^ n ≤ (n + 1).factorial := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    rw [pow_succ, Nat.factorial_succ (n + 1)]
+    nlinarith [Nat.zero_le (n * (n + 1).factorial)]
+
+/-- Linear-algebra-free Vandermonde step. -/
+theorem vander_bound {ι : Type*} [Fintype ι] [DecidableEq ι] (c w : ι → ℝ) {B ε : ℝ}
+    (hB : ∀ i, |w i| ≤ B) (N : ℕ) (hT : ∀ r < N, |∑ i, c i * w i ^ r| ≤ ε) :
+    ∀ s : Finset ι, ∀ r, r + s.card < N →
+      |∑ i, c i * w i ^ r * ∏ a ∈ s, (w i - w a)| ≤ (1 + B) ^ s.card * ε := by
+  intro s
+  induction s using Finset.induction_on with
+  | empty =>
+    intro r hr
+    simpa using hT r (by simpa using hr)
+  | insert a s has ih =>
+    intro r hr
+    rw [Finset.card_insert_of_notMem has] at hr ⊢
+    have e : ∑ i, c i * w i ^ r * ∏ b ∈ insert a s, (w i - w b) =
+        ∑ i, c i * w i ^ (r + 1) * ∏ b ∈ s, (w i - w b) -
+          w a * ∑ i, c i * w i ^ r * ∏ b ∈ s, (w i - w b) := by
+      rw [Finset.mul_sum, ← Finset.sum_sub_distrib]
+      refine Finset.sum_congr rfl fun i _ => ?_
+      rw [Finset.prod_insert has]; ring
+    rw [e]
+    have h1 := ih (r + 1) (by omega)
+    have h2 := ih r (by omega)
+    have hB0 : 0 ≤ B := (abs_nonneg _).trans (hB a)
+    calc _ ≤ |∑ i, c i * w i ^ (r + 1) * ∏ b ∈ s, (w i - w b)| +
+          |w a * ∑ i, c i * w i ^ r * ∏ b ∈ s, (w i - w b)| := abs_sub _ _
+      _ ≤ (1 + B) ^ s.card * ε + B * ((1 + B) ^ s.card * ε) := by
+          rw [abs_mul]
+          exact add_le_add h1 (mul_le_mul (hB a) h2 (abs_nonneg _) hB0)
+      _ = (1 + B) ^ (s.card + 1) * ε := by ring
+
+/-- The numerical inequality `FinIneq` implies the bound used with the Lagrange-type estimate. -/
+theorem fin_arith (L : ℕ) (hL : 1 ≤ L) (Fm : ℝ) (hF : 0 ≤ Fm)
+    (hfin : ((L ^ 2 : ℕ) : ℝ) * ((L ^ 2 - 1).factorial : ℝ) *
+      (9 / 5 * (L : ℝ)) ^ (L ^ 2 * (L ^ 2 - 1) / 2) *
+      (36 : ℝ) ^ (L * (L ^ 2 * (L ^ 2 - 1) / 2)) * ((L ^ 2).factorial : ℝ) * Fm < 1) :
+    ((1 + 9 / 5 * (L : ℝ)) * 36 ^ L) ^ (L ^ 2 - 1) * (((L ^ 2).factorial : ℝ) * Fm) < 1 := by
+  obtain ⟨n, hn⟩ : ∃ n, L ^ 2 = n + 1 :=
+    ⟨L ^ 2 - 1, by have := pow_pos (show 0 < L from hL) 2; omega⟩
+  rw [hn] at hfin ⊢
+  simp only [Nat.add_sub_cancel] at hfin ⊢
+  have hLr : (1 : ℝ) ≤ L := by exact_mod_cast hL
+  have hB1 : (1 : ℝ) ≤ 9 / 5 * L := by linarith
+  have hnE : n ≤ (n + 1) * n / 2 := by
+    rw [Nat.le_div_iff_mul_le (by norm_num)]
+    rcases n with _ | n
+    · simp
+    · nlinarith
+  have h2n : (2 : ℝ) ^ n ≤ ((n + 1 : ℕ) : ℝ) * (n.factorial : ℝ) := by
+    have := two_pow_le_factorial n
+    rw [Nat.factorial_succ] at this
+    exact_mod_cast this
+  have hP : ((1 + 9 / 5 * (L : ℝ)) * 36 ^ L) ^ n ≤
+      ((n + 1 : ℕ) : ℝ) * (n.factorial : ℝ) * (9 / 5 * (L : ℝ)) ^ ((n + 1) * n / 2) *
+        (36 : ℝ) ^ (L * ((n + 1) * n / 2)) := by
+    rw [mul_pow, ← pow_mul]
+    have a1 : (1 + 9 / 5 * (L : ℝ)) ^ n ≤ 2 ^ n * (9 / 5 * (L : ℝ)) ^ n := by
+      rw [← mul_pow]
+      exact pow_le_pow_left₀ (by positivity) (by linarith) n
+    have a2 : (9 / 5 * (L : ℝ)) ^ n ≤ (9 / 5 * (L : ℝ)) ^ ((n + 1) * n / 2) :=
+      pow_le_pow_right₀ hB1 hnE
+    have a3 : (36 : ℝ) ^ (L * n) ≤ (36 : ℝ) ^ (L * ((n + 1) * n / 2)) :=
+      pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_left _ hnE)
+    calc (1 + 9 / 5 * (L : ℝ)) ^ n * (36 : ℝ) ^ (L * n)
+        ≤ (2 ^ n * (9 / 5 * (L : ℝ)) ^ n) * (36 : ℝ) ^ (L * n) :=
+          mul_le_mul_of_nonneg_right a1 (by positivity)
+      _ ≤ (((n + 1 : ℕ) : ℝ) * (n.factorial : ℝ) * (9 / 5 * (L : ℝ)) ^ ((n + 1) * n / 2)) *
+          (36 : ℝ) ^ (L * ((n + 1) * n / 2)) := by
+          refine mul_le_mul ?_ a3 (by positivity) (by positivity)
+          exact mul_le_mul h2n a2 (by positivity) (by positivity)
+  calc _ ≤ (((n + 1 : ℕ) : ℝ) * (n.factorial : ℝ) * (9 / 5 * (L : ℝ)) ^ ((n + 1) * n / 2) *
+        (36 : ℝ) ^ (L * ((n + 1) * n / 2))) * (((n + 1).factorial : ℝ) * Fm) :=
+        mul_le_mul_of_nonneg_right hP (by positivity)
+    _ < 1 := by
+      refine lt_of_eq_of_lt ?_ hfin
+      ring
+
 /-- **L7 (final step).** -/
 theorem final_step (S : Setup) {c : Idx S.L → ℤ} (hc0 : c ≠ 0)
     (hc : ∀ i, |(c i : ℝ)| ≤ siegelC S.L S.M S.h0 S.K) (hΛ : |Lam S.p S.K| ≤ S.δ)
     (hz : ∀ l < S.h0 * 2 ^ S.J, ∀ m < S.M, Psi S.p S.K c l m = 0) : False := by
-  sorry
+  classical
+  obtain ⟨j, hj⟩ : ∃ j, c j ≠ 0 := by
+    by_contra h
+    push Not at h
+    exact hc0 (funext h)
+  obtain ⟨H, hH⟩ : ∃ H, H = S.h0 * 2 ^ S.J := ⟨_, rfl⟩
+  rw [← hH] at hz
+  have hfin := S.fin
+  rw [← hH] at hfin
+  have hH1 : 1 ≤ H := by
+    rw [hH]; exact Nat.mul_pos S.hh0 (by positivity)
+  have hHr : (1 : ℝ) ≤ H := by exact_mod_cast hH1
+  have hL : (1 : ℝ) ≤ S.L := by exact_mod_cast S.hL
+  have hK : (1 : ℝ) ≤ S.K := by exact_mod_cast S.hK
+  have hL0 : (0 : ℝ) ≤ S.L := by linarith
+  have hδ := S.hδ
+  have hC : 0 ≤ siegelC S.L S.M S.h0 S.K := by unfold siegelC; positivity
+  have hε : 0 ≤ epsAt S.L S.M S.h0 S.K S.δ H := by
+    unfold epsAt siegelC; positivity
+  obtain ⟨Fm, hFm⟩ : ∃ Fm, Fm = finFmax S.L S.M S.h0 S.K S.δ H := ⟨_, rfl⟩
+  have hB20 : 0 ≤ hermB H S.M (20 * H) := by unfold hermB; positivity
+  have hB1' : 0 ≤ hermB H S.M 1 := by unfold hermB; positivity
+  have hFm0 : 0 ≤ Fm := by
+    rw [hFm]; unfold finFmax; positivity
+  have hcirc : ∀ ζ : ℂ, ‖ζ‖ = 1 → ‖auxF c ζ‖ ≤ Fm := by
+    intro ζ hζ
+    have hR : (H : ℝ) < 20 * H := by linarith
+    have hFb := F_bound S hc hΛ hz hR (z := ζ) (by rw [hζ]; linarith)
+    have e36 : (9 / 5 * (S.L : ℝ) * (20 * H)) = 36 * S.L * H := by ring
+    rw [e36, hζ] at hFb
+    have hprod : ∏ l ∈ range H, ‖ζ - (l : ℂ)‖ ^ S.M ≤ ((H : ℝ) ^ S.M) ^ H := by
+      have := Finset.prod_le_prod₀ (s := range H) (f := fun l : ℕ => ‖ζ - (l : ℂ)‖ ^ S.M)
+        (g := fun _ => (H : ℝ) ^ S.M) (fun l _ => by positivity) (by
+          intro l hl
+          have hl' : l < H := Finset.mem_range.mp hl
+          apply pow_le_pow_left₀ (norm_nonneg _)
+          have h1 : ‖ζ - (l : ℂ)‖ ≤ ‖ζ‖ + ‖(l : ℂ)‖ := norm_sub_le _ _
+          rw [hζ, Complex.norm_natCast] at h1
+          have hlr : (l : ℝ) + 1 ≤ H := by exact_mod_cast hl'
+          linarith)
+      rw [Finset.prod_const, Finset.card_range] at this
+      exact this
+    have hden : 0 < (20 * (H : ℝ) - H) := by linarith
+    have hratio : (∏ l ∈ range H, ‖ζ - (l : ℂ)‖ ^ S.M) / (20 * (H : ℝ) - H) ^ (H * S.M) ≤
+        (1 / 19) ^ (H * S.M) := by
+      rw [div_le_iff₀ (pow_pos hden _)]
+      calc _ ≤ ((H : ℝ) ^ S.M) ^ H := hprod
+        _ = (H : ℝ) ^ (H * S.M) := by rw [← pow_mul, mul_comm S.M H]
+        _ ≤ (1 / 19) ^ (H * S.M) * (20 * (H : ℝ) - H) ^ (H * S.M) := by
+          rw [← mul_pow]
+          apply pow_le_pow_left₀ (by positivity)
+          linarith
+    have hX0 : 0 ≤ (S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (36 * S.L * H) +
+        epsAt S.L S.M S.h0 S.K S.δ H * hermB H S.M (20 * H) := by positivity
+    calc ‖auxF c ζ‖ ≤ _ := hFb
+      _ ≤ ((S.L : ℝ) ^ 2 * siegelC S.L S.M S.h0 S.K * Real.exp (36 * S.L * H) +
+        epsAt S.L S.M S.h0 S.K S.δ H * hermB H S.M (20 * H)) * (1 / 19) ^ (H * S.M) +
+        epsAt S.L S.M S.h0 S.K S.δ H * hermB H S.M 1 := by
+          refine add_le_add ?_ le_rfl
+          rw [mul_div_assoc]
+          exact mul_le_mul_of_nonneg_left hratio hX0
+      _ = Fm := by rw [hFm]; rfl
+  have hT : ∀ m < S.L ^ 2, |∑ i : Idx S.L, (c i : ℝ) * w i ^ m| ≤
+      ((S.L ^ 2).factorial : ℝ) * Fm := by
+    intro m hm
+    have hcau := Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le (c := (0 : ℂ))
+      (R := 1) (C := Fm) (f := auxF c) m one_pos (differentiable_auxF c).diffContOnCl
+      (fun z hz => hcirc z (by simpa using hz))
+    have e : iteratedDeriv m (auxF c) 0 = ((∑ i : Idx S.L, (c i : ℝ) * w i ^ m : ℝ) : ℂ) := by
+      rw [iteratedDeriv_auxF]; push_cast; simp
+    rw [e, Complex.norm_real, Real.norm_eq_abs, one_pow, div_one] at hcau
+    refine hcau.trans ?_
+    exact mul_le_mul_of_nonneg_right (by exact_mod_cast Nat.factorial_le hm.le) hFm0
+  have hB : ∀ i : Idx S.L, |w i| ≤ 9 / 5 * S.L := fun i => by
+    rw [abs_of_nonneg (w_bounds i).1]; exact (w_bounds i).2
+  have hcard : (Finset.univ.erase j).card = S.L ^ 2 - 1 := by
+    rw [Finset.card_erase_of_mem (Finset.mem_univ j), Finset.card_univ, Fintype.card_prod,
+      Fintype.card_fin, sq]
+  have hNpos : 0 < S.L ^ 2 := pow_pos S.hL 2
+  have hvb := vander_bound (fun i : Idx S.L => (c i : ℝ)) w hB (S.L ^ 2) hT
+    (Finset.univ.erase j) 0 (by rw [hcard]; omega)
+  have hlhs : ∑ i : Idx S.L, (c i : ℝ) * w i ^ 0 * ∏ a ∈ Finset.univ.erase j, (w i - w a) =
+      (c j : ℝ) * ∏ a ∈ Finset.univ.erase j, (w j - w a) := by
+    rw [Finset.sum_eq_single j]
+    · simp
+    · intro i _ hij
+      rw [Finset.prod_eq_zero (Finset.mem_erase.2 ⟨hij, Finset.mem_univ i⟩) (sub_self _),
+        mul_zero]
+    · intro h; exact absurd (Finset.mem_univ j) h
+  rw [hlhs, hcard, abs_mul] at hvb
+  have hsep : ((1 / 36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) ≤
+      |∏ a ∈ Finset.univ.erase j, (w j - w a)| := by
+    rw [Finset.abs_prod]
+    have := Finset.prod_le_prod₀ (s := Finset.univ.erase j) (f := fun _ => (1 / 36 : ℝ) ^ S.L)
+      (g := fun a => |w j - w a|) (fun _ _ => by positivity)
+      (fun a ha => sep_w S.hL (Finset.ne_of_mem_erase ha).symm)
+    rw [Finset.prod_const, hcard] at this
+    exact this
+  have hcj : |(c j : ℝ)| * ((1 / 36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) ≤
+      (1 + 9 / 5 * (S.L : ℝ)) ^ (S.L ^ 2 - 1) * (((S.L ^ 2).factorial : ℝ) * Fm) :=
+    (mul_le_mul_of_nonneg_left hsep (abs_nonneg _)).trans hvb
+  have hone : ((1 / 36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) * ((36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) = 1 := by
+    rw [← mul_pow, ← mul_pow]; norm_num
+  have hlt : |(c j : ℝ)| < 1 := by
+    have h36 : 0 ≤ ((36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) := by positivity
+    have h1 := mul_le_mul_of_nonneg_right hcj h36
+    have hfa := fin_arith S.L S.hL Fm hFm0 (by rw [hFm]; exact hfin)
+    calc |(c j : ℝ)| = |(c j : ℝ)| * (((1 / 36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) *
+          ((36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1)) := by rw [hone, mul_one]
+      _ = |(c j : ℝ)| * ((1 / 36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) *
+          ((36 : ℝ) ^ S.L) ^ (S.L ^ 2 - 1) := by ring
+      _ ≤ _ := h1
+      _ = ((1 + 9 / 5 * (S.L : ℝ)) * 36 ^ S.L) ^ (S.L ^ 2 - 1) *
+          (((S.L ^ 2).factorial : ℝ) * Fm) := by rw [mul_pow]; ring
+      _ < 1 := hfa
+  have : |c j| < 1 := by exact_mod_cast hlt
+  rw [abs_lt] at this
+  exact hj (by omega)
 
 /-- **The Gelfond contradiction.** No `Setup` is compatible with `|Λ| ≤ δ`. -/
 theorem gelfond_core (S : Setup) (hΛ : |Lam S.p S.K| ≤ S.δ) : False := by
