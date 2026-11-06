@@ -1,6 +1,7 @@
 import Collatz.Gelfond.Core
 import Collatz.Gelfond.Params
 import Collatz.NoRhin
+import Collatz.MidRange
 
 /-!
 # `EffMeasure` at `10^100` from the Gelfond argument, and the m ≤ 111 theorem from 2^71 alone
@@ -57,13 +58,16 @@ theorem effMeasure100 : EffMeasure100 := by
       linarith
     linarith
 
-/-- **L11.** The m ≤ 111 chain with the ceiling threshold at `10^100` (207 Farey segments, a
-210-digit enclosure of `δ`). -/
+/-- **L11.** The m ≤ 111 chain from `EffMeasure100`. The existing `EffMeasure` (threshold `10^36`)
+is recovered from it by `Collatz.effMeasure_of_100`: `K ≥ 10^100` is `EffMeasure100`, and
+`10^36 ≤ K < 10^100` is `Collatz.midRange` (135 Farey segments, 215-digit enclosure of `δ`, no
+transcendence input). The ceilOK/NoRhin machinery is reused unchanged. -/
 theorem noRhin_of_effMeasure100 (hE : EffMeasure100)
     (hX : ∀ n, 0 < n → n ≤ 2 ^ 71 → Collatz.Reaches Collatz.T n 1) :
     ∀ x p, 0 < x → 0 < p → Collatz.T^[p] x = x → x ≠ 1 → x ≠ 2 →
-      112 ≤ Collatz.numLocalMin x p := by
-  sorry
+      112 ≤ Collatz.numLocalMin x p :=
+  fun x p hx hp hcyc hx1 hx2 =>
+    Collatz.no_111_cycle_2_71_eff hX (Collatz.effMeasure_of_100 hE) x p hx hp hcyc hx1 hx2
 
 /-- **The goal of D90.** No Collatz m-cycle with `m ≤ 111`, assuming only Bařina's verification
 bound `2^71`. -/
