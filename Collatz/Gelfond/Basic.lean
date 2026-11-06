@@ -103,28 +103,62 @@ theorem differentiable_auxF {L : ℕ} (c : Idx L → ℤ) : Differentiable ℂ (
   unfold auxF
   fun_prop
 
+/-- `log 6 ≤ 9/5`. -/
+theorem log2_add_log3_le : Real.log 2 + Real.log 3 ≤ 9 / 5 := by
+  rw [← Real.log_mul (by norm_num) (by norm_num), Real.log_le_iff_le_exp (by norm_num)]
+  have := Real.sum_le_exp_of_nonneg (show (0 : ℝ) ≤ 9 / 5 by norm_num) 8
+  refine le_trans ?_ this
+  norm_num [Finset.sum_range_succ, Nat.factorial]
+
+/-- The exponents lie in `[0, 9L/5]`. -/
+theorem w_bounds {L : ℕ} (i : Idx L) : 0 ≤ w i ∧ w i ≤ 9 / 5 * L := by
+  have hlog6 := log2_add_log3_le
+  have h1 : ((i.1 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.1.isLt.le
+  have h2 : ((i.2 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.2.isLt.le
+  have l2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  have l3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
+  have n1 : (0 : ℝ) ≤ ((i.1 : ℕ) : ℝ) := Nat.cast_nonneg _
+  have n2 : (0 : ℝ) ≤ ((i.2 : ℕ) : ℝ) := Nat.cast_nonneg _
+  have hL0 : (0 : ℝ) ≤ L := Nat.cast_nonneg _
+  unfold w
+  constructor
+  · positivity
+  · nlinarith [mul_le_mul_of_nonneg_right h1 l2.le, mul_le_mul_of_nonneg_right h2 l3.le,
+      mul_le_mul_of_nonneg_left hlog6 hL0]
+
+/-- Power-difference bound. -/
+theorem pow_diff_le {a b R : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (haR : a ≤ R) (hbR : b ≤ R)
+    (hR : R = 0 ∨ 1 ≤ R) (m : ℕ) : |a ^ m - b ^ m| ≤ m * |a - b| * R ^ m := by
+  rcases hR with rfl | h1
+  · have h1 : a = 0 := le_antisymm haR ha
+    have h2 : b = 0 := le_antisymm hbR hb
+    subst h1 h2
+    simp
+  · have hR0 : 0 ≤ R := by linarith
+    rcases m with _ | m
+    · simp
+    · rw [show a ^ (m + 1) - b ^ (m + 1) = _ from (geom_sum₂_mul a b (m + 1)).symm, abs_mul]
+      have hs : |∑ i ∈ Finset.range (m + 1), a ^ i * b ^ (m + 1 - 1 - i)| ≤
+          (m + 1) * R ^ (m + 1) := by
+        calc _ ≤ ∑ i ∈ Finset.range (m + 1), |a ^ i * b ^ (m + 1 - 1 - i)| :=
+              Finset.abs_sum_le_sum_abs _ _
+          _ ≤ ∑ _i ∈ Finset.range (m + 1), R ^ (m + 1) := by
+              refine Finset.sum_le_sum fun i hi => ?_
+              rw [abs_of_nonneg (mul_nonneg (pow_nonneg ha _) (pow_nonneg hb _))]
+              have hi' : i < m + 1 := Finset.mem_range.mp hi
+              calc a ^ i * b ^ (m + 1 - 1 - i) ≤ R ^ i * R ^ (m + 1 - 1 - i) :=
+                    mul_le_mul (pow_le_pow_left₀ ha haR _) (pow_le_pow_left₀ hb hbR _)
+                      (pow_nonneg hb _) (pow_nonneg hR0 _)
+                _ = R ^ m := by rw [← pow_add]; congr 1; omega
+                _ ≤ R ^ (m + 1) := pow_le_pow_right₀ h1 (Nat.le_succ m)
+          _ = (m + 1) * R ^ (m + 1) := by simp
+      calc _ ≤ ((m + 1) * R ^ (m + 1)) * |a - b| := mul_le_mul_of_nonneg_right hs (abs_nonneg _)
+        _ = ((m + 1 : ℕ) : ℝ) * |a - b| * R ^ (m + 1) := by push_cast; ring
+
 /-- **L1c.** Growth: `|F(z)| ≤ L² C exp(9/5 · L |z|)` when `|c_i| ≤ C`. -/
 theorem norm_auxF_le {L : ℕ} (c : Idx L → ℤ) {C : ℝ} (hc : ∀ i, |(c i : ℝ)| ≤ C) (z : ℂ) :
     ‖auxF c z‖ ≤ (L : ℝ) ^ 2 * C * Real.exp (9 / 5 * L * ‖z‖) := by
-  have hlog6 : Real.log 2 + Real.log 3 ≤ 9 / 5 := by
-    rw [← Real.log_mul (by norm_num) (by norm_num), Real.log_le_iff_le_exp (by norm_num)]
-    have := Real.sum_le_exp_of_nonneg (show (0 : ℝ) ≤ 9 / 5 by norm_num) 8
-    refine le_trans ?_ this
-    norm_num [Finset.sum_range_succ, Nat.factorial]
-  have hw : ∀ i : Idx L, 0 ≤ w i ∧ w i ≤ 9 / 5 * L := by
-    intro i
-    have h1 : ((i.1 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.1.isLt.le
-    have h2 : ((i.2 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.2.isLt.le
-    have l2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
-    have l3 : 0 < Real.log 3 := Real.log_pos (by norm_num)
-    have n1 : (0 : ℝ) ≤ ((i.1 : ℕ) : ℝ) := Nat.cast_nonneg _
-    have n2 : (0 : ℝ) ≤ ((i.2 : ℕ) : ℝ) := Nat.cast_nonneg _
-    have hL0 : (0 : ℝ) ≤ L := Nat.cast_nonneg _
-    unfold w
-    constructor
-    · positivity
-    · nlinarith [mul_le_mul_of_nonneg_right h1 l2.le, mul_le_mul_of_nonneg_right h2 l3.le,
-        mul_le_mul_of_nonneg_left hlog6 hL0]
+  have hw := w_bounds (L := L)
   calc ‖auxF c z‖ ≤ ∑ i, ‖(c i : ℂ) * Complex.exp ((w i : ℂ) * z)‖ := norm_sum_le _ _
     _ ≤ ∑ _i : Idx L, C * Real.exp (9 / 5 * L * ‖z‖) := by
       refine Finset.sum_le_sum fun i _ => ?_
@@ -149,7 +183,104 @@ theorem approx {L p K : ℕ} (hpK : p ≤ 2 * K) (c : Idx L → ℤ) {C : ℝ} (
     ‖(K : ℂ) ^ m * iteratedDeriv m (auxF c) (l : ℂ) -
         ((Real.log 2 : ℝ) : ℂ) ^ m * (Psi p K c l m : ℂ)‖ ≤
       (L : ℝ) ^ 2 * C * m * L * |Lam p K| * (3 * L * K) ^ m * 6 ^ (L * l) := by
-  sorry
+  have hL0 : (0 : ℝ) ≤ L := Nat.cast_nonneg _
+  have hK0 : (0 : ℝ) ≤ K := Nat.cast_nonneg _
+  have hp : (p : ℝ) ≤ 2 * K := by exact_mod_cast hpK
+  have hp0 : (0 : ℝ) ≤ p := Nat.cast_nonneg _
+  have l2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  have l2le : Real.log 2 ≤ 1 := by
+    have := Real.log_two_lt_d9
+    norm_num at this
+    linarith
+  have hRcase : (3 * (L : ℝ) * K = 0) ∨ (1 ≤ 3 * (L : ℝ) * K) := by
+    by_cases h : 3 * L * K = 0
+    · left
+      have : ((3 * L * K : ℕ) : ℝ) = 0 := by rw [h]; simp
+      push_cast at this
+      exact this
+    · right
+      have : 1 ≤ 3 * L * K := Nat.one_le_iff_ne_zero.mpr h
+      have h' : ((1 : ℕ) : ℝ) ≤ ((3 * L * K : ℕ) : ℝ) := by exact_mod_cast this
+      push_cast at h'
+      exact h'
+  have hEr : ∀ i : Idx L, Real.exp (w i * l) =
+      (2 : ℝ) ^ ((i.1 : ℕ) * l) * 3 ^ ((i.2 : ℕ) * l) := by
+    intro i
+    have : w i * l = (((i.1 : ℕ) * l : ℕ) : ℝ) * Real.log 2 +
+        (((i.2 : ℕ) * l : ℕ) : ℝ) * Real.log 3 := by
+      unfold w; push_cast; ring
+    rw [this, Real.exp_add, Real.exp_nat_mul, Real.exp_nat_mul, Real.exp_log (by norm_num),
+      Real.exp_log (by norm_num)]
+  have hEc : ∀ i : Idx L, Complex.exp ((w i : ℂ) * (l : ℂ)) =
+      (2 : ℂ) ^ ((i.1 : ℕ) * l) * (3 : ℂ) ^ ((i.2 : ℕ) * l) := by
+    intro i
+    have h := congrArg (fun x : ℝ => (x : ℂ)) (hEr i)
+    simp only [Complex.ofReal_exp, Complex.ofReal_mul, Complex.ofReal_pow,
+      Complex.ofReal_natCast, Complex.ofReal_ofNat] at h
+    exact h
+  have expr : (K : ℂ) ^ m * iteratedDeriv m (auxF c) (l : ℂ) -
+      ((Real.log 2 : ℝ) : ℂ) ^ m * (Psi p K c l m : ℂ) =
+      ((∑ i : Idx L, (c i : ℝ) * (((K : ℝ) * w i) ^ m - (Real.log 2 * (u p K i : ℝ)) ^ m) *
+        ((2 : ℝ) ^ ((i.1 : ℕ) * l) * 3 ^ ((i.2 : ℕ) * l)) : ℝ) : ℂ) := by
+    rw [iteratedDeriv_auxF]
+    push_cast [Psi]
+    rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_sub_distrib]
+    refine Finset.sum_congr rfl fun i _ => ?_
+    rw [hEc i]
+    simp only [mul_pow]
+    simp only [u]
+    push_cast
+    ring
+  rw [expr, Complex.norm_real, Real.norm_eq_abs]
+  calc _ ≤ ∑ i : Idx L, |(c i : ℝ) * (((K : ℝ) * w i) ^ m - (Real.log 2 * (u p K i : ℝ)) ^ m) *
+        ((2 : ℝ) ^ ((i.1 : ℕ) * l) * 3 ^ ((i.2 : ℕ) * l))| := Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ _i : Idx L, C * (m * (L * |Lam p K|) * (3 * (L : ℝ) * K) ^ m) * 6 ^ (L * l) := by
+      refine Finset.sum_le_sum fun i _ => ?_
+      have hci := hc i
+      have hC : 0 ≤ C := (abs_nonneg _).trans hci
+      have hi1 : ((i.1 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.1.isLt.le
+      have hi2 : ((i.2 : ℕ) : ℝ) ≤ L := by exact_mod_cast i.2.isLt.le
+      have n1 : (0 : ℝ) ≤ ((i.1 : ℕ) : ℝ) := Nat.cast_nonneg _
+      have n2 : (0 : ℝ) ≤ ((i.2 : ℕ) : ℝ) := Nat.cast_nonneg _
+      have hu : ((u p K i : ℤ) : ℝ) = ((i.1 : ℕ) : ℝ) * K + ((i.2 : ℕ) : ℝ) * p := by
+        simp [u]
+      have hw := w_bounds i
+      have hu0 : (0 : ℝ) ≤ (u p K i : ℝ) := by rw [hu]; positivity
+      have hu1 : (u p K i : ℝ) ≤ 3 * L * K := by
+        rw [hu]
+        nlinarith [mul_le_mul_of_nonneg_right hi1 hK0, mul_le_mul hi2 hp hp0 hL0]
+      have ha0 : 0 ≤ (K : ℝ) * w i := mul_nonneg hK0 hw.1
+      have ha1 : (K : ℝ) * w i ≤ 3 * L * K := by
+        nlinarith [mul_le_mul_of_nonneg_left hw.2 hK0]
+      have hb0 : 0 ≤ Real.log 2 * (u p K i : ℝ) := mul_nonneg l2.le hu0
+      have hb1 : Real.log 2 * (u p K i : ℝ) ≤ 3 * L * K := by
+        nlinarith [mul_le_mul l2le hu1 hu0 zero_le_one]
+      have hab := pow_diff_le ha0 hb0 ha1 hb1 hRcase m
+      have hdiff : |(K : ℝ) * w i - Real.log 2 * (u p K i : ℝ)| ≤ L * |Lam p K| := by
+        have : (K : ℝ) * w i - Real.log 2 * (u p K i : ℝ) = -((i.2 : ℕ) : ℝ) * Lam p K := by
+          rw [hu]; unfold w Lam; ring
+        rw [this, abs_mul, abs_neg, abs_of_nonneg n2]
+        exact mul_le_mul_of_nonneg_right hi2 (abs_nonneg _)
+      have hD : |((K : ℝ) * w i) ^ m - (Real.log 2 * (u p K i : ℝ)) ^ m| ≤
+          m * (L * |Lam p K|) * (3 * (L : ℝ) * K) ^ m := by
+        refine hab.trans ?_
+        have hR0 : 0 ≤ 3 * (L : ℝ) * K := by positivity
+        have hm0 : (0 : ℝ) ≤ m := Nat.cast_nonneg _
+        exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hdiff hm0) (pow_nonneg hR0 _)
+      have hE : |(2 : ℝ) ^ ((i.1 : ℕ) * l) * 3 ^ ((i.2 : ℕ) * l)| ≤ 6 ^ (L * l) := by
+        rw [abs_of_nonneg (by positivity)]
+        have h1 : (2 : ℝ) ^ ((i.1 : ℕ) * l) ≤ 2 ^ (L * l) :=
+          pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_right _ i.1.isLt.le)
+        have h2 : (3 : ℝ) ^ ((i.2 : ℕ) * l) ≤ 3 ^ (L * l) :=
+          pow_le_pow_right₀ (by norm_num) (Nat.mul_le_mul_right _ i.2.isLt.le)
+        calc _ ≤ (2 : ℝ) ^ (L * l) * 3 ^ (L * l) := mul_le_mul h1 h2 (by positivity) (by positivity)
+          _ = 6 ^ (L * l) := by rw [← mul_pow]; norm_num
+      rw [abs_mul, abs_mul]
+      exact mul_le_mul (mul_le_mul hci hD (abs_nonneg _) hC) hE (abs_nonneg _)
+        (mul_nonneg hC (by positivity))
+    _ = _ := by
+      rw [Finset.sum_const, Finset.card_univ, Fintype.card_prod, Fintype.card_fin, nsmul_eq_mul]
+      push_cast; ring
 
 /-! ### L8: separation of the exponents -/
 
