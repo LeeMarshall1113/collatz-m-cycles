@@ -1,0 +1,28 @@
+lease-run: request collatz-lean-rhin-4485
+GRANTED 8.0 GB
+lease-run: hard commit cap 25.0 GB for the whole job tree
+jobcap: pid 30332 capped at 25 GB commit (whole process tree)
+warning: mathlib: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\mathlib
+warning: batteries: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\batteries
+lean4lean found a problem in Collatz.EffMeasure:
+failed to read file 'C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake\build\lib\lean\Collatz\EffMeasure.olean', incompatible header
+
+real	0m23.317s
+user	0m0.015s
+sys	0m0.000s
+rc=1
+warning: mathlib: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\mathlib
+warning: batteries: repository has local changes:
+  C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake/packages\batteries
+lean4lean found a problem in Collatz.NoRhin:
+failed to read file 'C:\Users\hackathon\Documents\GitHub\collatz-m-cycles-release\.lake\build\lib\lean\Collatz\NoRhin.olean', incompatible header
+
+real	0m22.911s
+user	0m0.016s
+sys	0m0.000s
+rc=1
+jobcap: exit 0, peak job commit 0.99 GB of 25 GB cap
+lease-run: released collatz-lean-rhin-4485
